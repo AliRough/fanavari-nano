@@ -3,6 +3,8 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Requests from "./pages/Requests/Requests";
+import ExpertViewRequest from "./pages/Requests/ExpertViewRequest";
+import ExpertCheckRequest from "./pages/Requests/ExpertCheckRequest";
 import Forgotpassword from "./pages/Login/Forgotpassword";
 import Verification from "./pages/Register/Verification";
 import Addexpert from "./pages/Expert/Addexpert";
@@ -40,11 +42,10 @@ const routes = [
       { path: "addFacilities", element: <AddFacilities /> },
       { path: "allNotifs", element: <AllNotifs /> },
       { path: "viewRequest", element: <ViewRequest /> },
-      { path: "expertViewRequest", element: <ExpertViewRequest /> },
-      { path: "expertChackRequest", element: <ExpertChackRequest /> },
       { path: "openedRequests", element: <OpenedRequests /> },
       { path: "oploadDoc", element: <UploadDoc /> },
-      { path: "ExpertViewRequest", element: <ExpertViewRequest /> },
+      { path: "expertViewRequest", element: <ExpertViewRequest /> },
+      { path: "expertCheckRequest", element: <ExpertCheckRequest /> },
 
       
     ],

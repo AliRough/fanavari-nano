@@ -25,11 +25,11 @@ export default function Support() {
           </div>
         </div>
       <div className="absolute bottom-0 flex w-full p-5">
-        <div className="relative w-4/5 pt-8 pb-3 rounded-2xl border bg-white px-2">
+        <div className="relative w-4/5 pt-8 pb-3 rounded-2xl border bg-white px-2 ">
           <p className="absolute top-0 p-3">پیام خود را بنویسید...</p>
           <input
             type="text"
-            className=" w-full  placeholder:text-xs placeholder:p-3 outline-none  "
+            className=" w-full  placeholder:text-xs placeholder:p-3 outline-none border-0 "
             placeholder="برای تسریع در بارگذاری سعی کنید در یک قاب پیام خود را بنویسید"
           />
         </div>

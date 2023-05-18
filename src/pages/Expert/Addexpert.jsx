@@ -12,7 +12,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="امیر حسین عابدی"
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -20,7 +20,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="فارس / شیراز / ..."
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
 
@@ -29,7 +29,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="12345678"
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -37,7 +37,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="024165058410 / 306545605"
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
@@ -45,7 +45,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="امیر حسین عابدی"
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -53,7 +53,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="ایرانی"
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
@@ -61,7 +61,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="0321514687/97"
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -69,7 +69,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="00/11/13"
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
@@ -77,7 +77,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="0321514687/97"
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -85,7 +85,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="طراح"
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
 
@@ -94,7 +94,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="فارس / شیراز / ..."
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
       </div>
@@ -157,7 +157,7 @@ const Addexpert = () => {
           <select
             name=""
             id=""
-            className="relative w-96 pt-5 p-2 outline-none text-sm text-gray-500"
+            className="relative w-96 pt-5 p-2 outline-none text-sm text-gray-500 border-0"
           >
             <option value="مهندسی برق" className="">
               مهندسی برق
@@ -187,7 +187,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="فارس / شیراز / ..."
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -195,7 +195,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="4654651518948"
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
 
@@ -204,7 +204,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="03298748978"
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -212,7 +212,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder=""
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
@@ -220,7 +220,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder=""
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -228,7 +228,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="rangbarmohad@gmail.com"
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
@@ -236,7 +236,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="فارس / شیراز / ..."
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -244,7 +244,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="03498180798"
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
@@ -252,7 +252,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="32498748978"
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -260,7 +260,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder=""
-            className="outline-none placeholder:text-sm"
+            className="outline-none placeholder:text-sm border-0"
           />
         </div>
       </div>
