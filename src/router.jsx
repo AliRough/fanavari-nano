@@ -21,6 +21,9 @@ import AllNotifs from "./pages/notif/AllNotifs";
 import ViewRequest from "./pages/request/ViewRequest";
 import OpenedRequests from "./pages/request/OpenedRequests";
 import UploadDoc from "./pages/UploadDoc";
+import UserInfo from "./pages/User/UserInfo";
+import LegalUserInfo from "./pages/User/LegalUserInfo";
+import ExpertviewAllRequest from "./pages/Requests/ExpertviewAllRequest";
 
 const routes = [
   {
@@ -34,6 +37,8 @@ const routes = [
       { path: "Addexpert", element: <Addexpert /> },
       { path: "viewExpert", element: <ViewExpert /> },
       { path: "viewUsers", element: <ViewUsers /> },
+      { path: "userInfo", element: <UserInfo /> },
+      { path: "legaluserInfo", element: <LegalUserInfo /> },
       { path: "viewTickets", element: <ViewTickets /> },
       { path: "addTicket", element: <AddTicket /> },
       { path: "suport", element: <Support /> },
@@ -45,6 +50,7 @@ const routes = [
       { path: "openedRequests", element: <OpenedRequests /> },
       { path: "oploadDoc", element: <UploadDoc /> },
       { path: "expertViewRequest", element: <ExpertViewRequest /> },
+      { path: "expertViewAllRequest", element: <ExpertviewAllRequest /> },
       { path: "expertCheckRequest", element: <ExpertCheckRequest /> },
 
       
