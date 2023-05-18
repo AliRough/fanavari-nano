@@ -8,7 +8,7 @@ import Verification from "./pages/Register/Verification";
 import Addexpert from "./pages/Expert/Addexpert";
 import Panel from "./pages/Panel";
 import ViewUsers from "./pages/User/ViewUsers";
-import ViewExpert from "./pages/Expert/viewExpert";
+import ViewExpert from "./pages/Expert/ViewExpert";
 import ViewTickets from "./pages/Ticket/ViewTickets";
 import AddTicket from "./pages/Ticket/AddTicket";
 import Support from "./pages/support/Support";
@@ -24,7 +24,7 @@ const routes = [
   {
     path: "/panel",
     element: <Panel />,
-    children: [ 
+    children: [
       { path: "*", element: <Dashboard /> },
       { path: "", element: <Dashboard /> },
       { path: "dashboard", element: <Dashboard /> },
@@ -40,8 +40,13 @@ const routes = [
       { path: "addFacilities", element: <AddFacilities /> },
       { path: "allNotifs", element: <AllNotifs /> },
       { path: "viewRequest", element: <ViewRequest /> },
+      { path: "expertViewRequest", element: <ExpertViewRequest /> },
+      { path: "expertChackRequest", element: <ExpertChackRequest /> },
       { path: "openedRequests", element: <OpenedRequests /> },
       { path: "oploadDoc", element: <UploadDoc /> },
+      { path: "ExpertViewRequest", element: <ExpertViewRequest /> },
+
+      
     ],
   },
 
@@ -51,4 +56,4 @@ const routes = [
   { path: "/auth/forgotpassword", element: <Forgotpassword /> },
 ];
 
-export default routes;
+export default routes ;

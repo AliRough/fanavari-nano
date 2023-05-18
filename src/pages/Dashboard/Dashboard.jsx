@@ -1,10 +1,88 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Topbar from "../../components/Topbar/Topbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Counter from "../../components/Counter/Counter";
 import User from "../../components/User/User";
+import Axios from "../../../axiosinstancs";
+import ViewDetailExpert from "../Expert/ViewDetailExpert";
+import Loading from "../../components/Loading/Loading";
 
 const Dashboard = () => {
+  const [allRequest, setAllRequest] = useState(null);
+  const [allExpert, setAllExpert] = useState(null)
+  const [allUser, setAllUser] = useState(null)
+  const [Expert, setExpert] = useState(null)
+  
+  
+  const [showDetailsUser, setShowDetailsUser] = useState(false)
+  const [selectItemE, setSelectItemE] = useState(null)
+
+
+  const getAllexpert = () => {
+    Axios.get("/api/admin/count_experts").then(async res => {
+      console.log(res)
+      setAllExpert(res.data)
+    }
+    ).catch(err => {
+      console.log(err)
+    }
+    )
+  }
+  const getAllrequest = () => {
+    Axios.get("/api/admin/count_requests").then(async res => {
+      console.log(res)
+      setAllRequest(res.data)
+    }
+    ).catch(err => {
+      console.log(err)
+    }
+    )
+  }
+  const getAllUser = () => {
+    Axios.get("/api/admin/count_users").then(async res => {
+      console.log(res)
+      setAllUser(res.data)
+    }
+    ).catch(err => {
+      console.log(err)
+    }
+    )
+  }
+  // const getExpert = () => {
+  //   Axios.get("/api/admin/expert").then(async res => {
+  //     console.log(res)
+  //     setAllExpert(res.data)
+  //   }
+  //   ).catch(err => {
+  //     console.log(err)
+  //   }
+  //   )
+  // }
+  const getExpert = () => {
+    Axios.get("/api/admin/expert").then(async res => {
+      console.log(res)
+      setExpert(res.data)
+
+    }
+    ).catch(err => {
+      console.log(err)
+    }
+    )
+  }
+
+  useEffect(() => {
+    getAllUser();
+    getAllexpert();
+    getAllrequest();
+    getExpert()
+  }, []);
+  const detailsHandler = (e) => {
+    setSelectItemE(e)
+    setShowDetailsUser(true)
+
+  }
+
+  if (showDetailsUser) return <ViewDetailExpert close={setShowDetailsUser} details={selectItemE} />
   return (
     <>
       <div className="p-6 flex flex-col gap-6">
@@ -67,36 +145,24 @@ const Dashboard = () => {
               alt=""
             />
           </div>
-          <User
-            avatar="/src/assets/imges/user.png"
-            date="1378/12/21"
-            name="مرضیه محمدی"
-          />
-          <User
-            avatar="/src/assets/imges/user.png"
-            date="1377/03/15"
-            name="متین موسوی"
-          />
-          <User
-            avatar="/src/assets/imges/user.png"
-            date="1371/04/09"
-            name="محمد رنجبر"
-          />
+          {
+            Expert ? Expert.map(i => <div key={i.id} onClick={() => detailsHandler(i)}><User avatar="/src/assets/imges/user.png" date="1378/12/21" name={`${i.name} ${i.family}`}/></div> ) : <Loading />
+          }
         </div>
         <div className="w-1/2 flex flex-col gap-6">
           <Counter
             logo="/src/assets/imges/ViewRequests/Vectora.png"
-            number={648}
+            number={allRequest ? allRequest : ""}
             title="تعداد درخواست"
           />
           <Counter
             logo="/src/assets/imges/ViewRequests/Vectora.png"
-            number="1.2k"
+            number={allExpert ? allExpert : ""}
             title="تعداد کارشناس"
           />
           <Counter
             logo="/src/assets/imges/ViewRequests/Vectora.png"
-            number="14k"
+            number={allUser ? allUser : ""}
             title="تعداد کاربر"
           />
         </div>
