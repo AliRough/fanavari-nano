@@ -87,7 +87,7 @@ export default function Panel() {
     {/* Left section */}
     {/* Left section */}
 
-    <section className="w-c-2 bg-c">
+    <section className="w-c-2 bg-c w-full">
       <Topbar avatar="/src/assets/imges/user.png" />
       <Outlet />
     </section>
