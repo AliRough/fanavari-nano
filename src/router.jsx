@@ -3,12 +3,14 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Requests from "./pages/Requests/Requests";
+import ExpertViewRequest from "./pages/Requests/ExpertViewRequest";
+import ExpertCheckRequest from "./pages/Requests/ExpertCheckRequest";
 import Forgotpassword from "./pages/Login/Forgotpassword";
 import Verification from "./pages/Register/Verification";
 import Addexpert from "./pages/Expert/Addexpert";
 import Panel from "./pages/Panel";
 import ViewUsers from "./pages/User/ViewUsers";
-import ViewExpert from "./pages/Expert/viewExpert";
+import ViewExpert from "./pages/Expert/ViewExpert";
 import ViewTickets from "./pages/Ticket/ViewTickets";
 import AddTicket from "./pages/Ticket/AddTicket";
 import Support from "./pages/support/Support";
@@ -36,6 +38,8 @@ const routes = [
       { path: "Addexpert", element: <Addexpert /> },
       { path: "viewExpert", element: <ViewExpert /> },
       { path: "viewUsers", element: <ViewUsers /> },
+      { path: "userInfo", element: <UserInfo /> },
+      { path: "legaluserInfo", element: <LegalUserInfo /> },
       { path: "viewTickets", element: <ViewTickets /> },
       { path: "addTicket", element: <AddTicket /> },
       { path: "suport", element: <Support /> },
@@ -55,6 +59,11 @@ const routes = [
       { path: "viewRequest", element: <ViewRequest /> },
       { path: "openedRequests", element: <OpenedRequests /> },
       { path: "oploadDoc", element: <UploadDoc /> },
+      { path: "expertViewRequest", element: <ExpertViewRequest /> },
+      { path: "expertViewAllRequest", element: <ExpertviewAllRequest /> },
+      { path: "expertCheckRequest", element: <ExpertCheckRequest /> },
+
+      
     ],
   },
 
@@ -64,4 +73,4 @@ const routes = [
   { path: "/auth/forgotpassword", element: <Forgotpassword /> },
 ];
 
-export default routes;
+export default routes ;
