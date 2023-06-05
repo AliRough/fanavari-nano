@@ -4,7 +4,7 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 export default function ViewExpert() {
   return (
     <div>
-      <div className=" py-6">
+      <div className=" py-6 ">
         <p className="text-xl font-extrabold">وضعیت کارشناسان</p>
 
         <div className="flex items-center pt-2">

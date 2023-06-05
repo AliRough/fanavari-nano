@@ -19,12 +19,16 @@ import AllNotifs from "./pages/notif/AllNotifs";
 import ViewRequest from "./pages/request/ViewRequest";
 import OpenedRequests from "./pages/request/OpenedRequests";
 import UploadDoc from "./pages/UploadDoc";
+import Tashilat from "./pages/Tashilat/Tashilat";
+import One from "./pages/tashilat/steps/One";
+import Two from "./pages/tashilat/steps/Two";
+import Three from "./pages/tashilat/steps/three";
 
 const routes = [
   {
     path: "/panel",
     element: <Panel />,
-    children: [ 
+    children: [
       { path: "*", element: <Dashboard /> },
       { path: "", element: <Dashboard /> },
       { path: "dashboard", element: <Dashboard /> },
@@ -38,6 +42,15 @@ const routes = [
       { path: "siteGuide", element: <SiteGuide /> },
       { path: "guarantee", element: <Guarantee /> },
       { path: "addFacilities", element: <AddFacilities /> },
+      {
+        path: "tashilat",
+        element: <Tashilat />,
+        children: [
+          { path: "1", element: <One /> },
+          { path: "2", element: <Two /> },
+          { path: "3", element: <Three /> },
+        ],
+      },
       { path: "allNotifs", element: <AllNotifs /> },
       { path: "viewRequest", element: <ViewRequest /> },
       { path: "openedRequests", element: <OpenedRequests /> },
