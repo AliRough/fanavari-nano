@@ -4,6 +4,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Requests from "./pages/Requests/Requests";
 import ExpertViewRequest from "./pages/Requests/ExpertViewRequest";
+import ExpertviewAllRequest from "./pages/Requests/ExpertviewAllRequest";
 import ExpertCheckRequest from "./pages/Requests/ExpertCheckRequest";
 import Forgotpassword from "./pages/Login/Forgotpassword";
 import Verification from "./pages/Register/Verification";
@@ -18,14 +19,16 @@ import SiteGuide from "./pages/siteGuide/SiteGuide";
 import Guarantee from "./pages/siteGuide/Guarantee";
 import AddFacilities from "./pages/Facilities/AddFacilities";
 import AllNotifs from "./pages/notif/AllNotifs";
-import ViewRequest from "./pages/request/ViewRequest";
-import OpenedRequests from "./pages/request/OpenedRequests";
+import ViewRequest from "./pages/Requests/ViewRequest";
+import OpenedRequests from "./pages/Requests/OpenedRequests";
 import UploadDoc from "./pages/UploadDoc";
 import Tashilat from "./pages/Tashilat/Tashilat";
 import One from "./pages/tashilat/steps/One";
 import Two from "./pages/tashilat/steps/Two";
 import Three from "./pages/tashilat/steps/three";
-
+import UserInfo from "./pages/User/UserInfo";
+import LegalUserInfo from "./pages/User/LegalUserInfo";
+import Four from "./pages/tashilat/steps/Four";
 const routes = [
   {
     path: "/panel",
@@ -53,6 +56,7 @@ const routes = [
           { path: "1", element: <One /> },
           { path: "2", element: <Two /> },
           { path: "3", element: <Three /> },
+          { path: "4", element: <Four /> },
         ],
       },
       { path: "allNotifs", element: <AllNotifs /> },
@@ -62,8 +66,6 @@ const routes = [
       { path: "expertViewRequest", element: <ExpertViewRequest /> },
       { path: "expertViewAllRequest", element: <ExpertviewAllRequest /> },
       { path: "expertCheckRequest", element: <ExpertCheckRequest /> },
-
-      
     ],
   },
 
@@ -73,4 +75,4 @@ const routes = [
   { path: "/auth/forgotpassword", element: <Forgotpassword /> },
 ];
 
-export default routes ;
+export default routes;

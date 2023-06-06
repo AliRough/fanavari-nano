@@ -54,7 +54,7 @@ export default function Three() {
               </td>
               <td className="p-4 text-xs text-gray-600 font-bold">
                 <input
-                  type="text"
+                  type="!"
                   className="border border-gray-300 rounded-xl w-full"
                 />
               </td>
@@ -65,7 +65,6 @@ export default function Three() {
                 />
               </td>
             </tr>
-           
 
             <tr className="">
               <td className="bg-white" colSpan="9">
