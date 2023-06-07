@@ -29,6 +29,8 @@ import Three from "./pages/tashilat/steps/three";
 import UserInfo from "./pages/User/UserInfo";
 import LegalUserInfo from "./pages/User/LegalUserInfo";
 import Four from "./pages/tashilat/steps/Four";
+import Five from "./pages/tashilat/steps/Five";
+import Confirm from "./pages/tashilat/steps/Confirm";
 const routes = [
   {
     path: "/panel",
@@ -57,6 +59,8 @@ const routes = [
           { path: "2", element: <Two /> },
           { path: "3", element: <Three /> },
           { path: "4", element: <Four /> },
+          { path: "5", element: <Five /> },
+          { path: "confirm", element: <Confirm /> },
         ],
       },
       { path: "allNotifs", element: <AllNotifs /> },
