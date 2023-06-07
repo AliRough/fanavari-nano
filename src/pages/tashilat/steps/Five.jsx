@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Five() {
   return (
@@ -887,6 +888,13 @@ export default function Five() {
           </tbody>
         </table>
       </div>
+      <Link to="/panel/Tashilat/confirm">
+        <div className=" text-left mt-2">
+          <button className="bg-blue-700  text-white rounded-xl p-4 font-bold text-sm">
+            مرحله بعد
+          </button>
+        </div>
+      </Link>
     </>
   );
 }

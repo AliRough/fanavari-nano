@@ -24,16 +24,16 @@ export default function Confirm() {
                 درخواست تسهیلات{" "}
               </h1>
               <p className="my-5">
-                اینجانب {userInfo.name} مدیرعامل شرکت ضمن اعالم موافقت
-                و قبول شرایط آن صندوق، درخواست مبلغ {userInfo.price}
+                اینجانب {userInfo.name} مدیرعامل شرکت ضمن اعالم موافقت و قبول
+                شرایط آن صندوق، درخواست مبلغ {userInfo.price}
                 ریال به عنوان تسهیالت {userInfo.title} به منظور تأمین
-                {userInfo.tamin} را دارم و کلیه برگه های تكمیل شده و
-                اسناد تعهدآور ارائه شده را مورد تائید قرار داده و اعالم میدارم
-                که اطالعات تكمیلی بر اساس آخرین تغییرات ثبتی مندرج در روزنامه
-                رسمی ارائه شده و با امضاء این برگه مسئولیت هرگونه مغایرت یا خطا
-                و یا کشف سوءاستفاده احتمالی را به عهده میگیرم. همچنین صندوق
-                توسعه فناوری نانو اختیار دارد نسبت به پرداخت یا عدم پرداخت
-                تسهیالت مذکور تصمیم گیری نماید.{" "}
+                {userInfo.tamin} را دارم و کلیه برگه های تكمیل شده و اسناد
+                تعهدآور ارائه شده را مورد تائید قرار داده و اعالم میدارم که
+                اطالعات تكمیلی بر اساس آخرین تغییرات ثبتی مندرج در روزنامه رسمی
+                ارائه شده و با امضاء این برگه مسئولیت هرگونه مغایرت یا خطا و یا
+                کشف سوءاستفاده احتمالی را به عهده میگیرم. همچنین صندوق توسعه
+                فناوری نانو اختیار دارد نسبت به پرداخت یا عدم پرداخت تسهیالت
+                مذکور تصمیم گیری نماید.{" "}
               </p>
               <button
                 onClick={() => {
@@ -64,12 +64,10 @@ export default function Confirm() {
         </span>
         <input
           onChange={(e) => {
-            setUserInfo((perv)=>(
-                {
-                    ...perv,
-                    name:e.target.value
-                }
-            ))
+            setUserInfo((perv) => ({
+              ...perv,
+              name: e.target.value,
+            }));
           }}
           value={userInfo.name}
           type="text"
@@ -80,12 +78,10 @@ export default function Confirm() {
         </span>
         <input
           onChange={(e) => {
-            setUserInfo((perv)=>(
-                {
-                    ...perv,
-                    price:e.target.value
-                }
-            ))
+            setUserInfo((perv) => ({
+              ...perv,
+              price: e.target.value,
+            }));
           }}
           value={userInfo.price}
           type="number"
@@ -96,12 +92,10 @@ export default function Confirm() {
         </span>
         <input
           onChange={(e) => {
-            setUserInfo((perv)=>(
-                {
-                    ...perv,
-                    title:e.target.value
-                }
-            ))
+            setUserInfo((perv) => ({
+              ...perv,
+              title: e.target.value,
+            }));
           }}
           value={userInfo.title}
           type="text"
@@ -112,12 +106,10 @@ export default function Confirm() {
         </span>
         <input
           onChange={(e) => {
-            setUserInfo((perv)=>(
-                {
-                    ...perv,
-                    tamin:e.target.value
-                }
-            ))
+            setUserInfo((perv) => ({
+              ...perv,
+              tamin: e.target.value,
+            }));
           }}
           value={userInfo.tamin}
           type="text"
