@@ -1,6 +1,76 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import Axios from '../../../axiosinstancs'
+import { Validation } from "../../helper/validation";
+import { UserDataContext } from "../../contexts/UserData.Provider";
 
 const Addexpert = () => {
+  const [bcInput, setBcInput] = useState(true)
+  const [showPass, setShowPass] = useState(false);
+  const [showComPass, setComShowPass] = useState(false);
+
+  const showPassHandler = (e) => {
+    e.preventDefault();
+    setShowPass(!showPass)
+  }
+  const showComPassHandler = (e) => {
+    e.preventDefault();
+    setComShowPass(!showComPass)
+  }
+  const [userDatas, setUserData] = useState({
+    name: "",
+    family: "",
+    national_code: "", //10
+    phone: "", //11
+    email: "",
+    password: "",
+    father_name: "",
+    number_certificate: "",
+    birth_day: "",
+    place_issue: "",
+    gender: "",
+    marital: "",
+    residential: "",
+    education: "",
+    study: "",
+    job: "",
+    address: "",
+    postal_code: "",
+    home_number: "", //11
+    nationality: "",
+    password_confirmation: "",
+    // series_certificate:"" ,
+    // work_address: "",
+    // work_phone:"" ,
+    // work_postal_code:"" ,
+  })
+
+  const [errors, setErrors] = useState({});
+  const [showErr, setShowErr] = useState({});
+
+  useEffect(() => {
+    setErrors(Validation(userDatas, 'addExpert'))
+  }, [userDatas])
+
+
+  const changeHandler = (ev) => {
+    if (ev.target.type === "radio") {
+      setUserData({
+        ...userDatas, [ev.target.name]: ev.target.value
+      })
+    } else if (ev.target.type === "text") {
+      setUserData({
+        ...userDatas, [ev.target.name]: ev.target.value
+      })
+    }
+    console.log(userDatas);
+  }
+
+  const addHandler = (event) => {
+    event.preventDefault()
+    Axios.post("/api/admin/expert", userDatas).then(async (res) => {
+      console.log(res);
+    })
+  }
   return (
     <form className="bg-white rounded-3xl mt-3 p-3">
       <p className="text-xl font-bold p-4 py-6">اضافه کردن کارشناس</p>
@@ -8,105 +78,257 @@ const Addexpert = () => {
 
       <div className="flex flex-wrap">
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">نام و نام خانوادگی</p>
+          <p className="font-bold text-sm">نام</p>
           <input
             type="text"
-            placeholder="امیر حسین عابدی"
-            className="outline-none border-0 placeholder:text-sm"
+            placeholder="امیر حسین"
+            className="w-full border-none outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.name}
+            name="name"
           />
         </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">محل صدور</p>
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">نام خانوادگی</p>
           <input
             type="text"
-            placeholder="فارس / شیراز / ..."
-            className="outline-none border-0 placeholder:text-sm"
+            placeholder="عابدی"
+            className="w-full border-none outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.family}
+            name="family"
           />
         </div>
 
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">پسوورد</p>
+        <div className="box-input mt-3 w-96 border rounded-2xl mx-3 p-2 ">
+          <p className="font-bold text-sm">کد ملی</p>
           <input
             type="text"
-            placeholder="12345678"
-            className="outline-none border-0 placeholder:text-sm"
+            placeholder="1234567890"
+            className="w-full border-none outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.national_code}
+            name="national_code"
+          />
+          {/* {errors.national_code && <span style={{ color: '#e88f19' }}>{errors.national_code}</span>} */}
+        </div>
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">شماره تلفن</p>
+          <input
+            type="text"
+            placeholder="09123456789"
+            className="w-full border-none outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.phone}
+            name="phone"
           />
         </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">سری و سریال شناسنامه</p>
+        {/* <div className="box-input mt-3 w-96 border rounded-2xl mx-3 p-2">
+          <p className="font-bold text-sm">رمز عبور</p>
           <input
             type="text"
-            placeholder="024165058410 / 306545605"
-            className="outline-none border-0 placeholder:text-sm"
+            placeholder="09110911aa"
+            className="w-full border-none outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.password}
+            name="password"
           />
+        </div> */}
+        <div className="box-input mt-3 w-96 border rounded-2xl mx-3 p-2">
+          <p className="font-bold text-sm"> رمز عبور</p>
+          <div className="relative">
+            <input
+              onChange={changeHandler}
+              value={userDatas.password}
+              name='password'
+              className="w-full border-none outline-none placeholder:text-sm focus:border-none "
+              type={showPass ? "text" : "password"}
+            />
+            <button onClick={showPassHandler} className="absolute top-1/2 -translate-y-1/2 left-3 w-6 h-6">
+              <img className="w-full h-full" src={showPass ? "/src/assets/imges/view.png" : "/src/assets/imges/hide.png"} alt="" />
+            </button>
+          </div>
+          {errors.password && showErr.password && <span style={{ color: '#e88f19' }}>{errors.password}</span>}
+
+        </div>
+
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">تایید رمز عبور</p>
+          <div className="relative">
+
+            <input onChange={changeHandler} value={userDatas.password_confirmation} name='password_confirmation' id="form-2" className="w-full border-none outline-none placeholder:text-sm" type={showComPass ? "text" : "password"} />
+            <button onClick={showComPassHandler} className="absolute top-1/2 -translate-y-1/2 left-3 w-6 h-6">
+              <img className="w-full h-full" src={showComPass ? "/src/assets/imges/view.png" : "/src/assets/imges/hide.png"} alt="" />
+            </button>
+          </div>
+
+          {errors.password_confirmation && showErr.password_confirmation && <span style={{ color: '#e88f19' }}>{errors.password_confirmation}</span>}
+          {/* <input
+            type="text"
+            placeholder="09110911aa"
+            className="w-full border-none outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.password_confirmation}
+            name="password_confirmation"
+          /> */}
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">نام پدر</p>
           <input
             type="text"
-            placeholder="امیر حسین عابدی"
-            className="outline-none border-0 placeholder:text-sm"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">ملیت</p>
-          <input
-            type="text"
-            placeholder="ایرانی"
-            className="outline-none border-0 placeholder:text-sm"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">کد ملی</p>
-          <input
-            type="text"
-            placeholder="0321514687/97"
-            className="outline-none border-0 placeholder:text-sm"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">تاریخ تولد</p>
-          <input
-            type="text"
-            placeholder="00/11/13"
-            className="outline-none border-0 placeholder:text-sm"
+            placeholder="حسین"
+            className="w-full border-none outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.father_name}
+            name="father_name"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">شماره شناسنامه</p>
           <input
             type="text"
-            placeholder="0321514687/97"
-            className="outline-none border-0 placeholder:text-sm"
+            placeholder=""
+            className="w-full border-none outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.number_certificate}
+            name="number_certificate"
           />
         </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">شغل</p>
-          <input
-            type="text"
-            placeholder="طراح"
-            className="outline-none border-0 placeholder:text-sm"
-          />
-        </div>
-
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">آدرس</p>
+          <p className="font-bold text-sm">تاریخ تولد</p>
           <input
             type="text"
-            placeholder="فارس / شیراز / ..."
-            className="outline-none border-0 placeholder:text-sm"
+            placeholder="00/02/14"
+            className="w-full border-none outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.birth_day}
+            name="birth_day"
           />
+        </div>
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">محل صدور</p>
+          <input
+            type="text"
+            placeholder="تهران"
+            className="w-full border-none outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.place_issue}
+            name="place_issue"
+          />
+        </div>
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">پست الکترونیکی</p>
+          <input
+            type="text"
+            placeholder="amir@mail.com"
+            className="w-full border-none outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.emali}
+            name="email"
+          />
+        </div>
+        {/* <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">سریال شناسنامه</p>
+          <input
+            type="text"
+            placeholder=""
+            className="outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.series_certificate}
+            name="series_certificate"
+          />
+        </div> */}
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">کشور</p>
+          <input
+            type="text"
+            placeholder=""
+            className="w-full border-none outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.nationality}
+            name="nationality"
+          />
+        </div>
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">میزان تحصیلات</p>
+          <input
+            type="text"
+            placeholder="لیسانس"
+            className="w-full border-none outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.education}
+            name="education"
+          />
+        </div>
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">رشته تحصیلی</p>
+          <input
+            type="text"
+            placeholder="مهندسی برق"
+            className="w-full border-none outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.study}
+            name="study"
+          />
+        </div>
+        <div className="flex flex-wrap">
+          <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+            <p className="font-bold text-sm">شغل</p>
+            <input
+              type="text"
+              placeholder="برنامه نویس وب"
+              className="w-full border-none outline-none placeholder:text-sm"
+              onChange={changeHandler}
+              value={userDatas.job}
+              name="job"
+            />
+          </div>
+
+          <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+            <p className="font-bold text-sm">آدرس</p>
+            <input
+              type="text"
+              placeholder="تهران"
+              className="w-full border-none outline-none placeholder:text-sm"
+              onChange={changeHandler}
+              value={userDatas.address}
+              name="address"
+            />
+          </div>
+          <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+            <p className="font-bold text-sm">کد پستی</p>
+            <input
+              type="text"
+              placeholder=""
+              className="w-full border-none outline-none placeholder:text-sm"
+              onChange={changeHandler}
+              value={userDatas.postal_code}
+              name="postal_code"
+            />
+          </div>
+          <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+            <p className="font-bold text-sm">تلفن ثابت</p>
+            <input
+              type="text"
+              placeholder="********021"
+              className="w-full border-none outline-none placeholder:text-sm"
+              onChange={changeHandler}
+              value={userDatas.home_number}
+              name="home_number"
+            />
+          </div>
         </div>
       </div>
-      <div className="flex flex-wrap mx-4">
-        <div className=""></div>
-        <div className="flex md:w-1/2 xl:w-96 w-full items-center m-3">
+      <div className="flex flex-wrap ">
+        <div className="flex w-96 items-center m-3">
           <p className="font-bold text-sm">جنسیت:</p>
           <input
             type="radio"
             name="gender"
             id=""
             className="relative overflow-hidden mx-2 w-5 border rounded-full h-full"
+            value="male"
+            onClick={changeHandler}
           />
           <p className="font-bold text-sm">مرد</p>
           <input
@@ -114,182 +336,165 @@ const Addexpert = () => {
             name="gender"
             id=""
             className="relative overflow-hidden mx-2 w-5 rounded h-full"
+            value="female"
+            onClick={changeHandler}
           />
           <p className="font-bold text-sm">زن</p>
         </div>
-        <div className=""></div>
-        <div className="flex md:w-1/2 xl:w-96 w-full items-center m-3">
-          <p className="font-bold text-sm">وضعیت تعهل:</p>
+        <div className="flex w-96 items-center m-3">
+          <p className="font-bold text-sm">وضعیت تاهل:</p>
           <input
             type="radio"
-            name="gender"
+            name="marital"
             id=""
             className="relative overflow-hidden mx-2 w-5 border rounded-full h-full"
+            value="single"
+            onClick={changeHandler}
           />
           <p className="font-bold text-sm">مجرد</p>
           <input
             type="radio"
-            name="gender"
+            name="marital"
             id=""
             className="relative overflow-hidden mx-2 w-5 rounded h-full"
+            value="married"
+            onClick={changeHandler}
           />
           <p className="font-bold text-sm">متاهل</p>
         </div>
-        <div className=""></div>
-        <div className="flex md:w-1/2 xl:w-96 w-full items-center m-3">
+        <div className="flex w-96 items-center m-3">
           <p className="font-bold text-sm">وضعیت اقامت :</p>
           <input
             type="radio"
-            name="gender"
+            name="residential"
             id=""
             className="relative overflow-hidden mx-2 w-5 border rounded-full h-full"
+            value="resident"
+            onClick={changeHandler}
           />
           <p className="font-bold text-sm">مقیم</p>
           <input
             type="radio"
-            name="gender"
+            name="residential"
             id=""
             className="relative overflow-hidden mx-2 w-5 rounded h-full"
+            value="non_resident"
+            onClick={changeHandler}
           />
           <p className="font-bold text-sm">غیر مقیم</p>
         </div>
       </div>
-      <div className="w-full">
-        <p className="my-2">تحصیلات</p>
-        <div className="my-4 relative border rounded-xl xl:w-96  w-full overflow-hidden">
-          <select
-            name=""
-            id=""
-            className="relative w-96 pt-5 p-2 outline-none border-0 text-sm text-gray-500"
-          >
-            <option value="مهندسی برق" className="">
-              مهندسی برق
-            </option>
-          </select>
-          <p className="absolute top-0 pt-1 px-4 text-sm font-semibold">رشته</p>
-        </div>
-        <div className=" w-full xl:w-[48rem] ">
-          <input type="range" name="" id="" className="w-full" />
-          <div className="flex justify-between">
-            <p className="text-sm font-bold">سیکل</p>
-            <p className="text-sm font-bold">دیپلم</p>
-            <p className="text-sm font-bold">کادانی</p>
-            <p className="text-sm font-bold">لیسانس</p>
-            <p className="text-sm font-bold">فوق لیسانس</p>
-            <p className="text-sm font-bold">دکتری</p>
-            <p className="text-sm font-bold">فوق دکتری</p>
-          </div>
-        </div>
+      <div className="w-3/4 mx-auto">
+        <button onClick={addHandler} className="w-full p-3 py-2 text-white bg-blue-700 border border-blue-700 rounded-lg">
+          ثبت
+        </button>
       </div>
-      <p className="text-xl font-bold p-4 py-6">محل سکونت</p>
-      <hr className="border-dashed" />
 
-      <div className="flex flex-wrap">
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">آدرس</p>
-          <input
-            type="text"
-            placeholder="فارس / شیراز / ..."
-            className="outline-none border-0 placeholder:text-sm"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">کد پستی</p>
-          <input
-            type="text"
-            placeholder="4654651518948"
-            className="outline-none border-0 placeholder:text-sm"
-          />
-        </div>
-
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">تلفن همراه</p>
-          <input
-            type="text"
-            placeholder="03298748978"
-            className="outline-none border-0 placeholder:text-sm"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">تلفن</p>
-          <input
-            type="text"
-            placeholder=""
-            className="outline-none border-0 placeholder:text-sm"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">نمابر</p>
-          <input
-            type="text"
-            placeholder=""
-            className="outline-none border-0 placeholder:text-sm"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">پست الکترونیک</p>
-          <input
-            type="text"
-            placeholder="rangbarmohad@gmail.com"
-            className="outline-none border-0 placeholder:text-sm"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">آدرس محل کار</p>
-          <input
-            type="text"
-            placeholder="فارس / شیراز / ..."
-            className="outline-none border-0 placeholder:text-sm"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">کد پستی محل کار</p>
-          <input
-            type="text"
-            placeholder="03498180798"
-            className="outline-none border-0 placeholder:text-sm"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">تلفن محل کار</p>
-          <input
-            type="text"
-            placeholder="32498748978"
-            className="outline-none border-0 placeholder:text-sm"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">نمابر محل کار</p>
-          <input
-            type="text"
-            placeholder=""
-            className="outline-none border-0 placeholder:text-sm"
-          />
-        </div>
-      </div>
-      <div className="flex items-center">
-        <p className="m-4 ">امضاء کارشناس</p>
-        <img
-          src="/./src/assets/imges/Expert/emza.png"
-          alt=""
-          className="h-20 my-5"
-        />
-      </div>
-      <div className=" flex mx-4">
-        <span className="w-1/2 md:w-auto">
-          <button className=" w-full p-3 py-2 text-white bg-blue-700 border border-blue-700 rounded-md">
-            اضافه کردن
-          </button>
-        </span>
-        <span className="w-1/2 md:w-auto pr-1">
-          <button className=" w-full p-3 py-2 text-red-500 border-2 border-red-500 rounded-md md:mx-1">
-            حذف کارشناس
-          </button>
-        </span>
-      </div>
     </form>
-   
   );
 };
 
 export default Addexpert;
+
+
+{/* <div className="w-4/6">
+            <p className="font-bold text-sm">تاحصیلات :</p>
+          <div className="flex justify-between">
+            <p className="text-sm font-bold">سیکل</p>
+            <input
+              type="radio"
+              name="education"
+              id=""
+              className="relative overflow-hidden mx-2 w-5 rounded h-full"
+              value="سیکل"
+              onClick={changeHandler}
+            />
+            <p className="text-sm font-bold">دیپلم</p>
+            <input
+              type="radio"
+              name="education"
+              id=""
+              className="relative overflow-hidden mx-2 w-5 rounded h-full"
+              value="دیپلم"
+              onClick={changeHandler}
+            />
+            <p className="text-sm font-bold">کادانی</p>
+            <input
+              type="radio"
+              name="education"
+              id=""
+              className="relative overflow-hidden mx-2 w-5 rounded h-full"
+              value="کاردانی"
+              onClick={changeHandler}
+            />
+            <p className="text-sm font-bold">لیسانس</p>
+            <input
+              type="radio"
+              name="education"
+              id=""
+              className="relative overflow-hidden mx-2 w-5 rounded h-full"
+              value="لیسانس"
+              onClick={changeHandler}
+            />
+            <p className="text-sm font-bold">فوق لیسانس</p>
+            <input
+              type="radio"
+              name="education"
+              id=""
+              className="relative overflow-hidden mx-2 w-5 rounded h-full"
+              value="فوق لیسانس"
+              onClick={changeHandler}
+            />
+            <p className="text-sm font-bold">دکتری</p>
+            <input
+              type="radio"
+              name="education"
+              id=""
+              className="relative overflow-hidden mx-2 w-5 rounded h-full"
+              value="دکتری"
+              onClick={changeHandler}
+            />
+            <p className="text-sm font-bold">فوق دکتری</p>
+            <input
+              type="radio"
+              name="education"
+              id=""
+              className="relative overflow-hidden mx-2 w-5 rounded h-full"
+              value="فوق دکتری"
+              onClick={changeHandler}
+            />
+          </div>
+        </div> */}
+{/* <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
+            <p className="font-bold text-sm">آدرس محل کار</p>
+            <input
+              type="text"
+              placeholder="تهران"
+              className="outline-none placeholder:text-sm"
+              onChange={changeHandler}
+              value={userDatas.work_address}
+              name="work_address"
+            />
+          </div>
+          <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
+            <p className="font-bold text-sm">تلفن محل کار</p>
+            <input
+              type="text"
+              placeholder="********021"
+              className="outline-none placeholder:text-sm"
+              onChange={changeHandler}
+              value={userDatas.work_phone}
+              name="work_phone"
+            />
+          </div> */}
+{/* <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
+            <p className="font-bold text-sm">کدپستی محل کار</p>
+            <input
+              type="text"
+              placeholder=""
+              className="outline-none placeholder:text-sm"
+              onChange={changeHandler}
+              value={userDatas.work_postal_code}
+              name="work_postal_code"
+            />
+          </div> */}

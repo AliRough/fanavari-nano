@@ -14,8 +14,8 @@ const Viewdetailuser = ({details , close}) => {
           <p className="font-bold text-sm">نام و نام خانوادگی</p>
           <input
             type="text"
-            placeholder="امیر حسین عابدی"
-            className="outline-none placeholder:text-sm"
+            placeholder={`${details.name} ${details.family}`}
+            className="outline-none border-none placeholder:text-sm focus:outline-none"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -23,7 +23,7 @@ const Viewdetailuser = ({details , close}) => {
           <input
             type="text"
             placeholder="فارس / شیراز / ..."
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
 
@@ -32,15 +32,15 @@ const Viewdetailuser = ({details , close}) => {
           <input
             type="text"
             placeholder="12345678"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
           <p className="font-bold text-sm">سری و سریال شناسنامه</p>
           <input
             type="text"
-            placeholder="024165058410 / 306545605"
-            className="outline-none placeholder:text-sm"
+            placeholder={details.national_code}
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
@@ -48,7 +48,7 @@ const Viewdetailuser = ({details , close}) => {
           <input
             type="text"
             placeholder="امیر حسین عابدی"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -56,15 +56,15 @@ const Viewdetailuser = ({details , close}) => {
           <input
             type="text"
             placeholder="ایرانی"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">کد ملی</p>
           <input
             type="text"
-            placeholder="0321514687/97"
-            className="outline-none placeholder:text-sm"
+            placeholder={details.national_code}
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -72,7 +72,7 @@ const Viewdetailuser = ({details , close}) => {
           <input
             type="text"
             placeholder="00/11/13"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
@@ -80,7 +80,7 @@ const Viewdetailuser = ({details , close}) => {
           <input
             type="text"
             placeholder="0321514687/97"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -88,7 +88,7 @@ const Viewdetailuser = ({details , close}) => {
           <input
             type="text"
             placeholder="طراح"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
 
@@ -97,7 +97,7 @@ const Viewdetailuser = ({details , close}) => {
           <input
             type="text"
             placeholder="فارس / شیراز / ..."
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
       </div>
@@ -160,7 +160,7 @@ const Viewdetailuser = ({details , close}) => {
           <select
             name=""
             id=""
-            className="relative w-96 pt-5 p-2 outline-none text-sm text-gray-500 border-0"
+            className="relative w-96 pt-5 p-2 outline-none text-sm text-gray-500"
           >
             <option value="مهندسی برق" className="">
               مهندسی برق
@@ -190,7 +190,7 @@ const Viewdetailuser = ({details , close}) => {
           <input
             type="text"
             placeholder="فارس / شیراز / ..."
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -198,7 +198,7 @@ const Viewdetailuser = ({details , close}) => {
           <input
             type="text"
             placeholder="4654651518948"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
 
@@ -207,7 +207,7 @@ const Viewdetailuser = ({details , close}) => {
           <input
             type="text"
             placeholder="03298748978"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -215,7 +215,7 @@ const Viewdetailuser = ({details , close}) => {
           <input
             type="text"
             placeholder=""
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
@@ -223,7 +223,7 @@ const Viewdetailuser = ({details , close}) => {
           <input
             type="text"
             placeholder=""
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -231,58 +231,10 @@ const Viewdetailuser = ({details , close}) => {
           <input
             type="text"
             placeholder="rangbarmohad@gmail.com"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">آدرس محل کار</p>
-          <input
-            type="text"
-            placeholder="فارس / شیراز / ..."
-            className="outline-none placeholder:text-sm"
-          />
         </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">کد پستی محل کار</p>
-          <input
-            type="text"
-            placeholder="03498180798"
-            className="outline-none placeholder:text-sm"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">تلفن محل کار</p>
-          <input
-            type="text"
-            placeholder="32498748978"
-            className="outline-none placeholder:text-sm"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">نمابر محل کار</p>
-          <input
-            type="text"
-            placeholder=""
-            className="outline-none placeholder:text-sm"
-          />
-        </div>
-      </div>
-      <div className="flex items-center">
-        <p className="m-4 ">امضاء کارشناس</p>
-        <img
-          src="/./src/assets/imges/Expert/emza.png"
-          alt=""
-          className="h-20 my-5"
-        />
-      </div>
-      <div className="mx-4">
-        <button className="p-3 py-2 text-white bg-blue-700 border border-blue-700 rounded-lg">
-          اضافه کردن
-        </button>
-        <button className="p-3 py-2 text-red-500 border-2 border-red-500 rounded-lg mx-1">
-          حذف کارشناس
-        </button>
-      </div>
     </form>
   );
 };

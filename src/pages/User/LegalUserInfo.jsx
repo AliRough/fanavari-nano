@@ -1,6 +1,6 @@
 import React from "react";
 import { RiPencilFill } from "react-icons/ri";
-
+import user from "../../assets/imges/user.png"
 export default function LegalUserInfo() {
   return (
     <div className="bg-white rounded-2xl mt-6 p-6">
@@ -9,7 +9,7 @@ export default function LegalUserInfo() {
       </div>
       <hr />
       <div className="flex mt-6 items-center">
-        <img src="/./src/assets/imges/user.png" alt="" className="w-16" />
+        <img src={user} alt="" className="w-16" />
         <div className=" pr-4">
           <p className="font-bold">باتیس سهامی عام</p>
           <p className="text-gray-500 text-xs">عکس پروفایل </p>

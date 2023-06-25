@@ -1,6 +1,6 @@
 import React from "react";
 import { RiPencilLine } from "react-icons/ri";
-
+import user from "../../assets/imges/user.png"
 export default function UserInfo() {
   return (
     <div className="bg-white rounded-2xl mt-6 p-6">
@@ -11,7 +11,7 @@ export default function UserInfo() {
       <div className="">
         <div className="w-1/2 mx-auto">
           <div className="flex mt-6 items-center">
-            <img src="/./src/assets/imges/user.png" alt="" className="w-16" />
+            <img src={user} alt="" className="w-16" />
             <div className=" pr-4">
               <p className="font-bold">عکس پروفایل</p>
               <p className="text-gray-500 text-xs">

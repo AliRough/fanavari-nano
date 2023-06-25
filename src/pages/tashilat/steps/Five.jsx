@@ -4,6 +4,53 @@ import { Link } from "react-router-dom";
 export default function Five() {
   return (
     <>
+    <div className=" flex  items-center w-full justify-center">
+        <div className="flex items-center">
+          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
+            1
+          </p>
+        </div>
+        <div className="w-10 px-2">
+          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
+        </div>
+        <div className="flex items-center">
+          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
+            2
+          </p>
+        </div>
+        <div className="w-10 px-2">
+          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
+        </div>
+        <div className="flex items-center">
+          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
+            3
+          </p>
+        </div>
+        <div className="w-10 px-2">
+          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
+        </div>
+        <div className="flex items-center">
+          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
+            4
+          </p>
+        </div>
+        <div className="w-10 px-2">
+          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
+        </div>
+        <div className="flex items-center">
+          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
+            5
+          </p>
+        </div>
+        <div className="w-10 px-2">
+          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
+        </div>
+        <div className="flex items-center">
+          <p className="bg-slate-200 p-0.5 pt-1 px-3 rounded-xl text-slate-800 ">
+            تایید
+          </p>
+        </div>
+      </div>
       <div className=" py-6 mt-4">
         <p className="text-lg font-extrabold">
           صورت حساب سود و زیان (ارقام به میلیون ریال){" "}
@@ -16,7 +63,7 @@ export default function Five() {
             <tr className="bg-white  border-b">
               <th
                 className="p-2 text-lg text-gray-800 font-bold text-center"
-                colSpan={5}
+                colSpan={6}
               >
                 دارایی ها
               </th>
@@ -29,14 +76,18 @@ export default function Five() {
               <th className="bg-white p-3  " rowSpan={2}>
                 منتهی به تاریخ{" "}
               </th>
-              <th className="bg-white p-3  ">آخرین تراز آزمایشی </th>
-              <th className="bg-white p-3  ">سال گذشته </th>
-              <th className="bg-white p-3  ">دو سال گذشته </th>
+              <th className="bg-white p-3  ">آخرین تراز آزمایشی سال 1402</th>
+              <th className="bg-white p-3  ">سال 1401 </th>
+              <th className="bg-white p-3  "> سال 1400 </th>
+              <th className="bg-white p-3  "> سال1399    </th>
+
             </tr>
             <tr className=" sticky top-0 text-xs border-b ">
-              <th className="bg-white p-3  ">تاریخ قید شود </th>
-              <th className="bg-white p-3  ">تاریخ قید شود </th>
-              <th className="bg-white p-3  ">تاریخ قید شود </th>
+              <th className="bg-white p-3  ">مقدار قید شود </th>
+              <th className="bg-white p-3  ">مقدار قید شود </th>
+              <th className="bg-white p-3  ">مقدار قید شود </th>
+              <th className="bg-white p-3  ">مقدار قید شود </th>
+
             </tr>
           </thead>
           <tbody>
@@ -68,10 +119,26 @@ export default function Five() {
                   rows="10"
                 ></textarea>
               </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </td>
             </tr>
             <tr className="bg-white  border-b">
               <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
-                سرمایهگذاری های کوتاه مدت{" "}
+                سرمایه گذاری های کوتاه مدت{" "}
+              </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
               </td>
               <td className="p-2">
                 <textarea
@@ -100,7 +167,15 @@ export default function Five() {
             </tr>
             <tr className="bg-white  border-b">
               <td className="p-2 text-xs text-gray-800 font-bold " colSpan={2}>
-                اسناد و حسابهای دریافتنی{" "}
+                اسناد و حسابهای دریافتی{" "}
+              </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
               </td>
               <td className="p-2">
                 <textarea
@@ -129,7 +204,15 @@ export default function Five() {
             </tr>
             <tr className="bg-white  border-b">
               <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
-                سایر اسناد و حسابهای دریافتنی{" "}
+                سایر اسناد و حسابهای دریافتی{" "}
+              </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
               </td>
               <td className="p-2">
                 <textarea
@@ -184,10 +267,26 @@ export default function Five() {
                   rows="10"
                 ></textarea>
               </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </td>
             </tr>
             <tr className="bg-white  border-b">
               <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
                 پیش پرداختها
+              </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
               </td>
               <td className="p-2">
                 <textarea
@@ -242,10 +341,26 @@ export default function Five() {
                   rows="10"
                 ></textarea>
               </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </td>
             </tr>
             <tr className="bg-gray-50  border-b">
               <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
                 جمع دارایی های جاری{" "}
+              </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
               </td>
               <td className="p-2">
                 <textarea
@@ -300,6 +415,14 @@ export default function Five() {
                   rows="10"
                 ></textarea>
               </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </td>
             </tr>
             <tr className="bg-white  border-b">
               <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
@@ -329,10 +452,26 @@ export default function Five() {
                   rows="10"
                 ></textarea>
               </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </td>
             </tr>
             <tr className="bg-white  border-b">
               <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
-                سرمایهگذاری ها و مشارکت های بلندمدت
+                سرمایه گذاری ها و مشارکت های بلندمدت
+              </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
               </td>
               <td className="p-2">
                 <textarea
@@ -387,10 +526,26 @@ export default function Five() {
                   rows="10"
                 ></textarea>
               </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </td>
             </tr>
             <tr className="bg-gray-50  border-b">
               <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
                 جمع دارایی های ثابت
+              </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
               </td>
               <td className="p-2">
                 <textarea
@@ -445,6 +600,14 @@ export default function Five() {
                   rows="10"
                 ></textarea>
               </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -455,7 +618,7 @@ export default function Five() {
             <tr className="bg-white  border-b">
               <th
                 className="p-2 text-lg text-gray-800 font-bold text-center"
-                colSpan={5}
+                colSpan={6}
               >
                 بدهی ها
               </th>
@@ -468,20 +631,32 @@ export default function Five() {
               <th className="bg-white p-3  " rowSpan={2}>
                 منتهی به تاریخ{" "}
               </th>
-              <th className="bg-white p-3  ">آخرین تراز آزمایشی </th>
-              <th className="bg-white p-3  ">سال گذشته </th>
-              <th className="bg-white p-3  ">دو سال گذشته </th>
+              <th className="bg-white p-3  ">آخرین تراز آزمایشی سال 1402</th>
+              <th className="bg-white p-3  ">سال 1401 </th>
+              <th className="bg-white p-3  "> سال 1400 </th>
+              <th className="bg-white p-3  "> سال 1399 </th>
+
             </tr>
             <tr className=" sticky top-0 text-xs border-b ">
-              <th className="bg-white p-3  ">تاریخ قید شود </th>
-              <th className="bg-white p-3  ">تاریخ قید شود </th>
-              <th className="bg-white p-3  ">تاریخ قید شود </th>
+              <th className="bg-white p-3  ">مقدار قید شود </th>
+              <th className="bg-white p-3  ">مقدار قید شود </th>
+              <th className="bg-white p-3  ">مقدار قید شود </th>
+              <th className="bg-white p-3  ">مقدار قید شود </th>
+
             </tr>
           </thead>
           <tbody>
             <tr className="bg-white  border-b">
               <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
                 اسناد و حسابهای پرداختنی{" "}
+              </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
               </td>
               <td className="p-2">
                 <textarea
@@ -536,10 +711,26 @@ export default function Five() {
                   rows="10"
                 ></textarea>
               </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </td>
             </tr>
             <tr className="bg-white  border-b">
               <td className="p-2 text-xs text-gray-800 font-bold " colSpan={2}>
                 تسهیلات کوتاه مدت{" "}
+              </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
               </td>
               <td className="p-2">
                 <textarea
@@ -594,10 +785,26 @@ export default function Five() {
                   rows="10"
                 ></textarea>
               </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </td>
             </tr>
             <tr className="bg-white  border-b">
               <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
                 سایر بدهی های جاری{" "}
+              </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
               </td>
               <td className="p-2">
                 <textarea
@@ -652,10 +859,26 @@ export default function Five() {
                   rows="10"
                 ></textarea>
               </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </td>
             </tr>
             <tr className="bg-white  border-b">
               <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
                 بدهی های بلندمدت{" "}
+              </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
               </td>
               <td className="p-2">
                 <textarea
@@ -710,10 +933,26 @@ export default function Five() {
                   rows="10"
                 ></textarea>
               </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </td>
             </tr>
             <tr className="bg-gray-50  border-b">
               <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
                 جمع کل بدهی ها
+              </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
               </td>
               <td className="p-2">
                 <textarea
@@ -768,10 +1007,26 @@ export default function Five() {
                   rows="10"
                 ></textarea>
               </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </td>
             </tr>
             <tr className="bg-white  border-b">
               <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
                 سرمایه{" "}
+              </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
               </td>
               <td className="p-2">
                 <textarea
@@ -826,6 +1081,14 @@ export default function Five() {
                   rows="10"
                 ></textarea>
               </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </td>
             </tr>
             <tr className="bg-gray-50  border-b">
               <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
@@ -855,10 +1118,26 @@ export default function Five() {
                   rows="10"
                 ></textarea>
               </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </td>
             </tr>
             <tr className="bg-gray-50  border-b">
               <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
                 جمع کل بدهی ها و حقوق صاحبان سهام{" "}
+              </td>
+              <td className="p-2">
+                <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
               </td>
               <td className="p-2">
                 <textarea

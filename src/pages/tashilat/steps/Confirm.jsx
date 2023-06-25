@@ -8,6 +8,10 @@ export default function Confirm() {
     title: "",
     tamin: "",
   });
+
+
+
+
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -15,6 +19,7 @@ export default function Confirm() {
       overlayClassName: "tashilat-submit-form",
       customUI: ({ onClose }) => {
         return (
+          
           <div className="absolute top-0 left-0 w-screen h-screen flex items-center bg-gray-600 bg-opacity-50">
             <div
               dir="rtl"
@@ -23,16 +28,16 @@ export default function Confirm() {
               <h1 className="text-3xl text-yellow-300 font-medium">
                 درخواست تسهیلات{" "}
               </h1>
-              <p className="my-5">
-                اینجانب {userInfo.name} مدیرعامل شرکت ضمن اعالم موافقت و قبول
+              <p className="my-5 text-justify	">
+                اینجانب {userInfo.name} مدیرعامل شرکت ضمن اعلام موافقت و قبول
                 شرایط آن صندوق، درخواست مبلغ {userInfo.price}
-                ریال به عنوان تسهیالت {userInfo.title} به منظور تأمین
+                ریال به عنوان تسهیلات {userInfo.title} به منظور تأمین
                 {userInfo.tamin} را دارم و کلیه برگه های تكمیل شده و اسناد
-                تعهدآور ارائه شده را مورد تائید قرار داده و اعالم میدارم که
-                اطالعات تكمیلی بر اساس آخرین تغییرات ثبتی مندرج در روزنامه رسمی
+                تعهدآور ارائه شده را مورد تائید قرار داده و اعلام می دارم که
+                اطلاعات تكمیلی بر اساس آخرین تغییرات ثبتی مندرج در روزنامه رسمی
                 ارائه شده و با امضاء این برگه مسئولیت هرگونه مغایرت یا خطا و یا
-                کشف سوءاستفاده احتمالی را به عهده میگیرم. همچنین صندوق توسعه
-                فناوری نانو اختیار دارد نسبت به پرداخت یا عدم پرداخت تسهیالت
+                کشف سوءاستفاده احتمالی را به عهده می گیرم. همچنین صندوق توسعه
+                فناوری نانو اختیار دارد نسبت به پرداخت یا عدم پرداخت تسهیلات
                 مذکور تصمیم گیری نماید.{" "}
               </p>
               <button
@@ -54,6 +59,53 @@ export default function Confirm() {
   };
   return (
     <>
+    <div className=" flex  items-center w-full justify-center">
+        <div className="flex items-center">
+          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
+            1
+          </p>
+        </div>
+        <div className="w-10 px-2">
+          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
+        </div>
+        <div className="flex items-center">
+          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
+            2
+          </p>
+        </div>
+        <div className="w-10 px-2">
+          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
+        </div>
+        <div className="flex items-center">
+          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
+            3
+          </p>
+        </div>
+        <div className="w-10 px-2">
+          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
+        </div>
+        <div className="flex items-center">
+          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
+            4
+          </p>
+        </div>
+        <div className="w-10 px-2">
+          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
+        </div>
+        <div className="flex items-center">
+          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
+            5
+          </p>
+        </div>
+        <div className="w-10 px-2">
+          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
+        </div>
+        <div className="flex items-center">
+          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
+            تایید
+          </p>
+        </div>
+      </div>
       <form
         onSubmit={submitHandler}
         action=" "

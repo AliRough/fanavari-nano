@@ -1,232 +1,134 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import Axios from "../../../axiosinstancs";
+import StepConfirm from "../../components/modal/StepConfirm";
+import Loader from "../../components/Loader/Loader";
+import SendFileFirst from "../../components/ChekRequestComp/SendFileFirst";
+import SendFileSec from "../../components/ChekRequestComp/SendFileSec";
+import SendEvaluationReportFile from "../../components/ChekRequestComp/SendEvaluationReportFile";
+import CheckReport from "../../components/modal/CheckReport";
 
 export default function ExpertCheckRequest() {
+  const reqId = useParams()
+  const navigate = useNavigate()
+  const [reqStatus, setReqStatus] = useState({
+        // check: false,
+        // assessment: false,
+        // report: true,
+        // commite: false,
+        // credit: false,
+        // fileName : null,
+        // file_name1 : null,
+        // file_name2 : null,
+        // file_name3 : null,
+  })
+  const [isLoading, setIsLoading] = useState(true)
+  const [updatePage, setUpdatePage] = useState(0)
+  const [showStepConfirm, setShowStepConfirm] = useState(null)
+  const [showCheckRep, setShowCheckRep] = useState(null)
+
+  useEffect(() => {
+    setIsLoading(true)
+    Axios.get(`/api/v1/get_all_status/${reqId.id}`).then(async (res) => {
+      console.log(res);
+      setReqStatus({
+        check: res.data.check,
+        assessment: res.data.assessment,
+        report: res.data.report,
+        // report: true,
+        commite: res.data.commite,
+        // commite: true,
+        credit: res.data.credit,
+      })
+      setIsLoading(false)
+      console.log(updatePage);
+    })
+  }, [updatePage])
+
   return (
     <div className="px-5">
-      <div className=" flex  items-center">
-        <div className="flex items-center">
-          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
-            1
-          </p>
-          <p className="text-blue-800 font-bold mx-2 text-sm">تعهد نامه</p>
-        </div>
-        <div className="w-10 px-2">
-          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
-        </div>
-        <div className="flex items-center">
-          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
-            2
-          </p>
-          <p className="text-blue-800 font-bold mx-2 text-sm">اطلاعات اولیه</p>
-        </div>
-        <div className="w-10 px-2">
-          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
-        </div>
-        <div className="flex items-center">
-          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
-            3
-          </p>
-          <p className="text-blue-800 font-bold mx-2 text-sm">پایش اطلاعات</p>
-        </div>
-        <div className="w-10 px-2">
-          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
-        </div>
-        <div className="flex items-center">
-          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
-            4
-          </p>
-          <p className="text-blue-800 font-bold mx-2 text-sm">پرسشنامه</p>
-        </div>
-        <div className="w-10 px-2">
-          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
-        </div>
-        <div className="flex items-center">
-          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
-            5
-          </p>
-          <p className="text-blue-800 font-bold mx-2 text-sm">مشاوره</p>
-        </div>
-        <div className="w-10 px-2">
-          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
-        </div>
-        <div className="flex items-center">
-          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
-            6
-          </p>
-          <p className="text-blue-800 font-bold mx-2 text-sm">ارزیابی</p>
-        </div>
-        <div className="w-10 px-2">
-          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
-        </div>
-        <div className="flex items-center">
-          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
-            7
-          </p>
-          <p className="text-blue-800 font-bold mx-2 text-sm">نتیجه درخواست</p>
-        </div>
-      </div>
-      <div className=" py-6">
-        <p className="text-xl font-extrabold">بارگیری و بارگذاری مدارک </p>
-      </div>
-      <div className="flex">
-        <div className="w-1/2 px-2">
-          <div className=" bg-white rounded-xl p-5">
-            <div className=" pb-4">
-              <p className=" font-bold"> مدارک اصلی </p>
-            </div>
-            <hr className="border-dashed border-gray-300" />
-
-            <hr className="border-dashed border-gray-300" />
-            <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-              <p className="">
-                تصویر مجوز ها و گواهی نامه های اخذ شده توسط شرکت
-              </p>
-              <a href="#" className="text-blue-400 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
-            </div>
-            <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-              <p className="">
-                تصویر مجوز ها و گواهی نامه های اخذ شده توسط شرکت
-              </p>
-              <a href="#" className="text-blue-400 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
-            </div>
-            <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-              <p className="">
-                تصویر مجوز ها و گواهی نامه های اخذ شده توسط شرکت
-              </p>
-              <a href="#" className="text-blue-400 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
-            </div>
-            <div className="rounded-lg p-2 border text-gray-400 text-xs my-4">
-              <p className="">
-                تصویر مجوز ها و گواهی نامه های اخذ شده توسط شرکت
-              </p>
-              <a href="#" className="text-blue-400 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
-            </div>
+      {
+        isLoading && <Loader />
+      }
+      {
+        showStepConfirm !== null && <StepConfirm action={showStepConfirm} requestId={reqId.id} close={setShowStepConfirm} setUpdatePage={setUpdatePage} />
+      }
+      {
+        showCheckRep !== null && <CheckReport close={setShowCheckRep} reqId={reqId.id} />
+      }
+      {
+        !isLoading &&
+        <div className="flex justify-center items-center  mt-4">
+          <div className="flex items-center">
+            <p onClick={() => setShowStepConfirm({ step: 1, prevTest: true, currentStep: reqStatus.check })} className={reqStatus.check ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 " : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "}>
+              1
+            </p>
+            <p className={reqStatus.check ? "text-blue-800 font-bold mx-2 text-sm" : "text-gray-300 font-bold mx-2 text-sm"}>بررسی مدارک</p>
           </div>
-          <div className="pt-4">
-            <div className=" pb-4">
-              <p className=" font-bold"> ارسال مدارک تکمیلی برای کاربر </p>
-            </div>
-            <div className="flex">
-              <button className="w-full  rounded-lg bg-blue-700   text-white p-3 font-bold text-xs">
-                ارسال فایل 1{" "}
-              </button>
-              <button className="w-full  rounded-lg bg-blue-700 mx-2  text-white p-3 font-bold text-xs">
-              ارسال فایل 2{" "}
-              </button>
-              <button className="w-full  rounded-lg bg-blue-700   text-white p-3 font-bold text-xs">
-              ارسال فایل 3{" "}
-              </button>
-            </div>
-            <button className="w-full  rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs">
-            گزارش ناقصی در مدارک{" "}
-            </button>
+          <div className="w-10 px-2">
+            <div className={reqStatus.assessment ? "border-t border-2 border-blue-800 h-full rounded" : "border-t border-2 border-gray-300 h-full rounded"}></div>
+          </div>
+          <div className="flex items-center">
+            <p onClick={() => setShowStepConfirm({ step: 2, prevTest: reqStatus.check, currentStep: reqStatus.assessment })} className={reqStatus.assessment ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 " : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "}>
+              2
+            </p>
+            <p className={reqStatus.assessment ? "text-blue-800 font-bold mx-2 text-sm" : "text-gray-300 font-bold mx-2 text-sm"}>شروع ارزیابی و جلسه با مشاور فنی</p>
+          </div>
+          <div className="w-10 px-2">
+            <div className={reqStatus.report ? "border-t border-2 border-blue-800 h-full rounded" : "border-t border-2 border-gray-300 h-full rounded"}></div>
+          </div>
+          <div className="flex items-center">
+            <p onClick={() => setShowStepConfirm({ step: 3, prevTest: reqStatus.assessment, currentStep: reqStatus.report })} className={reqStatus.report ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 " : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "}>
+              3
+            </p>
+            <p className={reqStatus.report ? "text-blue-800 font-bold mx-2 text-sm" : "text-gray-300 font-bold mx-2 text-sm"}>گزارش ارزیابی</p>
+          </div>
+          <div className="w-10 px-2">
+            <div className={reqStatus.commite ? "border-t border-2 border-blue-800 h-full rounded" : "border-t border-2 border-gray-300 h-full rounded"}></div>
+          </div>
+          <div className="flex items-center">
+            <p onClick={() => setShowStepConfirm({ step: 4, prevTest: reqStatus.report, currentStep: reqStatus.commite })} className={reqStatus.commite ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 " : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "}>
+              4
+            </p>
+            <p className={reqStatus.commite ? "text-blue-800 font-bold mx-2 text-sm" : "text-gray-300 font-bold mx-2 text-sm"}>کمیته</p>
+          </div>
+          <div className="w-10 px-2">
+            <div className={reqStatus.credit ? "border-t border-2 border-blue-800 h-full rounded" : "border-t border-2 border-gray-300 h-full rounded"}></div>
+          </div>
+          <div className="flex items-center">
+            <p onClick={() => setShowStepConfirm({ step: 5, prevTest: reqStatus.commite, currentStep: reqStatus.credit })} className={reqStatus.credit ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 " : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "}>
+              5
+            </p>
+            <p className={reqStatus.credit ? "text-blue-800 font-bold mx-2 text-sm" : "text-gray-300 font-bold mx-2 text-sm"}>اعلام حد اعتباری</p>
           </div>
         </div>
-        <div className="w-1/2 px-2">
-          <div className=" bg-white rounded-xl p-5">
-            <div className=" pb-4">
-              <p className=" font-bold"> اسناد </p>
-              <p className="text-xs text- gray-400 my-1 ">
-                حداکثر بارگذاری برای هر فرم 5 فایل میباشد .{" "}
-              </p>
-            </div>
+      }
 
-            <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-              <p className="">
-                تصویر مجوز ها و گواهی نامه های اخذ شده توسط شرکت{" "}
-              </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
+      {/* ------------------------------------------   آپلود فایل مرحله 4 و 3  ------------------------------------------------------ */}
+      <div className="flex py-6">
+          <div style={{display: "flex" , flexDirection: "column"}} className="w-1/2 px-2">
+            <SendFileFirst reqStatus={reqStatus} reqId={reqId.id} setUpdatePage={setUpdatePage} />
+            <SendFileSec reqStatus={reqStatus} reqId={reqId.id} setUpdatePage={setUpdatePage} />
+          </div>
+      {/* ------------------------------------------   آپلود فایل مرحله 4 و 3  ------------------------------------------------------ */}
+
+        <div className="w-1/2 px-2">
+          <SendEvaluationReportFile reqStatus={reqStatus} reqId={reqId.id} setUpdatePage={setUpdatePage} />
+          
+          <div className="pt-4 px-2">
+            <div style={{display:"flex"}} className="w-full">
+              {
+                reqStatus.check === false ?
+                <button onClick={() => setShowCheckRep(true)} className="w-1/2  rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs">
+                  گزارش ناقصی در مدارک{" "}
+                </button> : ""
+              }
+              <Link to={`/panel/WarrantyDocuments/${reqId.id}`} style={{textAlign : "center"}} className={reqStatus.check === false ? "w-1/2 rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs" : "w-full rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs"}>
+                مشاهده مدارک{" "}
+              </Link>
             </div>
-            <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-              <p className="">
-                مدارک ثبتی شرکت شامل اساسنامه/لیست سهامداران/روزنامه رسمی آخرین
-                تغییرات ثبتی شرکت{" "}
-              </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
-            </div>
-            <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-              <p className="">تصویر کارت ملی و شناسنامه اعضای هیت مدیره </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
-            </div>
-            <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-              <p className="">
-                تصویر کارت ملی و شناسنامه اعضای هیت مدیره که صاحب امضا باشند{" "}
-              </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
-            </div>
-            <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-              <p className="">گواهی دانش بنیان شرکت </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
-            </div>
-            <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-              <p className="">رزومه شرکت به همراه مستندات قرارداد های مشابه </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
-            </div>
-            <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-              <p className="">لیست تسهیلات و وامهای اخذ شده شرکت </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
-            </div>
-            <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-              <p className="">اظهارنامه مالیاتی سال 1398/1399/1400 </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
-            </div>
-            <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-              <p className="">مشخصات فنی و کاتالوگ محصول / خدمات </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
-            </div>
-            <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-              <p className="">
-                آخرین لیست بیمه شرکت به همراه فیش بیمه پرداختی در وجه تامین
-                اجتماعی{" "}
-              </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
-            </div>
-            <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4 ">
-              <p className="">
-                پیش فاکتور مواد اولیه و قطعات مورد نیاز جهت تولید محصول طرح{" "}
-              </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
-            </div>
-            <div className="rounded-lg p-2 border text-gray-400 text-xs my-4">
-              <p className="">
-                قبوض اب و برق و قرداد اجاره محل اجرای طرح(در صورت استیجاری بودن){" "}
-              </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
-            </div>
-            <button className="w-full  rounded-lg bg-blue-700  text-white p-3 font-bold text-xs">
-              ذخیره{" "}
+            <button onClick={() => navigate(-1)} className="w-full rounded-lg bg-blue-700 mt-2   text-white p-3 font-bold text-xs">
+              بازگشت
             </button>
           </div>
         </div>

@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import Axios from "../../../axiosinstancs";
 import ViewDetailExpert from './ViewDetailExpert'
+import { onlyDateConversion } from "../../helper/dateConversion.cjs";
+import { UserDataContext } from "../../contexts/UserData.Provider";
+import user from "../../assets/imges/user.png"
+import ExpertReqs from "../../components/modal/ExpertReqs";
 
 export default function ViewExpert() {
+  const {userDatas} = useContext(UserDataContext)
   const [allExpert, setAllExpert] = useState(null)
   const [selectedItem, setSelectedItem] = useState(null);
   const [showDetailsUser, setShowDetailsUser] = useState(false);
+  const [showReqsModal, setShowReqsModal] = useState(null);
   
 
   const getExpert = () => {
@@ -28,12 +34,15 @@ export default function ViewExpert() {
     setShowDetailsUser(true)
     console.log(item);
   };
+
+
   if (showDetailsUser) return <ViewDetailExpert close={setShowDetailsUser} details={selectedItem} />
 
-  return (
+  if ((userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
     <div>
-      <div className=" py-6 ">
-        <p className="text-xl font-extrabold">وضعیت کارشناسان</p>
+      {showReqsModal !== null && <ExpertReqs close={setShowReqsModal} details={showReqsModal} />}
+      <div className=" py-6">
+        <p className="text-xl font-extrabold" >وضعیت کارشناسان</p>
 
         <div className="flex items-center pt-2">
           <AiOutlineInfoCircle className="text-blue-400" />
@@ -42,14 +51,15 @@ export default function ViewExpert() {
           </p>
         </div>
       </div>
-      <div className="max-h-[60vh] overflow-y-scroll">
+      <div className="max-h-[60vh] overflow-y-scroll scrollable-content-chat">
         <table className="w-full ">
           <thead>
-            <tr className=" sticky top-0   ">
+            <tr className="top-0">
               <th className="bg-white p-3 rounded-r-xl ">نمایه </th>
               <th className="bg-white p-3 ">نام </th>
               <th className="bg-white p-3 ">نام خانوادگی</th>
               <th className="bg-white p-3 ">تاریخ ثبت نام کارشناس </th>
+              <th className="bg-white p-3 ">تعداد  پروژه </th>
               <th className="bg-white p-3 rounded-l-xl">اعمال </th>
             </tr>
           </thead>
@@ -70,14 +80,17 @@ export default function ViewExpert() {
                     {" "}
                     <img
                       className="w-10"
-                      src="/./src/assets/imges/user.png"
+                      src={user}
                       alt=""
                     />
                   </td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{expert.name}</td>
+                  <td onClick={() => setShowReqsModal(expert)}  className="p-4 text-xs text-gray-400 font-bold">{expert.name}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">{expert.family}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
-                    {expert.created_at}
+                    {onlyDateConversion(expert.created_at)}
+                  </td>
+                  <td className="p-4 text-xs text-gray-400 font-bold">
+                    {expert.project_count}
                   </td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
                   <div className="flex">

@@ -12,10 +12,8 @@ const Axios = axios.create({
     baseURL,
     // timeout: 15000,
     headers: {
-
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-
     }
 });
 
@@ -27,7 +25,7 @@ Axios.interceptors.request.use(async (config) => {
         'Content-Type': 'application/json',
         // add auth header with jwt if account is logged in and request is to the api url
         ...(isLoggedIn && {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${JSON.parse(token)}`
         })
     }
     return config
