@@ -107,14 +107,14 @@ export default function AdminCheckRequest() {
       }
 
       {/* ------------------------------------------   آپلود فایل مرحله 4 و 3  ------------------------------------------------------ */}
-      <div className="flex py-6">
-          <div style={{display: "flex" , flexDirection: "column"}} className="w-1/2 px-2">
+      <div className="flex py-6 flex-wrap">
+          <div style={{display: "flex" , flexDirection: "column"}} className="md:w-1/2 w-full px-2">
             <DownloadStep3 reqStatus={reqStatus} reqId={reqId.id} />
             <DownloadSecStepFile reqStatus={reqStatus} reqId={reqId.id} />            
           </div>
       {/* ------------------------------------------   آپلود فایل مرحله 4 و 3  ------------------------------------------------------ */}
 
-        <div className="w-1/2 px-2">
+        <div className="md:w-1/2 w-full px-2">
           <SendEvaluationReportFile reqStatus={reqStatus} reqId={reqId.id} setUpdatePage={setUpdatePage} />
           
           <div className="pt-4 px-2">

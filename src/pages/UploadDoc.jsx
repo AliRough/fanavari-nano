@@ -148,20 +148,20 @@ export default function UploadDoc() {
         }
       </div>
       <ToastContainer />
-      <div style={{display: "flex" , alignItems: "center" }} className="flex w-full">
-        <div className="w-1/2 p-2">
+      <div style={{display: "flex" , alignItems: "center" }} className="flex w-full flex-wrap md:flex-nowrap">
+        <div className="md:w-1/2 w-full p-2">
           <input
             type="text"
             name="title"
             value={document.title}
             onChange={changeHandler}
-            className="w-full my-3 p-3 bg-transparent rounded-2xl  border-b border-gray-400 "
+            className="w-full md:my-3 p-3 bg-transparent rounded-2xl  border-b border-gray-400 "
             placeholder="اسم درخواست و توضیحات (توضیحات الزامی است)"
             onFocus={focusHandler}
           />
           {errors.title && showErr.title && <span style={{ color: '#e88f19' }}>{errors.title}</span>}
         </div>
-        <div  className="w-1/2 p-2">
+        <div  className="md:w-1/2 w-full p-2">
           <div class="relative">
           {/* 'job','commitments','deduction','prepayment','commitment_pay','tender_offer','credit' */}
             <select value={document.type_w} onFocus={focusHandler} onChange={handleChange} class="block appearance-none w-full bg-transparent border-b border-gray-400  my-3 p-3.5 rounded-2xl leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" >
@@ -178,12 +178,12 @@ export default function UploadDoc() {
             {errors.type_w && showErr.type_w && <span style={{ color: '#e88f19' }}>{errors.type_w}</span>}
           </div>
         </div>
-        <button onClick={oploaddoc} className="w-1/5 h-1/2  rounded-lg bg-blue-700  text-white p-3 font-bold text-xs">
+        <button onClick={oploaddoc} className="md:w-1/5 w-full h-1/2 mb-4 md:mb-0  rounded-lg bg-blue-700  text-white p-3 font-bold text-xs">
           ذخیره{" "}
         </button>
       </div>
     
-      <div className="flex">
+      <div className="flex flex-wrap">
         <UploadDocs document={document} changeHandler={changeHandler} errors={errors} showErr={showErr} />
         <UpDoc document={document} changeHandler={docChangeFile} errors={errors} showErr={showErr} />
         {isLoading && <Loader />}

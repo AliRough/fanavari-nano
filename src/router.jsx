@@ -61,7 +61,7 @@ const routes = [
       { path: "allNotifs", element: <AllNotifs /> },
       { path: "viewRequest/:id", element: <ViewDetailRequest /> },
       { path: "openedRequests", element: <OpenedRequests /> },
-      { path: "oploadDoc", element: <UploadDoc /> },
+      { path: "uploadDoc", element: <UploadDoc /> },
       { path: "ExpertViewRequest", element: <ExpertViewRequest /> },
       { path: "WarrantyDocuments/:id", element: <WarrantyDocuments /> },
       { path: "AdminCheckRequest/:id", element: <AdminCheckRequest /> },

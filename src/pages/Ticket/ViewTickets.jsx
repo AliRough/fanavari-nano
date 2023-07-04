@@ -6,23 +6,22 @@ import { Link } from "react-router-dom";
 import { UserDataContext } from "../../contexts/UserData.Provider";
 
 export default function ViewTickets() {
-  const {userDatas} = useContext(UserDataContext)
-  const [isLoading, setIsLoading] = useState(true)
-  const [tickets, setTickets] = useState([])
-  
+  const { userDatas } = useContext(UserDataContext);
+  const [isLoading, setIsLoading] = useState(true);
+  const [tickets, setTickets] = useState([]);
+
   useEffect(() => {
     const getTicket = () => {
       Axios.get("/api/v1/ticket").then(async (res) => {
         console.log(res.data);
-        
-        setTickets(res.data)
-        setIsLoading(false)
-      })
-    }
-    getTicket()
-  }, [])
 
-  
+        setTickets(res.data);
+        setIsLoading(false);
+      });
+    };
+    getTicket();
+  }, []);
+
   //public
   return (
     <div>
@@ -40,48 +39,59 @@ export default function ViewTickets() {
               <th className="bg-white p-3 rounded-l-xl">اعمال </th>
             </tr>
           </thead>
-            {isLoading && <Loader />}
+          {isLoading && <Loader />}
           <tbody>
-            {tickets && tickets.map((item) => {
-              return (
-                <tr
-                  key={item.id}
-                  id={item.id}
-                >
-                  <td className="p-4 text-xs text-gray-400 font-bold">{item.id}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">
-                    {item.title}
-                  </td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">
-                    <button className={
-                      item.status === "open" ? "text-green-600 border border-green-600 rounded-xl p-2 px-3" :
-                      item.status === "waiting" ? "text-yellow-400 border border-yellow-400 rounded-xl p-2 px-3" :
-                      item.status === "closed" ? "text-red-400 border border-green-400 rounded-xl p-2 px-3" :
-                      item.status === "resolved" ? "text-green-600 border border-green-600 rounded-xl p-2 px-3" : ""
-
-                    }>{
-                      item.status === "open" ? "باز" :
-                      item.status === "waiting" ? "در انتظار پاسخ" :
-                      item.status === "closed" ? "بسته" :
-                      item.status === "resolved" ? "پاسخ داده شد" : ""
-                    }</button>
-                  </td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">
-                    {dateConversion(item.updated_at)}
-                  </td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">
-                    <div className="flex">
-
-                      <Link to={`/panel/suport/${item.id}`} className="text-blue-700 border border-blue-700 rounded-xl p-2 px-3">
-                        مشاهده
-                      </Link>
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
-
-
+            {tickets &&
+              tickets.map((item) => {
+                return (
+                  <tr key={item.id} id={item.id}>
+                    <td className="p-4 text-xs text-gray-400 font-bold">
+                      {item.id}
+                    </td>
+                    <td className="p-4 text-xs text-gray-400 font-bold">
+                      {item.title}
+                    </td>
+                    <td className="p-4 text-xs text-gray-400 font-bold">
+                      <button
+                        className={
+                          item.status === "open"
+                            ? "text-green-600 border border-green-600 rounded-xl p-2 px-3"
+                            : item.status === "waiting"
+                            ? "text-yellow-400 border border-yellow-400 rounded-xl p-2 px-3"
+                            : item.status === "closed"
+                            ? "text-red-400 border border-green-400 rounded-xl p-2 px-3"
+                            : item.status === "resolved"
+                            ? "text-green-600 border border-green-600 rounded-xl p-2 px-3"
+                            : ""
+                        }
+                      >
+                        {item.status === "open"
+                          ? "باز"
+                          : item.status === "waiting"
+                          ? "در انتظار پاسخ"
+                          : item.status === "closed"
+                          ? "بسته"
+                          : item.status === "resolved"
+                          ? "پاسخ داده شد"
+                          : ""}
+                      </button>
+                    </td>
+                    <td className="p-4 text-xs text-gray-400 font-bold">
+                      {dateConversion(item.updated_at)}
+                    </td>
+                    <td className="p-4 text-xs text-gray-400 font-bold">
+                      <div className="flex">
+                        <Link
+                          to={`/panel/suport/${item.id}`}
+                          className="text-blue-700 border border-blue-700 rounded-xl p-2 px-3"
+                        >
+                          مشاهده
+                        </Link>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>

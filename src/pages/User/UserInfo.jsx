@@ -9,7 +9,7 @@ export default function UserInfo() {
       </div>
       <hr />
       <div className="">
-        <div className="w-1/2 mx-auto">
+        <div className="md:w-1/2 w-full mx-auto">
           <div className="flex mt-6 items-center">
             <img src={user} alt="" className="w-16" />
             <div className=" pr-4">

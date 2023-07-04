@@ -3,7 +3,8 @@ import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 
 export default function Tashilat() {
   let { pathname: pass } = useLocation();
-  console.log(pass);
+  console.log("pass:",pass);
+
   return (
     <div className="px-5">
       <div className=" py-6">

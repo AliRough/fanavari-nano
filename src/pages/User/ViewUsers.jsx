@@ -10,7 +10,7 @@ import user from "../../assets/imges/user.png"
 
 
 
-export default function ViewUsers() {
+export default function   ViewUsers() {
   const {userDatas} = useContext(UserDataContext)
   const [isPerson, setIsPerson] = useState(true);
   const [allGenuineUser, setAllGenuineUser] = useState(null);
@@ -102,12 +102,12 @@ export default function ViewUsers() {
       <div className="max-h-[60vh] overflow-y-scroll">
         {isPerson ? (
           <table className="w-full ">
-            <tr className=" sticky top-0   ">
-              <th className="bg-white p-3 rounded-r-xl ">نمایه </th>
-              <th className="bg-white p-3 ">نام </th>
-              <th className="bg-white p-3 ">نام خانوادگی</th>
-              <th className="bg-white p-3 ">تاریخ ثبت نام کاربر </th>
-              <th className="bg-white p-3 rounded-l-xl">اعمال </th>
+            <tr className=" sticky top-0  text-sm ">
+              <th className="bg-white p-3 text-center rounded-r-xl ">نمایه </th>
+              <th className="bg-white p-3 text-center ">نام </th>
+              <th className="bg-white p-3 text-center ">نام خانوادگی</th>
+              <th className="bg-white p-3 text-center ">تاریخ ثبت نام کاربر </th>
+              <th className="bg-white p-3 text-center rounded-l-xl">اعمال </th>
             </tr>
             {allGenuineUser && allGenuineUser.map((GenuineUser) => {
               return (
@@ -124,18 +124,18 @@ export default function ViewUsers() {
                   <td>
                     {" "}
                     <img
-                      className="w-10"
+                      className="w-10 mx-auto"
                       src={user}
                       alt=""
                     />
                   </td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{GenuineUser.name}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{GenuineUser.family}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">
+                  <td className="p-4 text-xs text-gray-400 font-bold text-center  ">{GenuineUser.name}</td>
+                  <td className="p-4 text-xs text-gray-400 font-bold text-center ">{GenuineUser.family}</td>
+                  <td className="p-4 text-xs text-gray-400 font-bold text-center ">
                     {onlyDateConversion(GenuineUser.created_at)}
                   </td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
-                    <div className="flex">
+                    <div className="flex justify-center">
                       <button  className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
                         حذف کاربر
                       </button>
@@ -151,11 +151,11 @@ export default function ViewUsers() {
         ) : (
 
           <table className="w-full ">
-            <tr className=" sticky top-0   ">
-              <th className="bg-white p-3 rounded-r-xl ">نام شرکت </th>
-              <th className="bg-white p-3 ">نام ونام خانوادگی نماینده </th>
-              <th className="bg-white p-3 ">شناسه مالی شرکت</th>
-              <th className="bg-white p-3 rounded-l-xl">اعمال </th>
+            <tr className=" sticky top-0 text-sm  ">
+              <th className="bg-white p-3 text-center rounded-r-xl ">نام شرکت </th>
+              <th className="bg-white p-3 text-center ">نام ونام خانوادگی نماینده </th>
+              <th className="bg-white p-3 text-center ">شناسه مالی شرکت</th>
+              <th className="bg-white p-3 text-center rounded-l-xl">اعمال </th>
             </tr>
             {allLegalUser && allLegalUser.map((LegalUser) => {
               return (
@@ -169,11 +169,11 @@ export default function ViewUsers() {
                     : null
                 }
               >
-                  <td className="p-4 text-xs text-gray-400 font-bold">{LegalUser.company_name}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{LegalUser.name}{LegalUser.family}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{LegalUser.national_company}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">
-                    <div className="flex">
+                  <td className="p-4 text-xs text-gray-400 font-bold text-center">{LegalUser.company_name}</td>
+                  <td className="p-4 text-xs text-gray-400 font-bold text-center">{LegalUser.name}{LegalUser.family}</td>
+                  <td className="p-4 text-xs text-gray-400 font-bold text-center">{LegalUser.national_company}</td>
+                  <td className="p-4 text-xs text-gray-400 font-bold text-center">
+                    <div className="flex justify-center">
                       <button  className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
                         حذف کاربر
                       </button>
@@ -190,35 +190,35 @@ export default function ViewUsers() {
         )}
       </div>
       <hr />
-      <div className="flex justify-between py-4 text-gray-600 items-center">
+      <div className="flex justify-between py-4 text-gray-600 items-center text-xs">
         <div className="">نمایش 21-31 از 80 مورد</div>
-        <div className="">
-          <button className="text-gray-800 text-2xl font-bold mx-2">
+        <div className="font-bold">
+          <button className="text-gray-800 md:text-2xl text-lg  font-bold px-2">
             {"<"}
           </button>
-          <button className="text-gray-800 text-lg font-bold mx-2">6</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">5</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">4</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">3</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">2</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">1</button>
-          <button className="text-gray-800 text-2xl font-bold mx-2">
+          <button className="text-gray-800 md:text-lg  text-sm font-bold px-2">6</button>
+          <button className="text-gray-800 md:text-lg  text-sm font-bold px-2">5</button>
+          <button className="text-gray-800 md:text-lg  text-sm font-bold px-2">4</button>
+          <button className="text-gray-800 md:text-lg  text-sm font-bold px-2">3</button>
+          <button className="text-gray-800 md:text-lg  text-sm font-bold px-2">2</button>
+          <button className="text-gray-800 md:text-lg  text-sm font-bold px-2">1</button>
+          <button className="text-gray-800 md:text-2xl text-lg font-bold px-2">
             {" "}
             {">"}{" "}
           </button>
         </div>
-        <div className="flex">
+        <div className="flex items-center">
           <select
-            dir="ltr"
+            d ir="ltr"
             name=""
             id=""
-            className="rounded outline-none w-20 text-gray-800 border ml-4"
+            className="rounded outline-none md:w-20 w-max text-xs text-gray-800 border ml-4"
           >
             <option value="10">10</option>
-            <option value="10">15</option>
-            <option value="10">20</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
           </select>
-          <p>تعداد کاربر در هر صفحه</p>
+          <p className="">تعداد کاربر در هر صفحه</p>
         </div>
       </div>
     </div>

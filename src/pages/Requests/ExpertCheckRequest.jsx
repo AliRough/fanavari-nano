@@ -58,8 +58,8 @@ export default function ExpertCheckRequest() {
       }
       {
         !isLoading &&
-        <div className="flex justify-center items-center  mt-4">
-          <div className="flex items-center">
+        <div className="flex justify-center items-center  mt-4 flex-wrap md:flex-nowrap">
+          <div className="flex items-center mt-2">
             <p onClick={() => setShowStepConfirm({ step: 1, prevTest: true, currentStep: reqStatus.check })} className={reqStatus.check ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 " : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "}>
               1
             </p>
@@ -68,7 +68,7 @@ export default function ExpertCheckRequest() {
           <div className="w-10 px-2">
             <div className={reqStatus.assessment ? "border-t border-2 border-blue-800 h-full rounded" : "border-t border-2 border-gray-300 h-full rounded"}></div>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center mt-2">
             <p onClick={() => setShowStepConfirm({ step: 2, prevTest: reqStatus.check, currentStep: reqStatus.assessment })} className={reqStatus.assessment ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 " : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "}>
               2
             </p>
@@ -77,7 +77,7 @@ export default function ExpertCheckRequest() {
           <div className="w-10 px-2">
             <div className={reqStatus.report ? "border-t border-2 border-blue-800 h-full rounded" : "border-t border-2 border-gray-300 h-full rounded"}></div>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center mt-2">
             <p onClick={() => setShowStepConfirm({ step: 3, prevTest: reqStatus.assessment, currentStep: reqStatus.report })} className={reqStatus.report ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 " : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "}>
               3
             </p>
@@ -86,7 +86,7 @@ export default function ExpertCheckRequest() {
           <div className="w-10 px-2">
             <div className={reqStatus.commite ? "border-t border-2 border-blue-800 h-full rounded" : "border-t border-2 border-gray-300 h-full rounded"}></div>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center mt-2">
             <p onClick={() => setShowStepConfirm({ step: 4, prevTest: reqStatus.report, currentStep: reqStatus.commite })} className={reqStatus.commite ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 " : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "}>
               4
             </p>
@@ -95,7 +95,7 @@ export default function ExpertCheckRequest() {
           <div className="w-10 px-2">
             <div className={reqStatus.credit ? "border-t border-2 border-blue-800 h-full rounded" : "border-t border-2 border-gray-300 h-full rounded"}></div>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center mt-2">
             <p onClick={() => setShowStepConfirm({ step: 5, prevTest: reqStatus.commite, currentStep: reqStatus.credit })} className={reqStatus.credit ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 " : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "}>
               5
             </p>
@@ -105,14 +105,14 @@ export default function ExpertCheckRequest() {
       }
 
       {/* ------------------------------------------   آپلود فایل مرحله 4 و 3  ------------------------------------------------------ */}
-      <div className="flex py-6">
-          <div style={{display: "flex" , flexDirection: "column"}} className="w-1/2 px-2">
+      <div className="flex flex-wrap py-6">
+          <div style={{display: "flex" , flexDirection: "column"}} className="md:w-1/2 w-full px-2">
             <SendFileFirst reqStatus={reqStatus} reqId={reqId.id} setUpdatePage={setUpdatePage} />
             <SendFileSec reqStatus={reqStatus} reqId={reqId.id} setUpdatePage={setUpdatePage} />
           </div>
       {/* ------------------------------------------   آپلود فایل مرحله 4 و 3  ------------------------------------------------------ */}
 
-        <div className="w-1/2 px-2">
+        <div className="md:w-1/2 w-full px-2">
           <SendEvaluationReportFile reqStatus={reqStatus} reqId={reqId.id} setUpdatePage={setUpdatePage} />
           
           <div className="pt-4 px-2">

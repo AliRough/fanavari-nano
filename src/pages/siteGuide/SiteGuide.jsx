@@ -12,7 +12,7 @@ export default function SiteGuide() {
         <p className="font-bold text-lg my-3">
           شرایط و قوانین استفاده از سرویس‌ها و خدمات دیجی‌کالا
         </p>
-        <p className="text-gray-600 justify-items-stretch">
+        <p className="text-gray-600 justify-items-stretch text-justify mb-3">
           کاربر گرامی لطفاً موارد زیر را جهت استفاده بهینه از خدمات و
           برنامه‌‏های کاربردی دیجی‌کالا به دقت ملاحظه فرمایید.ورود کاربران به
           وب‏‌سایت دیجی‌کالا هنگام استفاده از پروفایل شخصی، طرح‏‌های تشویقی،
@@ -55,7 +55,7 @@ export default function SiteGuide() {
           class="hidden"
           aria-labelledby="accordion-collapse-heading-1"
         >
-          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900 text-justify">
             <p className="text-gray-600 justify-items-stretch">
               توجه داشته باشید کلیه اصول و رویه‏‌های دیجی‌کالا منطبق با قوانین
               جمهوری اسلامی ایران، قانون تجارت الکترونیک و قانون حمایت از حقوق

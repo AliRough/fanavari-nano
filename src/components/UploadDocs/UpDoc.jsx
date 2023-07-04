@@ -3,7 +3,7 @@ import UPBox from './UPBox'
 
 export default function UpDoc({document , changeHandler, errors , showErr }) {
   return (
-    <div className="w-1/2 px-2">
+    <div className="md:w-1/2 w-full px-2">
         <div className=" bg-white rounded-xl p-5">
           <div className=" pb-4">
             <p className=" font-bold"> اسناد </p>

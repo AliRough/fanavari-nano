@@ -54,13 +54,13 @@ export default function ViewExpert() {
       <div className="max-h-[60vh] overflow-y-scroll scrollable-content-chat">
         <table className="w-full ">
           <thead>
-            <tr className="top-0">
-              <th className="bg-white p-3 rounded-r-xl ">نمایه </th>
-              <th className="bg-white p-3 ">نام </th>
-              <th className="bg-white p-3 ">نام خانوادگی</th>
-              <th className="bg-white p-3 ">تاریخ ثبت نام کارشناس </th>
-              <th className="bg-white p-3 ">تعداد  پروژه </th>
-              <th className="bg-white p-3 rounded-l-xl">اعمال </th>
+            <tr className="top-0 text-sm" >
+              <th className="bg-white p-3 text-center first-letter:rounded-r-xl ">نمایه </th>
+              <th className="bg-white p-3 text-center first-letter:">نام </th>
+              <th className="bg-white p-3 text-center first-letter:">نام خانوادگی</th>
+              <th className="bg-white p-3 text-center first-letter:">تاریخ ثبت نام کارشناس </th>
+              <th className="bg-white p-3 text-center first-letter:">تعداد  پروژه </th>
+              <th className="bg-white p-3 rounded-l-xl text-center">اعمال </th>
             </tr>
           </thead>
           <tbody>
@@ -76,24 +76,24 @@ export default function ViewExpert() {
                       : null
                   }
                 >
-                  <td>
+                  <td className="">
                     {" "}
                     <img
-                      className="w-10"
+                      className="w-10 mx-auto "
                       src={user}
                       alt=""
                     />
                   </td>
-                  <td onClick={() => setShowReqsModal(expert)}  className="p-4 text-xs text-gray-400 font-bold">{expert.name}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{expert.family}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">
+                  <td onClick={() => setShowReqsModal(expert)}  className="p-4 text-xs text-gray-400 font-bold text-center">{expert.name}</td>
+                  <td className="p-4 text-xs text-gray-400 font-bold text-center">{expert.family}</td>
+                  <td className="p-4 text-xs text-gray-400 font-bold text-center">
                     {onlyDateConversion(expert.created_at)}
                   </td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">
+                  <td className="p-4 text-xs text-gray-400 font-bold text-center">
                     {expert.project_count}
                   </td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">
-                  <div className="flex">
+                  <td className="p-4 text-xs text-gray-400 font-bold text-center">
+                  <div className="flex justify-center">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
                     حذف کارشناس
                   </button>

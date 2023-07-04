@@ -45,8 +45,8 @@ const Requests = () => {
   }
   if ((userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
     <>
-      <div className="pr-6 py-6 flex justify-between items-center w-c-13">
-        <h2 className="text-2xl font-bold">مشاهده درخواست‌ها</h2>
+      <div className="pr-6 py-6 flex justify-between items-center w-full ">
+        <h2 className="md:text-2xl text-lg font-bold">مشاهده درخواست‌ها</h2>
         <div className="flex gap-6">
           <button className="relative">
             <div className="flex gap-2 items-center px-4 py-2 rounded-lg border border-c-7 bg-white">
@@ -55,7 +55,7 @@ const Requests = () => {
                 src={Vector}
                 alt=""
               />
-              <div className="font-bold">مرتب کردن</div>
+              <div className="font-bold md:text-md text-xs">مرتب کردن</div>
               <img
                 className="w-1.5 h-c-12"
                 src={Vector1}
@@ -98,7 +98,7 @@ const Requests = () => {
                 src={Vector}
                 alt=""
               />
-              <div className="font-bold">مرتب کردن</div>
+              <div className="font-bold md:text-md text-xs">مرتب کردن</div>
               <img
                 className="w-1.5 h-c-12"
                 src={Vector1}
@@ -139,11 +139,11 @@ const Requests = () => {
       {
         isLoading && <Loader />
       }
-      <ul className="w-c-13 flex flex-col gap-c-14 whitespace-nowrap border-b border-c-11 relative">
+      <ul className="w-full  flex flex-col gap-c-14 whitespace-nowrap border-b border-c-11 relative">
         {
           showExpertList !== null ? <ExpertList setUpdatePage={setUpdatePage} close={setShowExpertList} reqId={showExpertList.id} type={showExpertList.type} /> : ""
         }
-        <li className="text-sm flex gap-3.5 rounded-2xl bg-c-2 py-3.5">
+        <li className="md:text-sm text-[10px] font-bold flex gap-3.5 rounded-2xl bg-c-2 py-3.5">
           <a className="w-1/6 text-center" href="">
             شناسه
           </a>
@@ -279,12 +279,12 @@ const Requests = () => {
 
 
       </ul>
-      <div className="p-3.5 w-c-13 flex justify-between items-center">
-        <div className="text-xs font-bold text-c-8">
+      <div className="p-3.5 w-full flex justify-between items-center">
+        <div className="text-[10px] font-bold text-c-8">
           <p>نمایش مورد فلان از فلان</p>
         </div>
         <div className="">
-          <ul className="font-bold flex gap-7">
+          <ul className="font-bold flex gap-5">
             <li>
               <a href="">
                 <img
@@ -330,13 +330,13 @@ const Requests = () => {
             <div>
               <img
                 className="w-1.5 h-c-12"
-                src={Vector1}
+                src={Vector1} 
                 alt=""
               />
             </div>
             <span>10</span>
           </button>
-          <p className="text-c-8">تعداد در خواست در هر صفحه</p>
+          <p className="text-c-8 text-[10px]">تعداد در خواست در هر صفحه</p>
         </div>
       </div>
     </>
