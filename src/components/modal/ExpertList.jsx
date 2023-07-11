@@ -3,7 +3,6 @@ import Button from '../Button/Button'
 import Expert from '../Expert/Expert'
 import Axios from '../../../axiosinstancs'
 import Loader from '../Loader/Loader'
-import imgg from '../../assets/imges/ViewRequests/x.png'
 
 export default function ExpertList({close , reqId , setUpdatePage , type}) {
 
@@ -22,7 +21,7 @@ export default function ExpertList({close , reqId , setUpdatePage , type}) {
         <div className="p-2 flex justify-between">
         <div>لیست کارشناسان</div>
         <button onClick={() => close(null)} className="text-c-9 border border-c-9 rounded w-c-4 h-c-4 flex justify-center items-center">
-          <img className="" src={imgg} alt="" />
+          <img className="" src="/src/assets/imges/ViewRequests/x.png" alt="" />
         </button>
         </div>
         {

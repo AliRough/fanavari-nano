@@ -3,7 +3,7 @@ import Axios from "../../../axiosinstancs";
 import { onlyDateConversion } from "../../helper/dateConversion.cjs";
 import Loader from '../../components/Loader/Loader'
 import { Link } from "react-router-dom";
-import user from "../../assets/imges/user.png"
+
 export default function OpenedRequests() {
   const [reqDatas , setReqDatas] = useState([])
   const [isLoading , setIsLoading] = useState(true)
@@ -59,7 +59,7 @@ export default function OpenedRequests() {
                     <p className="font-bold text-xs text-gray-400 pb-2 ">
                         شناسه درخواست : {item.shenaseh}
                     </p>
-                    <img src={user} alt="" className="h-8" />
+                    <img src="/./src/assets/imges/user.png" alt="" className="h-8" />
                   </div>
                 </Link>
               </div>

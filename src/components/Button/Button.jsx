@@ -1,5 +1,5 @@
 import React from "react";
-import img from '../../assets/imges/ViewRequests/x.png'
+
 const Button = ({ type }) => {
   const renderButton = () => {
     if (type === "assign") {
@@ -10,7 +10,7 @@ const Button = ({ type }) => {
     if (type === "close") {
       return (
         <button className="text-c-9 border border-c-9 rounded w-c-4 h-c-4 flex justify-center items-center">
-          <img className="" src={img} alt="" />
+          <img className="" src="/src/assets/imges/ViewRequests/x.png" alt="" />
         </button>
       );
     }

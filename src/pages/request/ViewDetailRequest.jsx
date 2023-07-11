@@ -42,55 +42,55 @@ export default function ViewDetailRequest() {
       {isLoading && <Loader />}
       {
         !isLoading &&
-        <div className="flex justify-center items-center flex-wrap">
-          <div className="flex items-center my-2">
+        <div className="flex justify-center items-center">
+          <div className="flex items-center">
             <p className={reqStatus.check ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 " : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "}>
               1
             </p>
-            <p className={reqStatus.check ? "text-blue-800 font-bold mx-2 text-xs" : "text-gray-300 font-bold mx-2 text-xs"}>بررسی مدارک</p>
+            <p className={reqStatus.check ? "text-blue-800 font-bold mx-2 text-sm" : "text-gray-300 font-bold mx-2 text-sm"}>بررسی مدارک</p>
           </div>
           <div className="w-10 px-2">
             <div className={reqStatus.assessment ? "border-t border-2 border-blue-800 h-full rounded" : "border-t border-2 border-gray-300 h-full rounded"}></div>
           </div>
-          <div className="flex items-center my-2">
+          <div className="flex items-center">
             <p className={reqStatus.assessment ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 " : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "}>
               2
             </p>
-            <p className={reqStatus.assessment ? "text-blue-800 font-bold mx-2 text-xs" : "text-gray-300 font-bold mx-2 text-xs"}>شروع ارزیابی و جلسه با مشاور فنی</p>
+            <p className={reqStatus.assessment ? "text-blue-800 font-bold mx-2 text-sm" : "text-gray-300 font-bold mx-2 text-sm"}>شروع ارزیابی و جلسه با مشاور فنی</p>
           </div>
           <div className="w-10 px-2">
             <div className={reqStatus.report ? "border-t border-2 border-blue-800 h-full rounded" : "border-t border-2 border-gray-300 h-full rounded"}></div>
           </div>
-          <div className="flex items-center my-2">
+          <div className="flex items-center">
             <p className={reqStatus.report ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 " : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "}>
               3
             </p>
-            <p className={reqStatus.report ? "text-blue-800 font-bold mx-2 text-xs" : "text-gray-300 font-bold mx-2 text-xs"}>گزارش ارزیابی</p>
+            <p className={reqStatus.report ? "text-blue-800 font-bold mx-2 text-sm" : "text-gray-300 font-bold mx-2 text-sm"}>گزارش ارزیابی</p>
           </div>
           <div className="w-10 px-2">
             <div className={reqStatus.commite ? "border-t border-2 border-blue-800 h-full rounded" : "border-t border-2 border-gray-300 h-full rounded"}></div>
           </div>
-          <div className="flex items-center my-2">
+          <div className="flex items-center">
             <p className={reqStatus.commite ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 " : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "}>
               4
             </p>
-            <p className={reqStatus.commite ? "text-blue-800 font-bold mx-2 text-xs" : "text-gray-300 font-bold mx-2 text-xs"}>کمیته</p>
+            <p className={reqStatus.commite ? "text-blue-800 font-bold mx-2 text-sm" : "text-gray-300 font-bold mx-2 text-sm"}>کمیته</p>
           </div>
           <div className="w-10 px-2">
             <div className={reqStatus.credit ? "border-t border-2 border-blue-800 h-full rounded" : "border-t border-2 border-gray-300 h-full rounded"}></div>
           </div>
-          <div className="flex items-center my-2">
+          <div className="flex items-center">
             <p className={reqStatus.credit ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 " : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "}>
               5
             </p>
-            <p className={reqStatus.credit ? "text-blue-800 font-bold mx-2 text-xs" : "text-gray-300 font-bold mx-2 text-xs"}>اعلام حد اعتباری</p>
+            <p className={reqStatus.credit ? "text-blue-800 font-bold mx-2 text-sm" : "text-gray-300 font-bold mx-2 text-sm"}>اعلام حد اعتباری</p>
           </div>
         </div>
       }
 
 
-      <div className="flex pt-4 flex-wrap">
-        <div className="md:w-1/2 w-full px-2">
+      <div className="flex pt-4">
+        <div className="w-1/2 px-2">
           <div className=" bg-white rounded-xl p-5">
             <div className=" pb-4">
               <p className=" font-bold"> مدارک اصلی </p>
@@ -145,7 +145,7 @@ export default function ViewDetailRequest() {
             </div>
           </div>
         </div>
-        <div className="md:w-1/2 w-full px-2">
+        <div className="w-1/2 px-2">
           <div className=" bg-white rounded-xl p-5">
             <div className=" pb-4">
               <p className=" font-bold"> اسناد </p>

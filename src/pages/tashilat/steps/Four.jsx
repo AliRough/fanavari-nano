@@ -8,53 +8,6 @@ export default function Four() {
 
   return (
     <>
-    <div className=" flex  items-center w-full justify-center">
-        <div className="flex items-center">
-          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
-            1
-          </p>
-        </div>
-        <div className="w-10 px-2">
-          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
-        </div>
-        <div className="flex items-center">
-          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
-            2
-          </p>
-        </div>
-        <div className="w-10 px-2">
-          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
-        </div>
-        <div className="flex items-center">
-          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
-            3
-          </p>
-        </div>
-        <div className="w-10 px-2">
-          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
-        </div>
-        <div className="flex items-center">
-          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
-            4
-          </p>
-        </div>
-        <div className="w-10 px-2">
-          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
-        </div>
-        <div className="flex items-center">
-          <p className="bg-slate-200 p-0.5 pt-1 px-3 rounded-xl text-slate-800 ">
-            5
-          </p>
-        </div>
-        <div className="w-10 px-2">
-          <div className="border-t border-2 border-slate-800 h-full rounded"></div>
-        </div>
-        <div className="flex items-center">
-          <p className="bg-slate-200 p-0.5 pt-1 px-3 rounded-xl text-slate-800 ">
-            تایید
-          </p>
-        </div>
-      </div>
       <div className=" py-6 mt-4">
         <p className="text-lg font-extrabold">
           بانکها / نهادهای مالی اصلی شرکت / فرد:{" "}

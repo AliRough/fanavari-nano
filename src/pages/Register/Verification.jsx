@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Input from "../../components/Input/Input";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import logofarsi from "../../assets/imges/Login/logofarsi.png"
-import "../Login/Login.css"
+
+
 const Verification = ({ datas }) => {
     const nextPage = useNavigate()
     const [formData, setFormData] = useState({
@@ -54,7 +54,7 @@ const Verification = ({ datas }) => {
             <div className="h-screen flex">
                 <div className="w-1/3 bg-cover bg-center bg-no-repeat">
                     <h1 className="mt-c-15 mb-c-20">
-                        <img className="mx-auto" src={logofarsi} alt="" style={{
+                        <img className="mx-auto" src="/src/assets/imges/Login/logofarsi.png" alt="" style={{
                             width: "80px",
                             height: "110px"
                         }} />
@@ -80,7 +80,7 @@ const Verification = ({ datas }) => {
                         {errRes && <span style={{ color: '#a73c36' }}>کد وارد شده صحیح نمی باشد</span>}
                     </form>
                 </div>
-                <div className="w-2/3 bg-cover bg-center bg-no-repeat ff" ></div>
+                <div className="w-2/3 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/src/assets/imges/Login/background.889c334e8255dfcd19f2.jpg)' }}></div>
             </div>
         </>
     )

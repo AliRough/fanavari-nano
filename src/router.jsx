@@ -35,7 +35,6 @@ import Confirm from "./pages/Tashilat/steps/Confirm";
 import Tashilat from "./pages/Tashilat/Tashilat";
 import WarrantyDocuments from "./pages/Requests/WarrantyDocuments";
 import AdminCheckRequest from "./pages/Requests/AdminCheckRequest";
-import DashboardExpert from "./pages/Dashboard/DashboardExpert";
 
 const routes = [
   {
@@ -44,10 +43,8 @@ const routes = [
     children: [ 
       { path: "*", element: <Dashboard /> },
       { path: "", element: <Dashboard /> },
-
       { path: "dashboard", element: <Dashboard /> },
       { path: "dashboarduser", element: <DashboardUser /> },
-      { path: "dashboardexpert", element: <DashboardExpert /> },
       { path: "requests", element: <Requests /> },
       { path: "Addexpert", element: <Addexpert /> },
       { path: "viewExpert", element: <ViewExpert /> },
@@ -61,7 +58,7 @@ const routes = [
       { path: "allNotifs", element: <AllNotifs /> },
       { path: "viewRequest/:id", element: <ViewDetailRequest /> },
       { path: "openedRequests", element: <OpenedRequests /> },
-      { path: "uploadDoc", element: <UploadDoc /> },
+      { path: "oploadDoc", element: <UploadDoc /> },
       { path: "ExpertViewRequest", element: <ExpertViewRequest /> },
       { path: "WarrantyDocuments/:id", element: <WarrantyDocuments /> },
       { path: "AdminCheckRequest/:id", element: <AdminCheckRequest /> },
@@ -87,7 +84,6 @@ const routes = [
     ],
 
   },
-  { path: "/", element: <Login /> },
 
   { path: "/auth/login", element: <Login /> },
   { path: "/auth/register", element: <Register /> },

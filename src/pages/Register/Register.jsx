@@ -10,16 +10,6 @@ import { verify } from '../../services/apireq';
 import Verification from './Verification';
 import { Link } from 'react-router-dom';
 
-import logofarsi from "../../assets/imges/Login/logofarsi.png"
-import account from "../../assets/imges/account.png"
-import card from "../../assets/imges/card.png"
-import phone from "../../assets/imges/phone.png"
-import view from "../../assets/imges/view.png"
-import hide from "../../assets/imges/hide.png"
-import lockedcomputer from "../../assets/imges/locked-computer.png"
-import building from "../../assets/imges/building.png"
-
-
 const Register = () => {
   const { showVerify, singupG, singupL, isLoading, setIsLoading, errRes, setErrRes, } = useContext(UserDataContext)
   const [selectedOption, setSelectedOption] = useState("genuine");
@@ -163,7 +153,7 @@ const Register = () => {
     <div class="flex">
       <div class="w-1/3 bg-cover bg-center bg-no-repeat">
         <h1 class="mt-c-19 mb-c-20">
-          <img className="mx-auto" src={logofarsi} alt="" style={{
+          <img className="mx-auto" src="/src/assets/imges/Login/logofarsi.png" alt="" style={{
             width: "80px",
             height: "110px"
           }} />      </h1>
@@ -219,7 +209,7 @@ const Register = () => {
               </h2>
               <Input
                 lable={" نام*"}
-                src={account}
+                src="/src/assets/imges/account.png"
                 type="text"
                 changeHandler={changeHandler}
                 value={genuine.name}
@@ -229,7 +219,7 @@ const Register = () => {
               {errors.name && showErr.name && <span style={{ color: '#e88f19' }}>{errors.name}</span>}
               <Input
                 lable={"نام خانوادگی*"}
-                src={account}
+                src="/src/assets/imges/account.png"
                 type="text"
                 changeHandler={changeHandler}
                 value={genuine.family}
@@ -239,7 +229,7 @@ const Register = () => {
               {errors.family && showErr.family && <span style={{ color: '#e88f19' }}>{errors.family}</span>}
               <Input
                 lable={" کدملی*"}
-                src={card}
+                src="/src/assets/imges/card.png"
                 type="text"
                 changeHandler={changeHandler}
                 value={genuine.national_code}
@@ -249,7 +239,7 @@ const Register = () => {
               {errors.national_code && showErr.national_code && <span style={{ color: '#e88f19' }}>{errors.national_code}</span>}
               <Input
                 lable={"شماره موبایل*"}
-                src={phone}
+                src="/src/assets/imges/phone.png"
                 type="text"
                 changeHandler={changeHandler}
                 value={genuine.phone}
@@ -264,10 +254,10 @@ const Register = () => {
                 <label for="form-2" className="absolute top-0 -translate-y-1/2 right-3 bg-white text-sm text-c-16 px-1">
                   گذرواژه*
                 </label>
-                <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src={lockedcomputer} alt="" />
+                <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src="/src/assets/imges/locked-computer.png" alt="" />
                 <input onFocus={focusHandler} onChange={changeHandler} value={genuine.password} name='password' id="form-2" className="border rounded-md border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 px-c-20" type={showPass ? "text" : "password"} />
                 <button onClick={showPassHandler} className="absolute top-1/2 -translate-y-1/2 left-3 w-6 h-6">
-                  <img className="w-full h-full" src={showPass ? view : hide} alt="" />
+                  <img className="w-full h-full" src={showPass ? "/src/assets/imges/view.png" : "/src/assets/imges/hide.png"} alt="" />
                 </button>
               </div>
               {errors.password && showErr.password && <span style={{ color: '#e88f19' }}>{errors.password}</span>}
@@ -275,10 +265,10 @@ const Register = () => {
                 <label for="form-2" className="absolute top-0 -translate-y-1/2 right-3 bg-white text-sm text-c-16 px-1">
                   تکرار گذرواژه*
                 </label>
-                <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src={lockedcomputer} alt="" />
+                <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src="/src/assets/imges/locked-computer.png" alt="" />
                 <input onFocus={focusHandler} onChange={changeHandler} value={genuine.password_confirmation} name='password_confirmation' id="form-2" className="border rounded-md border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 px-c-20" type={showComPass ? "text" : "password"} />
                 <button onClick={showComPassHandler} className="absolute top-1/2 -translate-y-1/2 left-3 w-6 h-6">
-                  <img className="w-full h-full" src={showComPass ? view : hide} alt="" />
+                  <img className="w-full h-full" src={showComPass ? "/src/assets/imges/view.png" : "/src/assets/imges/hide.png"} alt="" />
                 </button>
               </div>
 
@@ -292,7 +282,7 @@ const Register = () => {
 
               <Input
                 lable={" نام شرکت*"}
-                src={building}
+                src="/src/assets/imges/building.png"
                 type="text"
                 changeHandler={changeHandler}
                 value={legal.company_name}
@@ -302,7 +292,7 @@ const Register = () => {
               {errors.company_name && showErr.company_name && <span style={{ color: '#e88f19' }}>{errors.company_name}</span>}
               <Input
                 lable={"شناسه مالی شرکت*"}
-                src={building}
+                src="/src/assets/imges/building.png"
                 type="text"
                 changeHandler={changeHandler}
                 value={legal.national_company}
@@ -315,10 +305,10 @@ const Register = () => {
                 <label for="form-2" className="absolute top-0 -translate-y-1/2 right-3 bg-white text-sm text-c-16 px-1">
                   گذرواژه*
                 </label>
-                <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src={lockedcomputer} alt="" />
+                <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src="/src/assets/imges/locked-computer.png" alt="" />
                 <input onFocus={focusHandler} onChange={changeHandler} value={legal.password} name='password' id="form-2" className="border border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 px-c-20" type={showPass ? "text" : "password"} />
                 <button onClick={showPassHandler} className="absolute top-1/2 -translate-y-1/2 left-3 w-6 h-6">
-                  <img className="w-full h-full" src={showPass ? view : hide} alt="" />
+                  <img className="w-full h-full" src={showPass ? "/src/assets/imges/view.png" : "/src/assets/imges/hide.png"} alt="" />
                 </button>
               </div>
               {errors.password && showErr.password && <span style={{ color: '#e88f19' }}>{errors.password}</span>}
@@ -326,10 +316,10 @@ const Register = () => {
                 <label for="form-2" className="absolute top-0 -translate-y-1/2 right-3 bg-white text-sm text-c-16 px-1">
                   تکرار گذرواژه*
                 </label>
-                <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src={lockedcomputer} alt="" />
+                <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src="/src/assets/imges/locked-computer.png" alt="" />
                 <input onFocus={focusHandler} onChange={changeHandler} value={legal.password_confirmation} name='password_confirmation' id="form-2" className="border border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 px-c-20" type={showComPass ? "text" : "password"} />
                 <button onClick={showComPassHandler} className="absolute top-1/2 -translate-y-1/2 left-3 w-6 h-6">
-                  <img className="w-full h-full" src={showComPass ? view : hide} alt="" />
+                  <img className="w-full h-full" src={showComPass ? "/src/assets/imges/view.png" : "/src/assets/imges/hide.png"} alt="" />
                 </button>
               </div>
 
@@ -339,7 +329,7 @@ const Register = () => {
               </h2>
               <Input
                 lable={"نام رابط (شما)*"}
-                src={account}
+                src="/src/assets/imges/account.png"
                 type="text"
                 changeHandler={changeHandler}
                 value={legal.name}
@@ -349,7 +339,7 @@ const Register = () => {
               {errors.name && showErr.name && <span style={{ color: '#e88f19' }}>{errors.name}</span>}
               <Input
                 lable={"شماره موبایل (شما)*"}
-                src={phone}
+                src="/src/assets/imges/phone.png"
                 type="text"
                 changeHandler={changeHandler}
                 value={legal.phone}
@@ -383,7 +373,7 @@ const Register = () => {
           </p>
         </form>
       </div>
-      <div class="h-screen w-2/3 bg-cover bg-center bg-no-repeat sticky top-0 ff" ></div>
+      <div class="h-screen w-2/3 bg-cover bg-center bg-no-repeat sticky top-0" style={{ backgroundImage: 'url(/src/assets/imges/Login/background.889c334e8255dfcd19f2.jpg)' }}></div>
     </div>
   )
 }

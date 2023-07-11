@@ -1,18 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import Axios from "../../../axiosinstancs";
 import ViewDetailExpert from './ViewDetailExpert'
 import { onlyDateConversion } from "../../helper/dateConversion.cjs";
-import { UserDataContext } from "../../contexts/UserData.Provider";
-import user from "../../assets/imges/user.png"
-import ExpertReqs from "../../components/modal/ExpertReqs";
-
 export default function ViewExpert() {
-  const {userDatas} = useContext(UserDataContext)
   const [allExpert, setAllExpert] = useState(null)
   const [selectedItem, setSelectedItem] = useState(null);
   const [showDetailsUser, setShowDetailsUser] = useState(false);
-  const [showReqsModal, setShowReqsModal] = useState(null);
   
 
   const getExpert = () => {
@@ -34,13 +28,14 @@ export default function ViewExpert() {
     setShowDetailsUser(true)
     console.log(item);
   };
-
+  const requestHandler = (item) => {
+    console.log("item" , item);
+  };
 
   if (showDetailsUser) return <ViewDetailExpert close={setShowDetailsUser} details={selectedItem} />
 
-  if ((userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
+  return (
     <div>
-      {showReqsModal !== null && <ExpertReqs close={setShowReqsModal} details={showReqsModal} />}
       <div className=" py-6">
         <p className="text-xl font-extrabold" >وضعیت کارشناسان</p>
 
@@ -51,16 +46,16 @@ export default function ViewExpert() {
           </p>
         </div>
       </div>
-      <div className="max-h-[60vh] overflow-y-scroll scrollable-content-chat">
+      <div className="max-h-[60vh] overflow-y-scroll">
         <table className="w-full ">
           <thead>
-            <tr className="top-0 text-sm" >
-              <th className="bg-white p-3 text-center first-letter:rounded-r-xl ">نمایه </th>
-              <th className="bg-white p-3 text-center first-letter:">نام </th>
-              <th className="bg-white p-3 text-center first-letter:">نام خانوادگی</th>
-              <th className="bg-white p-3 text-center first-letter:">تاریخ ثبت نام کارشناس </th>
-              <th className="bg-white p-3 text-center first-letter:">تعداد  پروژه </th>
-              <th className="bg-white p-3 rounded-l-xl text-center">اعمال </th>
+            <tr className=" sticky top-0   ">
+              <th className="bg-white p-3 rounded-r-xl ">نمایه </th>
+              <th className="bg-white p-3 ">نام </th>
+              <th className="bg-white p-3 ">نام خانوادگی</th>
+              <th className="bg-white p-3 ">تاریخ ثبت نام کارشناس </th>
+              <th className="bg-white p-3 ">تعداد  پروژه </th>
+              <th className="bg-white p-3 rounded-l-xl">اعمال </th>
             </tr>
           </thead>
           <tbody>
@@ -76,24 +71,24 @@ export default function ViewExpert() {
                       : null
                   }
                 >
-                  <td className="">
+                  <td>
                     {" "}
                     <img
-                      className="w-10 mx-auto "
-                      src={user}
+                      className="w-10"
+                      src="/./src/assets/imges/user.png"
                       alt=""
                     />
                   </td>
-                  <td onClick={() => setShowReqsModal(expert)}  className="p-4 text-xs text-gray-400 font-bold text-center">{expert.name}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold text-center">{expert.family}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold text-center">
+                  <td onClick={() => requestHandler(expert.id)}  className="p-4 text-xs text-gray-400 font-bold">{expert.name}</td>
+                  <td className="p-4 text-xs text-gray-400 font-bold">{expert.family}</td>
+                  <td className="p-4 text-xs text-gray-400 font-bold">
                     {onlyDateConversion(expert.created_at)}
                   </td>
-                  <td className="p-4 text-xs text-gray-400 font-bold text-center">
+                  <td className="p-4 text-xs text-gray-400 font-bold">
                     {expert.project_count}
                   </td>
-                  <td className="p-4 text-xs text-gray-400 font-bold text-center">
-                  <div className="flex justify-center">
+                  <td className="p-4 text-xs text-gray-400 font-bold">
+                  <div className="flex">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
                     حذف کارشناس
                   </button>

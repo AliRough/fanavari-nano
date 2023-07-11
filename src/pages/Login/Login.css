@@ -1,7 +1,7 @@
-.ff {
-    background-image: url('../../assets/imges/aa.jpg');
-    /* background-position: center;
+.form-image {
+    background-image: url('/src/assets/images/form.jpg');
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh; */
+    height: 100vh;
 }

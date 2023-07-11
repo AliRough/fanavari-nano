@@ -4,7 +4,7 @@ import { ThreeDots } from "react-loader-spinner";
 
 const Loader = () => {
   return (
-    <div style={{display : "flex" , flexDirection : "column" , alignItems : "center"}} className="loader">
+    <div className="loader">
       <ThreeDots
         height="80"
         width="80"
@@ -15,7 +15,6 @@ const Loader = () => {
         wrapperClassName=""
         visible={true}
       />
-      <span>درحال پردازش...</span>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { AiOutlineCheckCircle } from "react-icons/ai";
 import { BiErrorCircle } from "react-icons/bi";
 import Axios from "../../../axiosinstancs";
 import { useParams } from "react-router-dom";
-import user from "../../assets/imges/user.png"
+
 
 // فعلا این صفحه استفاده نمیشه
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -116,7 +116,7 @@ export default function ViewRequest() {
             <p className="text-lg font-extrabold">کارشناس</p>
           </div>
           <div className="flex items-center">
-            <img src={user} alt="" className="h-10" />
+            <img src="/./src/assets/imges/user.png" alt="" className="h-10" />
             <p className="px-3 font-bold text-gray-600">{`${expertData.name} ${expertData.family}`}</p>
           </div>
           

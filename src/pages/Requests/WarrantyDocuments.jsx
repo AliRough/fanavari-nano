@@ -21,8 +21,8 @@ const WarrantyDocuments = () => {
       <hr className="border-dashed" />
 
       <div className="px-5">
-      <div className="flex flex-wrap">
-        <div className="md:w-1/2 w-full px-2">
+      <div className="flex">
+        <div className="w-1/2 px-2">
           <div className=" bg-c-4 rounded-xl p-5 mt-5">
             <div className=" pb-4">
               <p className=" font-bold"> مدارک اصلی </p>
@@ -70,7 +70,7 @@ const WarrantyDocuments = () => {
             </div>
           </div>
         </div>
-        <div className="md:w-1/2 w-full px-2">
+        <div className="w-1/2 px-2">
           <div className=" bg-c-4 rounded-xl p-5 mt-5">
           <div className=" pb-4">
               <p className=" font-bold"> اسناد </p>

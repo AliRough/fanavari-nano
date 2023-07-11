@@ -1,6 +1,4 @@
 import React from 'react'
-import vimg from '../../assets/imges/Vector1.png'
-import vimg2 from '../../assets/imges/Vector2.png'
 import './Dropdown.css'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -12,14 +10,14 @@ export default function Dropdown({route , title , itemsList}) {
             <div className="flex items-center gap-4">
               <img
                 className="w-c-4 h-c-4"
-                src={vimg}
+                src="/src/assets/imges/Vector1.png"
                 alt=""
               />
               <span className="text-c-5" href="">
                 {title}
               </span>
             </div>
-            <img src={vimg2} alt="" />
+            <img src="/src/assets/imges/Vector2.png" alt="" />
           </button>
           <div className={showOption ? "flex flex-col" : "hidden"}>
             {/* Shayad Badan Nesbat Be data haye Api Inja Avazzz Beshe */}

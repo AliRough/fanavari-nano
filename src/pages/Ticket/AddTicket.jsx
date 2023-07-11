@@ -1,10 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { AiFillFolder } from "react-icons/ai";
 import Axios from '../../../axiosinstancs'
-import { UserDataContext } from "../../contexts/UserData.Provider";
 
 export default function AddTicket() {
-  const {userDatas} = useContext(UserDataContext)
+
   const formData = new FormData();
   const [data , setData] = useState({
     title : "",
@@ -46,7 +45,7 @@ export default function AddTicket() {
     }
     console.log(data);
   }
-  if ((userDatas.user.type === "expert" || userDatas.user.type === "genuine" || userDatas.user.type === "legal")) return (
+  return (
     <div>
       <div className=" py-6">
         <p className="text-xl font-extrabold">ثبت تیکت </p>

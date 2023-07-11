@@ -1,5 +1,5 @@
 import React from 'react'
-import imgg from '../../assets/imges/account.png'
+
 export default function ExpertModal({expertData , close}) {
   if (expertData === null ) {
     return (
@@ -17,7 +17,7 @@ export default function ExpertModal({expertData , close}) {
             <div 
                 className="bg-white z-10 rounded-lg flex flex-col gap-4">
                 <div className="text-center bg-c-2 rounded-lg py-3">
-                    <img className="w-16 h-16 mx-auto" src={imgg} alt="" />
+                    <img className="w-16 h-16 mx-auto" src="/src/assets/imges/account.png" alt="" />
                     <h2 className="font-bold my-3 mb-1">{`${expertData.name} ${expertData.family}`}</h2>
                     <a className="text-xs text-c-8 font-semibold">{expertData.email}</a>
                 </div>

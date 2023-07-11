@@ -2,8 +2,6 @@ import React from 'react'
 import './DropdownUser.css'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import vimg from '../../../assets/imges/customer.png'
-import vimg2 from '../../../assets/imges/Vector2.png'
 export default function DropdownUser({route , title , itemsList}) {
   const [showOption , setShowOption] = useState(false)
   return (
@@ -12,7 +10,7 @@ export default function DropdownUser({route , title , itemsList}) {
             <div className="flex items-center gap-4">
               <img
                 className="w-c-4 h-c-4"
-                src={vimg}
+                src="/src/assets/imges/customer.png"
                 alt=""
                 width={20}
               />
@@ -20,12 +18,11 @@ export default function DropdownUser({route , title , itemsList}) {
                 {title}
               </span>
             </div>
-            <img src={vimg2} alt="" />
+            <img src="/src/assets/imges/Vector2.png" alt="" />
           </button>
           <div className={showOption ? "flex flex-col" : "hidden"}>
             {/* Shayad Badan Nesbat Be data haye Api Inja Avazzz Beshe */}
-            {console.log(route)}
-            {route !== undefined && itemsList.map((i , index) => <Link to={route[index]} key={index} className="h-12 flex items-center">{i}</Link>)}
+            {itemsList.map((i , index) => <Link to={route[index]} key={index} className="h-12 flex items-center">{i}</Link>)}
           </div>
     </div>
   )

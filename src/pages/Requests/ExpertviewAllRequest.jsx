@@ -1,12 +1,10 @@
-import React , { useContext, useEffect, useState } from "react";
+import React , { useEffect, useState } from "react";
 import Axios from "../../../axiosinstancs";
 import { onlyDateConversion } from "../../helper/dateConversion.cjs";
 import Loader from '../../components/Loader/Loader'
 import { Link } from "react-router-dom";
-import { UserDataContext } from "../../contexts/UserData.Provider";
-import user from "../../assets/imges/user.png"
+
 export default function ExpertviewAllRequest() {
-  const {userDatas} = useContext(UserDataContext)
   const [reqDatas , setReqDatas] = useState([])
   const [isLoading , setIsLoading] = useState(true)
 
@@ -17,7 +15,7 @@ export default function ExpertviewAllRequest() {
       setIsLoading(false)
     })
   },[])
-  if ((userDatas.user.type === "expert")) return (
+  return (
     <div>
       <div className=" py-6">
         <p className="text-xl font-extrabold"> درخواست های جاری</p>
@@ -40,7 +38,7 @@ export default function ExpertviewAllRequest() {
                     <p className="font-bold text-xs text-gray-400 pb-2 ">
                         شناسه درخواست : {item.request.shenaseh}
                     </p>
-                    <img src={user} alt="" className="h-8" />
+                    <img src="/./src/assets/imges/user.png" alt="" className="h-8" />
                   </div>
                 </Link>
               </div>

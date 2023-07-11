@@ -1,6 +1,6 @@
 import React from "react";
 import { RiPencilFill } from "react-icons/ri";
-import user from "../../assets/imges/user.png"
+
 export default function LegalUserInfo() {
   return (
     <div className="bg-white rounded-2xl mt-6 p-6">
@@ -8,16 +8,16 @@ export default function LegalUserInfo() {
         <p className="text-xl font-extrabold">اطلاعات کاربر حقوقی </p>
       </div>
       <hr />
-      <div className="flex mt-6 items-center justify-center md:justify-normal">
-        <img src={user} alt="" className="w-16" />
+      <div className="flex mt-6 items-center">
+        <img src="/./src/assets/imges/user.png" alt="" className="w-16" />
         <div className=" pr-4">
           <p className="font-bold">باتیس سهامی عام</p>
           <p className="text-gray-500 text-xs">عکس پروفایل </p>
         </div>
 
       </div>
-      <div className="flex flex-wrap justify-center md:justify-normal ">
-        <div className="mt-3 relative w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
+      <div className="flex flex-wrap">
+        <div className="relative mt-3 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
           <p className="font-bold text-xs">نام شرکت</p>
           <input
             type="text"
@@ -28,7 +28,7 @@ export default function LegalUserInfo() {
             <RiPencilFill />
           </div>
         </div>{" "}
-        <div className="mt-3 relative w-80 border rounded-2xl lg:mx-1 xl:mx-5 md:mx-3 p-2 overflow-hidden h-16">
+        <div className="mt-3 relative w-80 border rounded-2xl mx-3 p-2 overflow-hidden h-16">
           <p className="font-bold text-xs">محل ثبت</p>
           <input
             type="text"
@@ -50,7 +50,7 @@ export default function LegalUserInfo() {
           <RiPencilFill />
           </div>
         </div>{" "}
-        <div className="mt-3 relative w-80 border rounded-2xl lg:mx-1 xl:mx-5 md:mx-3 p-2 overflow-hidden h-16">
+        <div className="mt-3 relative w-80 border rounded-2xl mx-3 p-2 overflow-hidden h-16">
           <p className="font-bold text-xs">شناسه ملی</p>
           <input
             type="text"
@@ -68,7 +68,7 @@ export default function LegalUserInfo() {
           />
           <div className="absolute top-7 left-5"></div>
         </div>{" "}
-        <div className="mt-3 relative w-80 border rounded-2xl lg:mx-1 xl:mx-5 md:mx-3 p-2 overflow-hidden h-16">
+        <div className="mt-3 relative w-80 border rounded-2xl mx-3 p-2 overflow-hidden h-16">
           <p className="font-bold text-xs">دارندگان حق امضا</p>
           <input
             type="text"
@@ -86,7 +86,7 @@ export default function LegalUserInfo() {
           />
           <div className="absolute top-7 left-5"></div>
         </div>{" "}
-        <div className="mt-3 relative w-80 border rounded-2xl lg:mx-1 xl:mx-5 md:mx-3 p-2 overflow-hidden h-16">
+        <div className="mt-3 relative w-80 border rounded-2xl mx-3 p-2 overflow-hidden h-16">
           <p className="font-bold text-xs">سرمایه فعلی(ریال)</p>
           <input
             type="text"
@@ -104,7 +104,7 @@ export default function LegalUserInfo() {
           />
           <div className="absolute top-7 left-5"></div>
         </div>{" "}
-        <div className="mt-3 relative w-80 border rounded-2xl lg:mx-1 xl:mx-5 md:mx-3 p-2 overflow-hidden h-16">
+        <div className="mt-3 relative w-80 border rounded-2xl mx-3 p-2 overflow-hidden h-16">
           <p className="font-bold text-xs">نام و نام خانوادگی نماینده شرکت</p>
           <input
             type="text"
@@ -122,7 +122,7 @@ export default function LegalUserInfo() {
           />
           <div className="absolute top-7 left-5"></div>
         </div>{" "}
-        <div className="mt-3 relative w-80 border rounded-2xl lg:mx-1 xl:mx-5 md:mx-3 p-2 overflow-hidden h-16">
+        <div className="mt-3 relative w-80 border rounded-2xl mx-3 p-2 overflow-hidden h-16">
           <p className="font-bold text-xs">تلفن ثابت</p>
           <input
             type="text"
@@ -140,7 +140,7 @@ export default function LegalUserInfo() {
           />
           <div className="absolute top-7 left-5"></div>
         </div>{" "}
-        <div className="mt-3 relative w-80 border rounded-2xl lg:mx-1 xl:mx-5 md:mx-3 p-2 overflow-hidden h-16">
+        <div className="mt-3 relative w-80 border rounded-2xl mx-3 p-2 overflow-hidden h-16">
           <p className="font-bold text-xs">وب سایت</p>
           <input
             type="text"
@@ -149,11 +149,11 @@ export default function LegalUserInfo() {
           />
           <div className="absolute top-7 left-5"></div>
         </div>
-        <div className="py-3 flex flex-wrap justify-center">
+        <div className="py-3 ">
           <button className="w-80 p-3 px-10 bg-blue-800 text-white rounded-xl">
             حذف کاربر
           </button>
-          <button className="w-80 p-3 px-10 border border-red-800 text-red-800 rounded-xl md:mr-3">
+          <button className="w-80 p-3 px-10 border border-red-800 text-red-800 rounded-xl mr-3">
             ذخیره
           </button>
         </div>

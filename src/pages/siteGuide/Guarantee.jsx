@@ -1,7 +1,6 @@
 import React from "react";
 import { FcDocument } from "react-icons/fc";
 import { MdPayment } from "react-icons/md";
-import { Link } from "react-router-dom";
 
 export default function Guarantee() {
   return (
@@ -39,13 +38,12 @@ export default function Guarantee() {
           پس از بارگذاری کامل مدارک، می توانید از قسمت درخواست های جاری جزئیات درخواستخود را بررسی کنید و از روند آن اطلاع داشته باشید.
         </p>
       </div>
-      <Link to="/panel/oploadDoc">
+
       <button className="flex bg-blue-800 text-white rounded-xl p-3 my-3 w-full justify-center items-center  ">
         <MdPayment className="text-2xl ml-2" />
 
         انتقال به درگاه بانکی
       </button>
-      </Link>
     </div>
   );
 }

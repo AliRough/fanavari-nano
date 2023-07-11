@@ -1,41 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Axios from "../../../../axiosinstancs";
-import { useContext } from "react";
-import { TashilatContext } from "../../../contexts/Tashilat.Provider";
-// import {DatePicker} from "react-persian-datepicker/lib/index";
 
 export default function One() {
-  const nextPage = useNavigate();
-  const [confirmation, setConfirmation] = useState({
-    day: 1,
-    mount: 1,
-    year: "",
-  });
-  const [expiration, setExpiration] = useState({
-    day: 1,
-    mount: 1,
-    year: "",
-  });
-
-  useEffect(() => {
-    setStepOne((item) => ({
-      ...item,
-      confirmation: `${confirmation.year ? confirmation.year : "1400"}-${
-        confirmation.mount < 10 ? "0" : ""
-      }${confirmation.mount}-${confirmation.day}`,
-    }));
-  }, [confirmation]);
-
-  useEffect(() => {
-    setStepOne((item) => ({
-      ...item,
-      expiration: `${expiration.year ? expiration.year : "1400"}-${
-        expiration.mount < 10 ? "0" : ""
-      }${expiration.mount}-${expiration.day}`,
-    }));
-  }, [expiration]);
-
   // const [reqDatas , setReqDatas] = useState({
   //     user_id:"",
   //     type:"facilities",
@@ -44,34 +11,34 @@ export default function One() {
   //     places:[
   //         {
   //             "scope":"test",
-  //             address":"test",
+  //             "address":"test",
   //             "meterage":"10000",
   //             "ownership":"owner",
   //             "count":"3"
   //         },
   //         {
   //           "scope":"test1",
-  //           address":"test",
+  //           "address":"test",
   //           "meterage":"10000",
   //           "ownership":"owner",
   //           "count":"3"
   //       },
   //       {
   //         "scope":"test2",
-  //         address":"test",
+  //         "address":"test",
   //         "meterage":"10000",
   //         "ownership":"owner",
   //         "count":"3"
   //     }
   //     ],
-  //   history:test,
-  //   activity:"",
-  //   is_knowledge:"", //true or false
-  //   confirmation:"", //2022-10-10
-  //   expiration:"",//2022-10-10
-  //   area:""
-  // }
-
+    //   history:test,
+    //   activity:"",
+    //   is_knowledge:"", //true or false
+    //   confirmation:"", //2022-10-10
+    //   expiration:"",//2022-10-10
+    //   area:""
+    // }
+  
   // const changeHandler = (ev) => {
   //   if (ev.target.type === "radio") {
   //     setReqDatas({
@@ -91,62 +58,13 @@ export default function One() {
   //     console.log(res);
   //   })
   // }
-  // useEffect(() => {
-  //   sendReport()
-  // },[])
+// useEffect(() => {
+//   sendReport()
+// },[])
 
-  const { stepOne, setStepOne } = useContext(TashilatContext);
 
   return (
     <>
-      <div className=" flex  items-center w-full justify-center">
-        <div className="flex items-center">
-          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
-            1
-          </p>
-        </div>
-        <div className="w-10 px-2">
-          <div className="border-t border-2 border-blue-800 h-full rounded"></div>
-        </div>
-        <div className="flex items-center">
-          <p className="bg-slate-200 p-0.5 pt-1 px-3 rounded-xl text-slate-800 ">
-            2
-          </p>
-        </div>
-        <div className="w-10 px-2">
-          <div className="border-t border-2 border-slate-800 h-full rounded"></div>
-        </div>
-        <div className="flex items-center">
-          <p className="bg-slate-200 p-0.5 pt-1 px-3 rounded-xl text-slate-800 ">
-            3
-          </p>
-        </div>
-        <div className="w-10 px-2">
-          <div className="border-t border-2 border-slate-800 h-full rounded"></div>
-        </div>
-        <div className="flex items-center">
-          <p className="bg-slate-200 p-0.5 pt-1 px-3 rounded-xl text-slate-800 ">
-            4
-          </p>
-        </div>
-        <div className="w-10 px-2">
-          <div className="border-t border-2 border-slate-800 h-full rounded"></div>
-        </div>
-        <div className="flex items-center">
-          <p className="bg-slate-200 p-0.5 pt-1 px-3 rounded-xl text-slate-800 ">
-            5
-          </p>
-        </div>
-        <div className="w-10 px-2">
-          <div className="border-t border-2 border-slate-800 h-full rounded"></div>
-        </div>
-        <div className="flex items-center">
-          <p className="bg-slate-200 p-0.5 pt-1 px-3 rounded-xl text-slate-800 ">
-            تایید
-          </p>
-        </div>
-      </div>
-
       <div className=" py-6 mt-4">
         <p className="text-lg font-extrabold">مکان فعالیت شرکت </p>
       </div>
@@ -170,16 +88,7 @@ export default function One() {
               <td className="p-4 text-xs text-gray-600 font-bold">
                 <textarea
                   className=" text-xs h-12 border border-gray-300 rounded-xl"
-                  value={stepOne.places[0].address}
-                  onChange={(e) => {
-                    setStepOne((item) => ({
-                      ...item,
-                      places: {
-                        ...item.places,
-                        0: { ...item.places[0], address: e.target.value },
-                      },
-                    }));
-                  }}
+                  // onChange={changeHandler}
                   name=""
                   id=""
                   cols="30"
@@ -189,31 +98,11 @@ export default function One() {
               <td className="p-4 text-xs text-gray-600 font-bold">
                 <input
                   type="number"
-                  value={stepOne.places[0].meterage}
-                  onChange={(e) => {
-                    setStepOne((item) => ({
-                      ...item,
-                      places: {
-                        ...item.places,
-                        0: { ...item.places[0], meterage: e.target.value },
-                      },
-                    }));
-                  }}
                   className="border border-gray-300 rounded-xl w-20"
                 />
               </td>
               <td className="p-4 text-xs text-gray-600 font-bold">
                 <select
-                  value={stepOne.places[0].ownership}
-                  onChange={(e) => {
-                    setStepOne((item) => ({
-                      ...item,
-                      places: {
-                        ...item.places,
-                        0: { ...item.places[0], ownership: e.target.value },
-                      },
-                    }));
-                  }}
                   name=""
                   id=""
                   className="border-gray-300 rounded-xl w-24 text-xs"
@@ -225,16 +114,6 @@ export default function One() {
               <td className="p-4 text-xs text-gray-600 font-bold">
                 <div className="flex">
                   <input
-                    value={stepOne.places[0].count}
-                    onChange={(e) => {
-                      setStepOne((item) => ({
-                        ...item,
-                        places: {
-                          ...item.places,
-                          0: { ...item.places[0], count: e.target.value },
-                        },
-                      }));
-                    }}
                     type="number"
                     className="border border-gray-300 rounded-xl w-20"
                   />
@@ -247,16 +126,6 @@ export default function One() {
               </td>
               <td className="p-4 text-xs text-gray-600 font-bold">
                 <textarea
-                  value={stepOne.places[1].address}
-                  onChange={(e) => {
-                    setStepOne((item) => ({
-                      ...item,
-                      places: {
-                        ...item.places,
-                        1: { ...item.places[1], address: e.target.value },
-                      },
-                    }));
-                  }}
                   className=" text-xs h-12 border border-gray-300 rounded-xl"
                   name=""
                   id=""
@@ -266,32 +135,12 @@ export default function One() {
               </td>
               <td className="p-4 text-xs text-gray-600 font-bold">
                 <input
-                  value={stepOne.places[1].meterage}
-                  onChange={(e) => {
-                    setStepOne((item) => ({
-                      ...item,
-                      places: {
-                        ...item.places,
-                        1: { ...item.places[1], meterage: e.target.value },
-                      },
-                    }));
-                  }}
                   type="number"
                   className="border border-gray-300 rounded-xl w-20"
                 />
               </td>
               <td className="p-4 text-xs text-gray-600 font-bold">
                 <select
-                  value={stepOne.places[1].ownership}
-                  onChange={(e) => {
-                    setStepOne((item) => ({
-                      ...item,
-                      places: {
-                        ...item.places,
-                        1: { ...item.places[1], ownership: e.target.value },
-                      },
-                    }));
-                  }}
                   name=""
                   id=""
                   className="border-gray-300 rounded-xl w-24 text-xs"
@@ -303,16 +152,6 @@ export default function One() {
               <td className="p-4 text-xs text-gray-600 font-bold">
                 <div className="flex">
                   <input
-                    value={stepOne.places[1].count}
-                    onChange={(e) => {
-                      setStepOne((item) => ({
-                        ...item,
-                        places: {
-                          ...item.places,
-                          1: { ...item.places[1], count: e.target.value },
-                        },
-                      }));
-                    }}
                     type="number"
                     className="border border-gray-300 rounded-xl w-20"
                   />
@@ -323,16 +162,6 @@ export default function One() {
               <td className="p-4 text-xs text-gray-800 font-bold">انبار</td>
               <td className="p-4 text-xs text-gray-600 font-bold">
                 <textarea
-                  value={stepOne.places[2].address}
-                  onChange={(e) => {
-                    setStepOne((item) => ({
-                      ...item,
-                      places: {
-                        ...item.places,
-                        2: { ...item.places[2], address: e.target.value },
-                      },
-                    }));
-                  }}
                   className=" text-xs h-12 border border-gray-300 rounded-xl"
                   name=""
                   id=""
@@ -342,32 +171,12 @@ export default function One() {
               </td>
               <td className="p-4 text-xs text-gray-600 font-bold">
                 <input
-                  value={stepOne.places[2].meterage}
-                  onChange={(e) => {
-                    setStepOne((item) => ({
-                      ...item,
-                      places: {
-                        ...item.places,
-                        2: { ...item.places[2], meterage: e.target.value },
-                      },
-                    }));
-                  }}
                   type="number"
                   className="border border-gray-300 rounded-xl w-20"
                 />
               </td>
               <td className="p-4 text-xs text-gray-600 font-bold">
                 <select
-                  value={stepOne.places[2].ownership}
-                  onChange={(e) => {
-                    setStepOne((item) => ({
-                      ...item,
-                      places: {
-                        ...item.places,
-                        2: { ...item.places[2], ownership: e.target.value },
-                      },
-                    }));
-                  }}
                   name=""
                   id=""
                   className="border-gray-300 rounded-xl w-24 text-xs"
@@ -379,16 +188,6 @@ export default function One() {
               <td className="p-4 text-xs text-gray-600 font-bold">
                 <div className="flex">
                   <input
-                    value={stepOne.places[2].count}
-                    onChange={(e) => {
-                      setStepOne((item) => ({
-                        ...item,
-                        places: {
-                          ...item.places,
-                          2: { ...item.places[2], count: e.target.value },
-                        },
-                      }));
-                    }}
                     type="number"
                     className="border border-gray-300 rounded-xl w-20"
                   />
@@ -409,13 +208,6 @@ export default function One() {
             <tr className="bg-white ">
               <td className="p-4 text-xs text-gray-600 font-bold">
                 <textarea
-                  value={stepOne.history}
-                  onChange={(e) => {
-                    setStepOne((item) => ({
-                      ...item,
-                      history: e.target.value,
-                    }));
-                  }}
                   className=" text-xs h-20 w-full border border-gray-300 rounded-xl"
                   name=""
                   id=""
@@ -437,13 +229,6 @@ export default function One() {
             <tr className="bg-white ">
               <td className="p-4 text-xs text-gray-600 font-bold">
                 <textarea
-                  value={stepOne.activity}
-                  onChange={(e) => {
-                    setStepOne((item) => ({
-                      ...item,
-                      activity: e.target.value,
-                    }));
-                  }}  
                   className=" text-xs h-20 w-full border border-gray-300 rounded-xl"
                   name=""
                   id=""
@@ -467,13 +252,6 @@ export default function One() {
                     جمهوری قرار دارد؟
                   </p>
                   <input
-                    value={stepOne.is_knowledge}
-                    onChange={(e) => {
-                      setStepOne((item) => ({
-                        ...item,
-                        is_knowledge: true,
-                      }));
-                    }}
                     type="radio"
                     name="isDanesh"
                     id=""
@@ -481,13 +259,6 @@ export default function One() {
                   />
                   <p className="font-bold text-sm">بله</p>
                   <input
-                    value={stepOne.is_knowledge}
-                    onChange={(e) => {
-                      setStepOne((item) => ({
-                        ...item,
-                        is_knowledge: false,
-                      }));
-                    }}
                     type="radio"
                     name="isDanesh"
                     id=""
@@ -503,14 +274,8 @@ export default function One() {
                   <p className="font-bold text-sm">
                     تاریخ تأییدیه دانش بنیان توسط معاونت علمی ریاست جمهور:{" "}
                   </p>
+
                   <select
-                    value={confirmation.day}
-                    onChange={(e) => {
-                      setConfirmation((date) => ({
-                        ...date,
-                        day: e.target.value,
-                      }));
-                    }}
                     name=""
                     id=""
                     className="border-gray-300 rounded-xl  text-xs mx-1 "
@@ -548,13 +313,6 @@ export default function One() {
                     <option value="31">31</option>
                   </select>
                   <select
-                    value={confirmation.mount}
-                    onChange={(e) => {
-                      setConfirmation((date) => ({
-                        ...date,
-                        mount: e.target.value,
-                      }));
-                    }}
                     name=""
                     id=""
                     className="border-gray-300 rounded-xl  text-xs mx-1"
@@ -573,18 +331,11 @@ export default function One() {
                     <option value="12">اسفند</option>
                   </select>
                   <input
-                    value={confirmation.year}
-                    onChange={(e) => {
-                      if (e.target.value < 1410) {
-                        setConfirmation((date) => ({
-                          ...date,
-                          year: e.target.value,
-                        }));
-                      }
-                    }}
-                    type="text"
+                    type="number"
                     className="text-sm border rounded-xl border-gray-400 m-1 h-8"
                     id=""
+                    min="1300"
+                    max="1402"
                     placeholder="1400"
                   />
                 </div>
@@ -594,13 +345,6 @@ export default function One() {
                   </p>
 
                   <select
-                    value={expiration.day}
-                    onChange={(e) => {
-                      setExpiration((date) => ({
-                        ...date,
-                        day: e.target.value,
-                      }));
-                    }}
                     name=""
                     id=""
                     className="border-gray-300 rounded-xl  text-xs mx-1 "
@@ -638,13 +382,6 @@ export default function One() {
                     <option value="31">31</option>
                   </select>
                   <select
-                    value={expiration.mount}
-                    onChange={(e) => {
-                      setExpiration((date) => ({
-                        ...date,
-                        mount: e.target.value,
-                      }));
-                    }}
                     name=""
                     id=""
                     className="border-gray-300 rounded-xl  text-xs mx-1"
@@ -663,15 +400,6 @@ export default function One() {
                     <option value="12">اسفند</option>
                   </select>
                   <input
-                    value={expiration.year}
-                    onChange={(e) => {
-                      if (e.target.value < 1410) {
-                        setExpiration((date) => ({
-                          ...date,
-                          year: e.target.value,
-                        }));
-                      }
-                    }}
                     type="number"
                     className="text-sm border rounded-xl border-gray-400 m-1 h-8"
                     id=""
@@ -685,92 +413,61 @@ export default function One() {
             <tr className="bg-white ">
               <td className="p-4 text-xs text-gray-600 font-bold">
                 <select
-                value={stepOne.places}
-                onChange={(e) => {
-                  setStepOne((item) => ({
-                    ...item,
-                    
-                  }));
-                }}
                   name=""
                   id=""
                   className="border-gray-300 rounded-xl  text-xs"
                 >
-                  <option
-                    value="                    فناوری زیستی (پزشكی، کشاورزی، صنعتی و محیط زیست)
-"
-                  >
+                  <option value="88">
                     فناوری زیستی (پزشكی، کشاورزی، صنعتی و محیط زیست)
                   </option>
-                  <option value=" فناوری نانو (محصوالت و مواد )">
-                    {" "}
-                    فناوری نانو (محصوالت و مواد )
-                  </option>
-                  <option
-                    value="                    اپتیک و فوتونیک (مواد، قطعات و سامانه ها)
-"
-                  >
+                  <option value="88"> فناوری نانو (محصوالت و مواد )</option>
+                  <option value="88">
                     {" "}
                     اپتیک و فوتونیک (مواد، قطعات و سامانه ها)
                   </option>
-                  <option
-                    value="                    مواد پیشرفته شیمیایی و غیر شیمیایی (فلزات، کامپوزیتها،)
-"
-                  >
+                  <option value="88">
                     {" "}
                     مواد پیشرفته شیمیایی و غیر شیمیایی (فلزات، کامپوزیتها،)
                   </option>
-                  <option
-                    value="
-                    مواد پیشرفته شیمیایی و غیر شیمیایی (فلزات، کامپوزیتها،
-                    سرامیکها، پلیمرها)"
-                  >
+                  <option value="88">
                     مواد پیشرفته شیمیایی و غیر شیمیایی (فلزات، کامپوزیتها،
                     سرامیکها، پلیمرها){" "}
                   </option>
-                  <option
-                    value="الكترونیک و کنترل (میكروالكترونیک، قطعات، مدارها، سختافزار
-                    کامپیوتر و سامانه ها)"
-                  >
+                  <option value="88">
                     الكترونیک و کنترل (میكروالكترونیک، قطعات، مدارها، سختافزار
                     کامپیوتر و سامانه ها){" "}
                   </option>
-                  <option value="                    تجهیزات پیشرفته ساخت، تولید و آزمایشگاهی
-">
+                  <option value="88">
                     {" "}
                     تجهیزات پیشرفته ساخت، تولید و آزمایشگاهی
                   </option>
-                  <option value="داروهای پیشرفته و مهندسی پزشكی"> داروهای پیشرفته و مهندسی پزشكی</option>
-                  <option value="هوافضا (پرنده ها، ماهواره ها، موشکها)">
+                  <option value="88"> داروهای پیشرفته و مهندسی پزشكی</option>
+                  <option value="88">
                     {" "}
                     هوافضا (پرنده ها، ماهواره ها، موشکها)
                   </option>
-                  <option value="انرژی (هسته ای، نفت و گاز و تجدید پذیر)">
+                  <option value="88">
                     {" "}
                     انرژی (هسته ای، نفت و گاز و تجدید پذیر)
                   </option>
-                  <option value="محصوالت پیشرفته سایر بخش ها (رباتیک و ...)">
+                  <option value="88">
                     {" "}
                     محصوالت پیشرفته سایر بخش ها (رباتیک و ...)
                   </option>
-                  <option value="صنایع دریایی"> صنایع دریایی</option>
+                  <option value="88"> صنایع دریایی</option>
                 </select>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-
-      <div className=" text-left mt-2">
-        <button
-          className="bg-blue-700  text-white rounded-xl p-4 font-bold text-sm"
-          onClick={() => {
-            nextPage("/panel/Tashilat/2");
-          }}
-        >
-          مرحله بعد
-        </button>
-      </div>
+      <Link to="/panel/Tashilat/2">
+        <div className=" text-left mt-2">
+          <button className="bg-blue-700  text-white rounded-xl p-4 font-bold text-sm">
+            مرحله بعد
+          </button>
+        </div>
+      </Link>
     </>
   );
 }
