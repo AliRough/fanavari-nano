@@ -95,6 +95,7 @@ export default function One() {
                   rows="10"
                 ></textarea>
               </td>
+              
               <td className="p-4 text-xs text-gray-600 font-bold">
                 <input
                   type="number"
