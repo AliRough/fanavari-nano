@@ -1,91 +1,183 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState, version } from "react";
+import Vector from "../../assets/imges/Vector.png";
+import Vector3 from "../../assets/imges/Vector3.png";
+import Vector4 from "../../assets/imges/Vector4.png";
+import Vector5 from "../../assets/imges/Vector5.png";
+import user from "../../assets/imges/user.png";
 
-const Topbar = ({ avatar }) => {
-  const [showModal, setShowModal] = useState(false)
+import Vector6 from "../../assets/imges/Vector6.png";
+import AccImg from "../../assets/imges/account.png";
+import ViewNotif from "../../components/modal/ViewNotif";
+import Bell from "../../assets/svg/Bell.svg";
 
+import cc from "../../assets/imges/Vector (1).png";
+import c2 from "../../assets/imges/Vector (2).png";
+import { UserDataContext } from "../../contexts/UserData.Provider";
+import { Link } from "react-router-dom";
+import Axios from "../../../axiosinstancs";
+import { RiMenu3Fill } from "react-icons/ri";
+
+const Topbar = ({ avatar, showSideBarHandler }) => {
+  const { userDatas } = useContext(UserDataContext);
+  const [showModal, setShowModal] = useState(false);
+  const [showUnreade, setShowUnreade] = useState(false);
+  const [details, setDetails] = useState();
+  useEffect(() => {
+    Axios.get("/api/v1/profile_genuine")
+      .then((res) => {
+        console.log(res);
+        const newA = res.data;
+        newA.map((item) => {
+          if (item.user.id === userDatas.user.id) {
+            setDetails(item);
+            console.log(item);
+          }
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  const [unreadNotif, setUnreadNotif] = useState([]);
+  useEffect(() => {
+    Axios.get(`/api/v1/get_unread_notification`)
+      .then(async (res) => {
+        console.log(res.data);
+        setUnreadNotif(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <div className="flex items-center justify-between w-full h-c-6 rounded-3xl bg-c-2 px-7 relative">
-      <form className="flex items-center w-c-7 h-14 p-4 gap-4 bg-white rounded-c border border-c-7">
-        <div>
-          <img
-            className="w-3.5 h-3.5"
-            src="/src/assets/imges/Vector3.png"
-            alt=""
-          />
-        </div>
-        <div className="flex-1 h-full">
-          <input
-            placeholder="جست و جو..."
-            className="w-full h-full focus:outline-none"
-          ></input>
-        </div>
-      </form>
-      <div className="flex gap-10">
-        <button className="flex items-center gap-4">
+      <div className="flex items-center">
+        <button className="p-2 lg:hidden " onClick={showSideBarHandler}>
+          <RiMenu3Fill className="text-3xl ml-3 " />
+        </button>
+        {/* <p className="p-1 font-bold">کاربر عزیز </p> */}
+        {userDatas && (
+          <p className="p-1 font-bold text-sm sm:text-base">
+            {`${userDatas.user.name} ${userDatas.user.family}`}{" "}
+          </p>
+        )}
+        <p className="p-1 font-bold text-sm sm:text-base">گرامی </p>
+      </div>
+      <div className="flex sm:gap-10 ">
+        <button
+          onClick={() => setShowUnreade(!showUnreade)}
+          className="flex items-center gap-4"
+        >
           <div className="relative">
-            <img
-              className="w-c-4 h-c-4"
-              src="/src/assets/imges/Vector4.png"
-              alt=""
-            />
-            <img
-              className="absolute top-0 right-0"
-              src="/src/assets/imges/Vector5.png"
-              alt=""
-            />
+            <img className="w-c-4 h-c-4" src={Vector4} alt="" />
+            {unreadNotif.length !== 0 && (
+              <img className="absolute top-0 right-0" src={Vector5} alt="" />
+            )}
           </div>
           <div>
-            <h2>اعلانات</h2>
+            <h2 className="hidden sm:!block">اعلانات</h2>
           </div>
         </button>
+        {showUnreade && (
+          <ViewNotif
+            unreadNotif={unreadNotif}
+            trashHandler={setUnreadNotif}
+            close={setShowUnreade}
+          />
+        )}
         <div>
-          <button className="flex items-center gap-4">
+          <button
+            className="flex items-center gap-4"
+            onClick={() => setShowModal(!showModal)}
+          >
             <div>
-              <img
+              {details && details.image && (
+                <img
+                  style={{ borderRadius: "50%" }}
+                  src={`https://backend.nanotf.ir/${details.image}`}
+                  alt="عکس پروفایل"
+                  className="w-16 h-16"
+                />
+              )}
+              {(!details || !details.image) && (
+                <img src={avatar} alt="" className="w-16 h-16 " />
+              )}
+              {/* <img
                 className="w-10 h-10"
                 src={avatar}
                 alt="avatar"
-              />
+              /> */}
             </div>
             <div>
-              <img src="/src/assets/imges/Vector6.png" alt="" onClick={() => setShowModal(!showModal)}/>
+              <img src={Vector6} alt="" />
             </div>
-            {showModal && (
-              <div onClick={() => setShowModal(!showModal)}
-                class="absolute w-80 h-c-9 py-4 px-6 left-7 top-full bg-white z-10 rounded-lg flex flex-col gap-4">
-                <div class="text-center bg-c-2 rounded-lg py-3">
-                  <img class="w-16 h-16 mx-auto" src="/src/assets/imges/account.png" alt="" />
-                  <h2 class="font-bold my-3 mb-1">محمد رنجبر</h2>
-                  <a class="text-xs text-c-8 font-semibold">asd@gmail.com</a>
-                </div>
-                <div class="flex items-center gap-4">
-                  <div>
-                    <img src="css/assets/img/Vector.png" alt="" />
-                  </div>
-                  <a class="text-xs flex-1">
-                    متن
-                  </a>
-                </div>
-                <div class="flex items-center gap-4">
-                  <div>
-                    <img src="css/assets/img/Vector (1).png" alt="" />
-                  </div>
-                  <a class="text-xs flex-1">
-                    متن
-                  </a>
-                </div>
-                <div class="flex items-center gap-4">
-                  <div>
-                    <img src="css/assets/img/Vector (2).png" alt="" />
-                  </div>
-                  <a class="text-xs flex-1 text-c-9">
-
-خروج                  </a>
-                </div>
-              </div>
-
-            )}
           </button>
+          {showModal && (
+            <div
+              onClick={() => setShowModal(!showModal)}
+              class="absolute w-80 h-c-9 py-4 px-6 left-7 top-full bg-white z-10 rounded-lg flex flex-col gap-4"
+            >
+              <div class="text-center bg-c-2 rounded-lg py-3">
+                {details && details.image && (
+                  <img
+                    style={{ borderRadius: "50%" }}
+                    src={`https://backend.nanotf.ir/${details.image}`}
+                    alt="عکس پروفایل"
+                    className="w-16 h-16 mx-auto"
+                  />
+                )}
+                {(!details || !details.image) && (
+                  <img src={AccImg} alt="" className="w-16 h-16 mx-auto" />
+                )}
+                {/* <img class="w-16 h-16 mx-auto" src={AccImg} alt="" /> */}
+                <h2 class="font-bold my-3 mb-1">{`${userDatas.user.name} ${userDatas.user.family}`}</h2>
+                <a class="text-xs text-c-8 font-semibold">
+                  {userDatas.user.email !== null && userDatas.user.email !== ""
+                    ? userDatas.user.email
+                    : "فاقد پست الکترونیکی"}
+                </a>
+              </div>
+              <div class="flex items-center gap-4">
+                <div>
+                  <img
+                    style={{ width: "15px", height: "15px" }}
+                    src={Bell}
+                    alt=""
+                  />
+                </div>
+                <Link to="/panel/allNotifs" class="text-xs flex-1">
+                  اعلانات
+                </Link>
+              </div>
+              <div class="flex items-center gap-4">
+                <div>
+                  <img src={cc} alt="" />
+                </div>
+                <Link
+                  to={
+                    userDatas.user.type === "genuine"
+                      ? "/panel/genuineUserInfo"
+                      : userDatas.user.type === "legal"
+                      ? "/panel/legaluserInfo"
+                      : userDatas.user.type === "admin"
+                      ? "/panel/userInfo"
+                      : ""
+                  }
+                  class="text-xs flex-1"
+                >
+                  اطلاعات کاربری
+                </Link>
+              </div>
+              <div class="flex items-center gap-4">
+                <div>
+                  <img src={c2} alt="" />
+                </div>
+                <Link to={"/auth/login"} class="text-xs flex-1 text-c-9">
+                  خروج
+                </Link>
+              </div>
+            </div>
+          )}
           {/* <div
             className="absolute w-80 h-c-9 py-4 px-6 left-7 top-full bg-white z-10 rounded-lg flex flex-col gap-4"
             style={{ display: "none" }}

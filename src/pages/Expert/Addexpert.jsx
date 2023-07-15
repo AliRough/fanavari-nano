@@ -1,11 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Axios from '../../../axiosinstancs'
 import { Validation } from "../../helper/validation";
+import { UserDataContext } from "../../contexts/UserData.Provider";
+import { ToastContainer, toast } from 'react-toastify';
+import user from "../../assets/imges/user.png"
+import axios from "axios";
+import Loader from "../../components/Loader/Loader";
+import { useNavigate } from "react-router-dom";
+import { DatePicker } from 'zaman';
+import { onlyDateConversion } from "../../helper/dateConversion.cjs";
 
 const Addexpert = () => {
+  const navigate = useNavigate()
   const [bcInput, setBcInput] = useState(true)
   const [showPass, setShowPass] = useState(false);
   const [showComPass, setComShowPass] = useState(false);
+  const [isLoading , setIsLoading] = useState(false)
+
+  const [profilePic , setProfilePic] = useState(null)
 
   const showPassHandler = (e) => {
     e.preventDefault();
@@ -24,19 +36,20 @@ const Addexpert = () => {
     password: "",
     father_name: "",
     number_certificate: "",
-    birth_day: "",
+    birth_day: "2022-4-9",
     place_issue: "",
     gender: "",
     marital: "",
-    residential: "",
+    residential: "resident",
     education: "",
     study: "",
     job: "",
     address: "",
     postal_code: "",
     home_number: "", //11
-    nationality: "",
+    nationality: "iran",
     password_confirmation: "",
+    image : null,
     // series_certificate:"" ,
     // work_address: "",
     // work_phone:"" ,
@@ -56,25 +69,82 @@ const Addexpert = () => {
       setUserData({
         ...userDatas, [ev.target.name]: ev.target.value
       })
-    } else if (ev.target.type === "text") {
+    } else if (ev.target.type === "text" || ev.target.type === "password") {
       setUserData({
         ...userDatas, [ev.target.name]: ev.target.value
       })
     }
     console.log(userDatas);
   }
+  const datechangeHandler = (e, name) => {
+    const day = e.value.getDate()
+    const mouth = e.value.getMonth()
+    const year = e.value.getFullYear()
+    setUserData(prev => {
+        return({
+            ...prev,
+            [name] : `${year}-${mouth + 1}-${day}`
+        })
+    })
+}
 
   const addHandler = (event) => {
     event.preventDefault()
-    Axios.post("/api/admin/expert", userDatas).then(async (res) => {
+    setIsLoading(true)
+    const token = localStorage.getItem('token');
+    const isLoggedIn = token ? true : false;
+    axios.post("/api/admin/expert", userDatas, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        ...(isLoggedIn && {
+            Authorization: `Bearer ${JSON.parse(token)}`
+        })
+      }
+    })
+
+    .then(async (res) => {
       console.log(res);
+      setIsLoading(false)
+      toast("اطلاعات با موفقیت ثبت شد")
+      toast("در حال انتقال به لیست کارشناسان...")
+      setTimeout(() => {
+        navigate("/panel/viewExpert")
+      } , 2000)
+    })
+
+    .catch((err) => {
+      setIsLoading(false)
+      if (typeof(err.response.data.message) === "string") {
+        toast(err.response.data.message)
+      } else {
+        Object.keys(err.response.data.message).map((item) => {
+          toast(err.response.data.message[item][0])
+        })
+      }
     })
   }
+  const imageHandler = (e) => {
+    setUserData(prev => {
+        return({
+            ...prev,
+            image : e.target.files[0]
+        })
+    })
+    setProfilePic(URL.createObjectURL(e.target.files[0]))
+  }
+  if (isLoading) return <Loader />
   return (
     <form className="bg-white rounded-3xl mt-3 p-3">
       <p className="text-xl font-bold p-4 py-6">اضافه کردن کارشناس</p>
       <hr className="border-dashed" />
-
+      <ToastContainer />
+      <div className="flex mt-6 p-2 items-center">
+        {profilePic !== null ? <img src={profilePic} alt="" style={{borderRadius : "50%"}} className=" w-16 h-16" /> : <img src={user} alt="" className="w-16" />}
+        <div className=" pr-4">
+          <label htmlFor="aks" className="text-yellow-500 text-xs">تنظیم عکس پروفایل</label>
+          <input onChange={imageHandler} style={{display:"none"}} id="aks" type="file"  />
+        </div>
+      </div>
       <div className="flex flex-wrap">
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">نام</p>
@@ -195,14 +265,19 @@ const Addexpert = () => {
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">تاریخ تولد</p>
-          <input
-            type="text"
-            placeholder="00/02/14"
-            className="w-full border-none outline-none placeholder:text-sm"
-            onChange={changeHandler}
-            value={userDatas.birth_day}
-            name="birth_day"
-          />
+          <div className="flex items-center">
+            <p>{onlyDateConversion(userDatas.birth_day)}</p>
+            <div className="opacity-0 cursor-pointer">
+              <DatePicker
+                onChange={(e) => datechangeHandler(e , "birth_day")}
+                locale="fa"
+                name="birth_day"
+                placeholder="تاریخ را انتخاب کنید"
+                format="jYYYY/jMM/jDD"
+                id="1"
+                />
+            </div>
+          </div>
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">محل صدور</p>
@@ -237,7 +312,7 @@ const Addexpert = () => {
             name="series_certificate"
           />
         </div> */}
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+        {/* <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">کشور</p>
           <input
             type="text"
@@ -247,7 +322,7 @@ const Addexpert = () => {
             value={userDatas.nationality}
             name="nationality"
           />
-        </div>
+        </div> */}
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">میزان تحصیلات</p>
           <input
@@ -272,7 +347,7 @@ const Addexpert = () => {
         </div>
         <div className="flex flex-wrap">
           <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-            <p className="font-bold text-sm">شغل</p>
+            <p className="font-bold text-sm">سمت</p>
             <input
               type="text"
               placeholder="برنامه نویس وب"
@@ -361,7 +436,7 @@ const Addexpert = () => {
           />
           <p className="font-bold text-sm">متاهل</p>
         </div>
-        <div className="flex w-96 items-center m-3">
+        {/* <div className="flex w-96 items-center m-3">
           <p className="font-bold text-sm">وضعیت اقامت :</p>
           <input
             type="radio"
@@ -381,7 +456,7 @@ const Addexpert = () => {
             onClick={changeHandler}
           />
           <p className="font-bold text-sm">غیر مقیم</p>
-        </div>
+        </div> */}
       </div>
       <div className="w-3/4 mx-auto">
         <button onClick={addHandler} className="w-full p-3 py-2 text-white bg-blue-700 border border-blue-700 rounded-lg">
@@ -394,106 +469,3 @@ const Addexpert = () => {
 };
 
 export default Addexpert;
-
-
-{/* <div className="w-4/6">
-            <p className="font-bold text-sm">تاحصیلات :</p>
-          <div className="flex justify-between">
-            <p className="text-sm font-bold">سیکل</p>
-            <input
-              type="radio"
-              name="education"
-              id=""
-              className="relative overflow-hidden mx-2 w-5 rounded h-full"
-              value="سیکل"
-              onClick={changeHandler}
-            />
-            <p className="text-sm font-bold">دیپلم</p>
-            <input
-              type="radio"
-              name="education"
-              id=""
-              className="relative overflow-hidden mx-2 w-5 rounded h-full"
-              value="دیپلم"
-              onClick={changeHandler}
-            />
-            <p className="text-sm font-bold">کادانی</p>
-            <input
-              type="radio"
-              name="education"
-              id=""
-              className="relative overflow-hidden mx-2 w-5 rounded h-full"
-              value="کاردانی"
-              onClick={changeHandler}
-            />
-            <p className="text-sm font-bold">لیسانس</p>
-            <input
-              type="radio"
-              name="education"
-              id=""
-              className="relative overflow-hidden mx-2 w-5 rounded h-full"
-              value="لیسانس"
-              onClick={changeHandler}
-            />
-            <p className="text-sm font-bold">فوق لیسانس</p>
-            <input
-              type="radio"
-              name="education"
-              id=""
-              className="relative overflow-hidden mx-2 w-5 rounded h-full"
-              value="فوق لیسانس"
-              onClick={changeHandler}
-            />
-            <p className="text-sm font-bold">دکتری</p>
-            <input
-              type="radio"
-              name="education"
-              id=""
-              className="relative overflow-hidden mx-2 w-5 rounded h-full"
-              value="دکتری"
-              onClick={changeHandler}
-            />
-            <p className="text-sm font-bold">فوق دکتری</p>
-            <input
-              type="radio"
-              name="education"
-              id=""
-              className="relative overflow-hidden mx-2 w-5 rounded h-full"
-              value="فوق دکتری"
-              onClick={changeHandler}
-            />
-          </div>
-        </div> */}
-{/* <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-            <p className="font-bold text-sm">آدرس محل کار</p>
-            <input
-              type="text"
-              placeholder="تهران"
-              className="outline-none placeholder:text-sm"
-              onChange={changeHandler}
-              value={userDatas.work_address}
-              name="work_address"
-            />
-          </div>
-          <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-            <p className="font-bold text-sm">تلفن محل کار</p>
-            <input
-              type="text"
-              placeholder="********021"
-              className="outline-none placeholder:text-sm"
-              onChange={changeHandler}
-              value={userDatas.work_phone}
-              name="work_phone"
-            />
-          </div> */}
-{/* <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-            <p className="font-bold text-sm">کدپستی محل کار</p>
-            <input
-              type="text"
-              placeholder=""
-              className="outline-none placeholder:text-sm"
-              onChange={changeHandler}
-              value={userDatas.work_postal_code}
-              name="work_postal_code"
-            />
-          </div> */}

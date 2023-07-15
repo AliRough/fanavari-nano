@@ -3,6 +3,9 @@ import Input from "../../components/Input/Input";
 import { Link, useNavigate } from "react-router-dom";
 import { Validation } from "../../helper/validation";
 import axios from "axios";
+import logofarsi from "../../assets/imges/Login/logofarsi.png"
+import phone from "../../assets/imges/phone.png"
+import "./Login.css"
 // api
 
 const Forgotpassword = () => {
@@ -87,7 +90,7 @@ const Forgotpassword = () => {
       <div className="h-screen flex">
         <div className="w-1/3 bg-cover bg-center bg-no-repeat">
           <h1 className="mt-c-15 mb-c-20">
-            <img className="mx-auto" src="/src/assets/imges/Login/logofarsi.png" alt="" style={{
+            <img className="mx-auto" src={logofarsi} alt="" style={{
               width: "80px",
               height: "110px"
             }} />
@@ -99,7 +102,7 @@ const Forgotpassword = () => {
 
             <Input
               lable={"شماره موبایل خود را وارد کنید"}
-              src="/src/assets/imges/phone.png"
+              src={phone}
               type="text"
               changeHandler={changeHandler}
               value={data.phone}
@@ -116,7 +119,7 @@ const Forgotpassword = () => {
             <Link to={'/auth/login'} className="text-sm text-center bg-c-19 text-white px-4 py-2 transition-colors hover:bg-c-20">بازگشت</Link>
           </form>
         </div>
-        <div className="w-2/3 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/src/assets/imges/Login/background.889c334e8255dfcd19f2.jpg)' }}></div>
+        <div className="w-2/3 bg-cover bg-center bg-no-repeat ff" ></div>
       </div>
     </>
   )

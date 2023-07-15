@@ -1,34 +1,39 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Axios from "../../../axiosinstancs";
 import { useEffect } from "react";
-import Viewdetailuser from "./Viewdetailuser";
-import ViewLegalDetailUser from "./ViewLegalDetailUser";
 import { onlyDateConversion } from "../../helper/dateConversion.cjs";
+import { UserDataContext } from "../../contexts/UserData.Provider";
+import user from "../../assets/imges/user.png"
+import { Link } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
+import DeleteUser from "../../components/modal/DeleteUser";
 
-
-
+import queryString from "query-string";
+import { ToastContainer, toast } from "react-toastify";
 
 
 export default function ViewUsers() {
+  const { userDatas } = useContext(UserDataContext)
   const [isPerson, setIsPerson] = useState(true);
   const [allGenuineUser, setAllGenuineUser] = useState(null);
   const [allLegalUser, setAllLegalUser] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [showDetailsUsergenuine, setShowDetailsUsergenuine] = useState(false);
-  const [showDetailsUserlegal, setShowDetailsUserlegal] = useState(false);
-  const [selectUser, setSelectUser] = useState({});
-  
+  const [IsLoading, setIsLoading] = useState(true);
+  const [showDelete, setShowDelete] = useState(null);
+
   useEffect(() => {
     getUserGenuine();
     getUserLegal();
-  }, []);
+  }, [showDelete]);
   const getUserGenuine = () => {
     Axios.get("/api/admin/get_genuine").then(async res => {
       // console.log(res.data)
       setAllGenuineUser(res.data)
+      setIsLoading(false)
     }
     ).catch(err => {
       console.log(err)
+      setIsLoading(false)
     }
     )
   }
@@ -36,52 +41,44 @@ export default function ViewUsers() {
     Axios.get("/api/admin/get_legal").then(async res => {
       console.log(res.data)
       setAllLegalUser(res.data)
+      setIsLoading(false)
     }
     ).catch(err => {
       console.log(err)
+      setIsLoading(false)
     }
     )
   }
-  const handleSelectRow = (item) => {
-    setSelectedItem(item);
-    // setShowDetailsUsergenuine(true);
-    console.log(item);
-  };
-  const handleSelectRow2 = (item) => {
-    setSelectedItem(item);
-    // setShowDetailsUserlegal(true);
-    console.log(item);
-  };
-  // این قسمت کار نمیکنه
-  const showSelectedUser = () => {
-    Axios.get(`/api/admin//users/${selectedItem.id}`).then(async res => {
-      // setAllGenuineUser(res.data)
-      console.log(res.data)
-
-    }
-    ).catch(err => {
-      console.log(err)
-    }
-    )
-  }
-
   // const deleteUserHandler = (userId) => {
   //   axios.delete(`/user/${userId}` , {headers : ["Access-Control-Allow-Origin"] })
   //     .then((res) => console.log(res))
   // }
-  if (showDetailsUserlegal) return <ViewLegalDetailUser close={setShowDetailsUserlegal} details={selectedItem} />
-
-  if (showDetailsUsergenuine) return <Viewdetailuser close={showDetailsUsergenuine} details={selectedItem} />
-  return (
-    <div>
-      <div className="flex justify-between py-6">
+  const downloadHandler = () => {
+    const params = {
+      type : isPerson ? "genuine" : "legal"
+    }
+    const queryString2 = queryString.stringify(params)
+    const url = `https://backend.nanotf.ir/api/usersExcel?${queryString2}`;
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'users.xlsx';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    toast("بارگیری به زودی شروع میشود")
+  }
+  if (IsLoading) return <Loader />
+  if (userDatas && userDatas && (userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
+    <div className="px-2 sm:px-0">
+      <ToastContainer />
+      <div className="flex justify-between py-6 ">
         <p className="text-xl font-extrabold" >مشاهده کاربران</p>
         <div className="flex bg-white rounded-xl">
           <button
             className={`${!isPerson && " bg-blue-600 text-white "
               } p-3 ml-4 rounded-xl`}
             onClick={() => {
-              setIsPerson(!isPerson);
+              setIsPerson(false);
             }}
           >
             حقوقی
@@ -90,29 +87,31 @@ export default function ViewUsers() {
             className={`${isPerson && " bg-blue-600 text-white "
               } rounded-xl p-3 `}
             onClick={() => {
-              setIsPerson(!isPerson);
+              setIsPerson(true);
             }}
           >
             حقیقی
           </button>
+          
         </div>
       </div>
+      {showDelete !== null && <DeleteUser close={setShowDelete} userDataaa={showDelete} />}
       <div className="max-h-[60vh] overflow-y-scroll">
         {isPerson ? (
           <table className="w-full ">
             <tr className=" sticky top-0   ">
-              <th className="bg-white p-3 rounded-r-xl ">نمایه </th>
-              <th className="bg-white p-3 ">نام </th>
-              <th className="bg-white p-3 ">نام خانوادگی</th>
-              <th className="bg-white p-3 ">تاریخ ثبت نام کاربر </th>
-              <th className="bg-white p-3 rounded-l-xl">اعمال </th>
+              <th className="bg-white text-sm md:text-base text-center  p-3 rounded-r-xl ">نمایه </th>
+              <th className="bg-white text-sm md:text-base text-center  p-3 ">نام </th>
+              <th className="bg-white text-sm md:text-base text-center  p-3 ">نام خانوادگی</th>
+              <th className="bg-white text-sm md:text-base text-center  p-3 ">تاریخ ثبت نام کاربر </th>
+              <th className="bg-white text-sm md:text-base text-center  p-3 rounded-l-xl">اعمال </th>
             </tr>
             {allGenuineUser && allGenuineUser.map((GenuineUser) => {
               return (
                 <tr
                   key={GenuineUser.id}
                   id={GenuineUser.id}
-                  
+
                   className={
                     selectedItem?.id === GenuineUser.id
                       ? console.log(GenuineUser.id)
@@ -122,24 +121,24 @@ export default function ViewUsers() {
                   <td>
                     {" "}
                     <img
-                      className="w-10"
-                      src="/./src/assets/imges/user.png"
+                      className="w-10 mx-auto"
+                      src={user}
                       alt=""
                     />
                   </td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{GenuineUser.name}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{GenuineUser.family}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">
+                  <td className="p-4 text-xs text-center text-gray-400 font-bold">{GenuineUser.name}</td>
+                  <td className="p-4 text-xs text-center text-gray-400 font-bold">{GenuineUser.family}</td>
+                  <td className="p-4 text-xs text-center text-gray-400 font-bold">
                     {onlyDateConversion(GenuineUser.created_at)}
                   </td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
-                    <div className="flex">
-                      <button  className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
+                    <div className="flex  justify-center">
+                      <button onClick={() => setShowDelete(GenuineUser)} className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
                         حذف کاربر
                       </button>
-                      <button onClick={() => handleSelectRow(GenuineUser)} className="text-blue-700 border rounded-2xl p-2 ">
+                      <Link to={`/panel/Viewdetailuser/${GenuineUser.id}`} className="text-blue-700 border rounded-2xl p-2 ">
                         اطلاعات بیشتر
-                      </button>
+                      </Link>
                     </div>
                   </td>
                 </tr>
@@ -150,34 +149,34 @@ export default function ViewUsers() {
 
           <table className="w-full ">
             <tr className=" sticky top-0   ">
-              <th className="bg-white p-3 rounded-r-xl ">نام شرکت </th>
-              <th className="bg-white p-3 ">نام ونام خانوادگی نماینده </th>
-              <th className="bg-white p-3 ">شناسه مالی شرکت</th>
-              <th className="bg-white p-3 rounded-l-xl">اعمال </th>
+              <th className="bg-white p-3 text-sm md:text-base text-center rounded-r-xl ">نام شرکت </th>
+              <th className="bg-white p-3 text-sm md:text-base text-center ">نام ونام خانوادگی نماینده </th>
+              <th className="bg-white p-3 text-sm md:text-base text-center ">شناسه مالی شرکت</th>
+              <th className="bg-white p-3 text-sm md:text-base text-center rounded-l-xl">اعمال </th>
             </tr>
             {allLegalUser && allLegalUser.map((LegalUser) => {
               return (
                 <tr
-                key={LegalUser.id}
-                id={LegalUser.id}
-                
-                className={
-                  selectedItem?.id === LegalUser.id
-                    ? console.log(LegalUser.id)
-                    : null
-                }
-              >
-                  <td className="p-4 text-xs text-gray-400 font-bold">{LegalUser.company_name}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{LegalUser.name}{LegalUser.family}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{LegalUser.national_company}</td>
+                  key={LegalUser.id}
+                  id={LegalUser.id}
+
+                  className={
+                    selectedItem?.id === LegalUser.id
+                      ? console.log(LegalUser.id)
+                      : null
+                  }
+                >
+                  <td className="p-4 text-xs text-center text-gray-400 font-bold">{LegalUser.company_name}</td>
+                  <td className="p-4 text-xs text-center text-gray-400 font-bold">{LegalUser.name}{LegalUser.family}</td>
+                  <td className="p-4 text-xs text-center text-gray-400 font-bold">{LegalUser.national_company}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
-                    <div className="flex">
-                      <button  className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
+                    <div className="flex justify-center">
+                      <button onClick={() => setShowDelete(LegalUser)} className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
                         حذف کاربر
                       </button>
-                      <button onClick={() => handleSelectRow2(LegalUser)} className="text-blue-700 border rounded-2xl p-2 ">
+                      <Link to={`/panel/Viewdetailuser/${LegalUser.id}`} className="text-blue-700 border rounded-2xl p-2 ">
                         اطلاعات بیشتر
-                      </button>
+                      </Link>
                     </div>
                   </td>
                 </tr>
@@ -185,10 +184,12 @@ export default function ViewUsers() {
             })}
 
           </table>
+
         )}
       </div>
       <hr />
-      <div className="flex justify-between py-4 text-gray-600 items-center">
+        <button className="rounded-lg bg-green-700 mt-2 text-white p-3 font-bold text-xs " onClick={downloadHandler}>خروجی اکسل</button>
+      {/* <div className="flex justify-between py-4 text-gray-600 items-center">
         <div className="">نمایش 21-31 از 80 مورد</div>
         <div className="">
           <button className="text-gray-800 text-2xl font-bold mx-2">
@@ -218,7 +219,7 @@ export default function ViewUsers() {
           </select>
           <p>تعداد کاربر در هر صفحه</p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

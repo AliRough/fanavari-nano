@@ -8,7 +8,13 @@ import ViewDetailExpert from "../Expert/ViewDetailExpert";
 import Loading from "../../components/Loading/Loading";
 
 import {UserDataContext} from "../../contexts/UserData.Provider";
-
+import Ellipse2 from "../../assets/imges/Ellipse 2.png"
+import Ellipse1 from "../../assets/imges/Ellipse 1.png"
+import Ellipse4 from "../../assets/imges/Ellipse 4.png"
+import Ellipse3 from "../../assets/imges/Ellipse 3.png"
+import Ellipse6 from "../../assets/imges/Ellipse 6.png"
+import Ellipse5 from "../../assets/imges/Ellipse 5.png"
+import { Link } from "react-router-dom";
 const DashboardUser = () => {
   const {userDatas} = useContext(UserDataContext)
 
@@ -88,52 +94,52 @@ const DashboardUser = () => {
   }
 
   if (showDetailsUser) return <ViewDetailExpert close={setShowDetailsUser} details={selectItemE} />
-  if (userDatas.user.type === "genuine" || userDatas.user.type === "legal" ) return (
+  if (userDatas && (userDatas.user.type === "genuine" || userDatas.user.type === "legal") ) return (
     <>
       <div className="p-6 flex flex-col gap-6">
         <h2 className="text-2xl font-bold">دسترسی سریع</h2>
-        <div className="flex gap-6 text-white">
-          <div className="w-1/3 h-c-8 flex justify-between items-center rounded-2xl bg-c-5 relative overflow-hidden pr-11">
-            <div>مشاهده درخواست ها</div>
+        <div className="flex gap-6 text-white flex-wrap sm:flex-nowrap">
+          <div className="sm:w-1/3 w-full h-c-8 flex justify-between items-center rounded-2xl bg-c-5 relative overflow-hidden pr-11">
+            <Link to="/panel/openedRequests" className="z-10">مشاهده درخواست ها</Link>
             <div>
               <img
                 className="absolute left-0 inset-y-0"
-                src="/src/assets/imges/Ellipse 2.png"
+                src={Ellipse2}
                 alt=""
               />
               <img
                 className="absolute left-0 inset-y-0"
-                src="/src/assets/imges/Ellipse 1.png"
+                src={Ellipse1}
                 alt=""
               />
             </div>
           </div>
-          <div className="w-1/3 h-c-8 flex justify-between items-center rounded-2xl bg-c-5 relative overflow-hidden pr-11">
-            <div>مشاهده کارشناسان</div>
+          <div className="sm:w-1/3 w-full h-c-8 flex justify-between items-center rounded-2xl bg-c-5 relative overflow-hidden pr-11">
+            <Link to="/panel/siteGuide" className="z-10">راهنمای سایت</Link>
             <div>
               <img
                 className="absolute left-1 inset-y-0"
-                src="/src/assets/imges/Ellipse 4.png"
+                src={Ellipse4}
                 alt=""
               />
               <img
                 className="absolute left-0 inset-y-0"
-                src="/src/assets/imges/Ellipse 3.png"
+                src={Ellipse3}
                 alt=""
               />
             </div>
           </div>
-          <div className="w-1/3 h-c-8 flex justify-between items-center rounded-2xl bg-c-5 relative overflow-hidden pr-11">
-            <div>مشاهده کاربران</div>
+          <div className="sm:w-1/3 w-full h-c-8 flex justify-between items-center rounded-2xl bg-c-5 relative overflow-hidden pr-11">
+            <Link to="/panel/addTicket" className="z-10">ثبت تیکت </Link>
             <div>
               <img
                 className="absolute left-1 inset-y-0"
-                src="/src/assets/imges/Ellipse 6.png"
+                src={Ellipse6}
                 alt=""
               />
               <img
                 className="absolute left-0 inset-y-0"
-                src="/src/assets/imges/Ellipse 5.png"
+                src={Ellipse5}
                 alt=""
               />
             </div>

@@ -1,42 +1,50 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import Axios from "../../../axiosinstancs";
 import ViewDetailExpert from './ViewDetailExpert'
 import { onlyDateConversion } from "../../helper/dateConversion.cjs";
+import { UserDataContext } from "../../contexts/UserData.Provider";
+import user from "../../assets/imges/user.png"
+import ExpertReqs from "../../components/modal/ExpertReqs";
+import { Link } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
+import DeleteExpert from "../../components/modal/DeleteExpert";
+
 export default function ViewExpert() {
+  const {userDatas} = useContext(UserDataContext)
   const [allExpert, setAllExpert] = useState(null)
   const [selectedItem, setSelectedItem] = useState(null);
   const [showDetailsUser, setShowDetailsUser] = useState(false);
+  const [showReqsModal, setShowReqsModal] = useState(null);
+  const [showDelete, setShowDelete] = useState(null);
+  // const [up, setUp] = useState(0);
+
+  const [IsLoading, setIsLoading] = useState(true);
   
+  useEffect(() => {
+    getExpert();
+  }, [showDelete]);
 
   const getExpert = () => {
     Axios.get("/api/admin/expert").then(async res => {
       console.log(res)
       setAllExpert(res.data)
+      setIsLoading(false)
+      
     }
     ).catch(err => {
       console.log(err)
+      setIsLoading(false)
     }
     )
   }
-  useEffect(() => {
-    getExpert();
-  }, [console.log(allExpert)]);
 
-  const tochHandler = item => {
-    setSelectedItem(item);
-    setShowDetailsUser(true)
-    console.log(item);
-  };
-  const requestHandler = (item) => {
-    console.log("item" , item);
-  };
-
-  if (showDetailsUser) return <ViewDetailExpert close={setShowDetailsUser} details={selectedItem} />
-
-  return (
+  if (IsLoading) return <Loader />
+  if (userDatas && (userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
     <div>
-      <div className=" py-6">
+      {showReqsModal !== null && <ExpertReqs close={setShowReqsModal} details={showReqsModal} />}
+      <div className=" py-6 flex justify-between px-2	">
+        <div>
         <p className="text-xl font-extrabold" >وضعیت کارشناسان</p>
 
         <div className="flex items-center pt-2">
@@ -45,19 +53,27 @@ export default function ViewExpert() {
             برای مشاهده درخواست های جاری هر کارشناس روی کارشناس مربوطه کلیک کنید
           </p>
         </div>
+        </div>
+        <div>
+        <a href="https://backend.nanotf.ir/api/expertExcel">
+        <button className="rounded-lg bg-green-700 mt-2   text-white p-3 font-bold text-xs">خروجی اکسل</button>
+        
+      </a>
       </div>
-      <div className="max-h-[60vh] overflow-y-scroll">
+      </div>
+      <div className="max-h-[60vh] overflow-y-scroll scrollable-content-chat">
         <table className="w-full ">
           <thead>
-            <tr className=" sticky top-0   ">
-              <th className="bg-white p-3 rounded-r-xl ">نمایه </th>
-              <th className="bg-white p-3 ">نام </th>
-              <th className="bg-white p-3 ">نام خانوادگی</th>
-              <th className="bg-white p-3 ">تاریخ ثبت نام کارشناس </th>
-              <th className="bg-white p-3 ">تعداد  پروژه </th>
-              <th className="bg-white p-3 rounded-l-xl">اعمال </th>
+            <tr className="top-0 sticky">
+              <th className="bg-white text-center text-sm md:text-base p-3 rounded-r-xl ">نمایه </th>
+              <th className="bg-white text-center text-sm md:text-base p-3 ">نام </th>
+              <th className="bg-white text-center text-sm md:text-base p-3 ">نام خانوادگی</th>
+              <th className="bg-white text-center text-sm md:text-base p-3 ">تاریخ ثبت نام کارشناس </th>
+              <th className="bg-white text-center text-sm md:text-base p-3 ">تعداد  پروژه </th>
+              <th className="bg-white text-center text-sm md:text-base p-3 rounded-l-xl">اعمال </th>
             </tr>
           </thead>
+            {showDelete !== null && <DeleteExpert close={setShowDelete} expertData={showDelete} />}
           <tbody>
           {allExpert && allExpert.map((expert) => {
               return (
@@ -73,13 +89,12 @@ export default function ViewExpert() {
                 >
                   <td>
                     {" "}
-                    <img
-                      className="w-10"
-                      src="/./src/assets/imges/user.png"
-                      alt=""
-                    />
+                    {expert.profilegenuine && expert.profilegenuine.image !== null && <img className="w-10 h-10 " style={{borderRadius : "50%"}} src={`https://backend.nanotf.ir/${expert.profilegenuine.image}`} alt=""/> }
+                    {expert.profilegenuine && expert.profilegenuine.image !== null && console.log(expert.profilegenuine.image)}
+                    {(expert.profilegenuine === null || expert.profilegenuine.image === null) && <img className="w-10" src={user} alt=""/>}
+                    
                   </td>
-                  <td onClick={() => requestHandler(expert.id)}  className="p-4 text-xs text-gray-400 font-bold">{expert.name}</td>
+                  <td onClick={() => setShowReqsModal(expert)}  className="p-4 text-xs text-gray-400 font-bold">{expert.name}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">{expert.family}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
                     {onlyDateConversion(expert.created_at)}
@@ -89,12 +104,12 @@ export default function ViewExpert() {
                   </td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
                   <div className="flex">
-                  <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
+                  <button onClick={() => setShowDelete(expert)} className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
                     حذف کارشناس
                   </button>
-                  <button onClick={() => tochHandler(expert)} className="text-blue-700 border rounded-2xl p-2 ">
+                  <Link to={`/panel/ViewDetailExpert/${expert.id}`} className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
-                  </button>
+                  </Link>
                 </div>
                   </td>
                 </tr>
@@ -104,29 +119,7 @@ export default function ViewExpert() {
         </table>
       </div>
       <hr />
-      <div className="flex justify-between py-4 text-gray-600 items-center">
-        <div className="">نمایش 21-31 از 80 مورد</div>
-        <div className="">
-          <button className="text-gray-800 text-2xl font-bold mx-2">
-            {"<"}
-          </button>
-          <button className="text-gray-800 text-lg font-bold mx-2">6</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">5</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">4</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">3</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">2</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">1</button>
-          <button className="text-gray-800 text-2xl font-bold mx-2">
-            {" "}
-            {">"}{" "}
-          </button>
-        </div>
-        <div className="flex">
-          <button className="text-blue-700   p-2 font-bold text-sm">
-            <span className="text-3xl">+</span> اضافه کردن کارشناس
-          </button>
-        </div>
-      </div>
+
     </div>
   );
 }

@@ -52,12 +52,17 @@ export default function SendEvaluationReportFile({ reqStatus , reqId , setUpdate
             const formData = new FormData();
             formData.append("request_id", fileData.request_id)
             formData.append("file", fileData.file)
+            const token = localStorage.getItem('token');
+            const isLoggedIn = token ? true : false;
             setErr(false)
             setIsLoading(true)
             setStepSendReq(true)
             axios.post("/api/admin/credit", formData, {
               headers: {
                 "Content-Type": "multipart/form-data",
+                ...(isLoggedIn && {
+                    Authorization: `Bearer ${JSON.parse(token)}`
+                })
               }
             })
               .then(async (res) => {
@@ -162,7 +167,7 @@ export default function SendEvaluationReportFile({ reqStatus , reqId , setUpdate
                     {stepSendReq && <p className="text-green-400 text-xs w-full m-1 justify-center">در حال ارسال اطلاعات...</p>}
                     {fileErr && <p className="text-yellow-400 text-xs w-full m-1 justify-center">فایلی انتخاب کنید</p>}
                     {err && <p className="text-red-400 text-xs w-full m-1 justify-center">خطا در ارسال اطلاعات !</p>}
-                    <input id="step3" style={{ display: "none" }} type="file" onChange={changeHandler} name="file" />
+                    <input id="step3" style={{ display: "none" }} accept="application/pdf" type="file" onChange={changeHandler} name="file" />
                     <button onClick={step3Handler} className="w-full  rounded-lg bg-blue-700 mt-2  text-white p-3 font-bold text-xs">
                         ثبت{" "}
                     </button>

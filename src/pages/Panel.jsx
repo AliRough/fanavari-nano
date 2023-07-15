@@ -1,132 +1,176 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Topbar from '../components/Topbar/Topbar'
-import Sidebar from '../components/Sidebar/Sidebar'
-import { Outlet, useLocation, useParams } from 'react-router-dom'
-import { UserDataContext } from '../contexts/UserData.Provider'
-import SidebarUser from '../components/Sidebar/sidebarUser/SidebarUser'
-
+import React, { useContext, useEffect, useState } from "react";
+import Topbar from "../components/Topbar/Topbar";
+import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
+import { UserDataContext } from "../contexts/UserData.Provider";
+import SidebarUser from "../components/Sidebar/sidebarUser/SidebarUser";
+import user2 from "../assets/imges/user-(2).png";
 
 export default function Panel() {
-  const {userDatas} = useContext(UserDataContext)
-  
+  const { userDatas } = useContext(UserDataContext);
+  const [showSideBar, setShowSideBar] = useState(false);
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!userDatas) {
+      navigate("/auth/login");
+    }
+  }, []);
+
+  const showSideBarHandler = () => {
+    setShowSideBar((perv) => !perv);
+  };
+
   return (
-    <div className="w-full max-w-c mx-auto bg-c flex p-6 gap-6">
-    {/* Sidebar section */}
-    
-    {/* {
-      location.pathname === "/panel/dashboardUser" && <Sidebar objects={[
-        {title : "خدمات",
-          drop : ["درخواست ضمانت نامه" , "درخواست تسهیلات"],
-          links : ["/panel/guarantee" , "/panel/addFacilities" ]
-        },
-        {title : "پشتیبانی",
-          drop : ["مشاهده تیکت ها" , "ثبت تیکت ها" , "درخواست های جاری" , "راهنمای سایت"],
-          links : ["/panel/viewTickets" , "/panel/addTicket" , "/panel/openedRequests" , "/panel/siteGuide" ]
-        },
-        {title : "اطلاعات کاربری",
-          drop : [],
-        },
+    <div className="w-full max-w-c mx-auto bg-c flex sm:p-6 gap-6 relative">
+      {/* Sidebar section */}
+      {userDatas &&
+        (userDatas.user.type === "admin" ||
+          userDatas.user.type === "Admin") && (
+          <SidebarUser
+            showSideBar={showSideBar}
+            showSideBarHandler={showSideBarHandler}
+            objects={[
+              {
+                title: "کارشناسان",
+                drop: ["لیست کارشناسان", "اضافه کردن کارشناس"],
+                links: ["/panel/viewExpert", "/panel/Addexpert"],
+              },
+              {
+                title: "کاربران",
+                drop: ["لیست کاربران"],
+                links: ["/panel/viewUsers"],
+              },
+              {
+                title: "درخواست ها",
+                drop: ["لیست درخواست ها", "درخواست های حذف"],
+                links: ["/panel/requests", "/panel/ViewDeleteReqs"],
+              },
+              {
+                title: "پشتیبانی",
+                drop: ["مشاهده تیکت ها"],
+                links: ["/panel/Testticket"],
+              },
+              {
+                title: "اطلاعات کاربری",
+                drop: [" پروفایل کاربری"],
+                links: ["/panel/userInfo"],
+              },
+            ]}
+          />
+        )}
+      {userDatas && userDatas.user.type === "genuine" && (
+        <SidebarUser
+          showSideBar={showSideBar}
+          showSideBarHandler={showSideBarHandler}
+          objects={[
+            {
+              title: "خدمات",
+              drop: [
+                "درخواست ضمانت نامه",
+                "درخواست تسهیلات",
+                "درخواست های جاری",
+              ],
+              links: [
+                "/panel/guarantee",
+                "/panel/tashilat/1",
+                "/panel/openedRequests",
+              ],
+            },
+            {
+              title: "پشتیبانی",
+              drop: ["مشاهده تیکت ها", "ثبت تیکت ها", "اعلانات"],
+              links: [
+                "/panel/viewTickets",
+                "/panel/addTicket",
+                "/panel/allNotifs",
+              ],
+            },
+            {
+              title: "راهنمای سایت",
+              drop: ["راهنمای سایت"],
+              links: ["/panel/siteGuide"],
+            },
+            {
+              title: "اطلاعات کاربری",
+              drop: ["پروفایل کاربری", "تغییر رمز عبور"],
+              links: ["/panel/genuineUserInfo", "/panel/changePass"],
+            },
+          ]}
+        />
+      )}
 
-      ]} /> 
-    }
-    {
-      location.pathname === "/panel/dashboardExpert" && <Sidebar objects={[
-        {title : "خدمات",
-          drop : ["درخواست ضمانت نامه" , "درخواست تسهیلات"],
-          links : ["/panel/guarantee" , "/panel/addFacilities" ]
-        },
-        {title : "پشتیبانی",
-          drop : ["مشاهده تیکت ها" , "ثبت تیکت جدید" , "درخواست های جاری" , "راهنما"],
-          links : ["/panel/viewTickets" , "/panel/addTicket" , "/panel/openedRequests" , "/panel/siteGuide" ]
-        },
-        {title : "اطلاعات کاربری",
-          drop : [],
-          links : ["/panel/addTicket"]
-        },
+      {userDatas && userDatas.user.type === "legal" && (
+        <SidebarUser
+          showSideBar={showSideBar}
+          showSideBarHandler={showSideBarHandler}
+          objects={[
+            {
+              title: "خدمات",
+              drop: [
+                "درخواست ضمانت نامه",
+                "درخواست تسهیلات",
+                "درخواست های جاری",
+              ],
+              links: [
+                "/panel/guarantee",
+                "/panel/tashilat/1",
+                "/panel/openedRequests",
+              ],
+            },
+            {
+              title: "پشتیبانی",
+              drop: ["مشاهده تیکت ها", "ثبت تیکت ها", "اعلانات"],
+              links: [
+                "/panel/viewTickets",
+                "/panel/addTicket",
+                "/panel/allNotifs",
+              ],
+            },
+            {
+              title: "راهنمای سایت",
+              drop: ["راهنمای سایت"],
+              links: ["/panel/siteGuide"],
+            },
+            {
+              title: "اطلاعات کاربری",
+              drop: ["پروفایل کاربری", "تغییر رمز عبور"],
+              links: ["/panel/legaluserInfo", "/panel/changePass"],
+            },
+          ]}
+        />
+      )}
 
-      ]} /> 
-    }
-    {
-      location.pathname === "/panel/dashboard" && <Sidebar objects={[
-        {title : "کارشناسان",
-          drop : ["لیست کارشناسان" , "اضافه کردن کارشناس"],
-          links : ["/panel/viewExpert" , "/panel/Addexpert" ]
-        },
-        {title : "کاربران",
-          drop : ["درخواست ضمانت نامه" , "درخواست تسهیلات"],
-          links : ["/panel/guarantee" , "/panel/addFacilities" ]
-        },
-        {title : "پشتیبانی",
-          drop : ["مشاهده تیکت ها" , "لیست درخواست ها"],
-          links : ["/panel/viewTickets" , "/panel/requests" ]
-        },
-        {title : "اطلاعات کاربری",
-          drop : [],
-        },
+      {userDatas && userDatas.user.type === "expert" && (
+        <SidebarUser
+          showSideBar={showSideBar}
+          showSideBarHandler={showSideBarHandler}
+          objects={[
+            {
+              title: "درخواست ها",
+              drop: ["درخواست های جاری"],
+              links: ["/panel/expertViewAllRequest"],
+            },
+            {
+              title: "پشتیبانی",
+              drop: ["مشاهده تیکت ها", "ثبت تیکت ها"],
+              links: ["/panel/TestticketExpert", "/panel/addTicketE"],
+            },
+            {
+              title: "اطلاعات کاربری",
+              drop: ["پروفایل کاربری"],
+              links: ["/panel/expertInfo"],
+            },
+          ]}
+        />
+      )}
 
-      ]} /> 
-    } */}
-    {/* <Sidebar /> */}
+      {/* Left section */}
+      {/* Left section */}
 
-    { <SidebarUser objects={[
-        {title : "خدمات",
-          drop : ["درخواست ضمانت نامه" , "درخواست تسهیلات" , "درخواست های جاری" ,],
-          links : ["/panel/guarantee" , "/panel/addFacilities" , "/panel/openedRequests" ]
-        },
-        {title : "پشتیبانی",
-          drop : ["مشاهده تیکت ها" , "ثبت تیکت ها" ,  "راهنمای سایت"],
-          links : ["/panel/viewTickets" , "/panel/addTicket" , "/panel/siteGuide" ]
-        },
-        {title : "اطلاعات کاربری",
-        drop : ["پروفایل کاربری"  ],
-        links : ["/panel/userInfo" ]
-        },
-
-      ]} />}
-      
-    {/* { (userDatas.user.type === "genuine" || userDatas.user.type === "legal") && <SidebarUser objects={[
-        {title : "خدمات",
-          drop : ["درخواست ضمانت نامه" , "درخواست تسهیلات"],
-          links : ["/panel/guarantee" , "/panel/addFacilities" ]
-        },
-        {title : "پشتیبانی",
-          drop : ["مشاهده تیکت ها" , "ثبت تیکت ها" , "درخواست های جاری" , "راهنمای سایت"],
-          links : ["/panel/viewTickets" , "/panel/addTicket" , "/panel/openedRequests" , "/panel/siteGuide" ]
-        },
-        {title : "اطلاعات کاربری",
-          drop : [],
-        },
-
-      ]} />} */}
-      {/* {Inja bayad avvvvvaaaazzz Beshe Nesbat Be Naghsh Karbar} */}
-
-{/* {// ||  ||} */}
-
-          {/* { (userDatas.user.type === "expert") && <SidebarUser objects={[
-        {title : "کارشناسان",
-          drop : ["لیست کارشناسان" , "اضافه کردن کارشناس"],
-          links : ["/panel/viewExpert" , "/panel/Addexpert" ]
-        },
-        {title : "کاربران",
-          drop : [ "لیست کاربران" , "درخواست ضمانت نامه" , "درخواست تسهیلات"],
-          links : ["/panel/viewUsers" ,"/panel/guarantee" , "/panel/addFacilities" ]
-        },
-        {title : "پشتیبانی",
-          drop : ["مشاهده تیکت ها" , "لیست درخواست ها"],
-          links : ["/panel/viewTickets" , "/panel/requests" ]
-        },
-        {title : "اطلاعات کاربری",
-          drop : [],
-        },
-
-      ]} /> } */}
-    {/* Left section */}
-    {/* Left section */}
-
-    <section className="w-c-2 bg-c">
-      <Topbar avatar="/src/assets/imges/user-(2).png" />
-      <Outlet />
-    </section>
-  </div>
-  )
+      <section className="w-c-2 bg-c w-full lg:w-3/4">
+        <Topbar avatar={user2} showSideBarHandler={showSideBarHandler} />
+        <Outlet />
+      </section>
+    </div>
+  );
 }

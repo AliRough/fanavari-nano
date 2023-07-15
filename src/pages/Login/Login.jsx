@@ -3,7 +3,15 @@ import Input from "../../components/Input/Input";
 import { Link } from "react-router-dom";
 import { Validation } from "../../helper/validation";
 import { UserDataContext } from "../../contexts/UserData.Provider";
+import logo from "../../assets/imges/Login/logofarsi.png"
+import account from "../../assets/imges/account.png"
+// /src/assets/imges/account.png
+import lockedcomputer from "../../assets/imges/locked-computer.png"
+import view from "../../assets/imges/view.png"
+import hide from "../../assets/imges/hide.png"
+import "./Login.css"
 
+// /src/assets/imges/locked-computer.png
 const Login = () => {
 
   const [mountPage , setMountPage] = useState(true)
@@ -85,7 +93,7 @@ const Login = () => {
       <div className="h-screen flex">
         <div className="w-1/3 bg-cover bg-center bg-no-repeat">
           <h1 className="mt-c-15 mb-c-20">
-            <img className="mx-auto" src="/src/assets/imges/Login/logofarsi.png" alt="" style={{
+            <img className="mx-auto" src={logo} alt="" style={{
               width: "80px",
               height: "110px"
             }} />
@@ -106,7 +114,7 @@ const Login = () => {
                     <label for="form-1"  className="absolute top-0 -translate-y-1/2 right-3 bg-white text-sm text-c-16 px-1">
                         {" نام کاربری (کد ملی یا شناسه ملی شرکت)*"}
                     </label>
-                    <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src="/src/assets/imges/account.png" alt="" />
+                    <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src={account} alt="" />
                     <input style={bcInput === true && userData.password ? {paddingRight: "45px" , backgroundColor: "#f6e8c2"} : {paddingRight: "45px"}} onFocus={focusHandler} onChange={changeHandler} value={userData.username} name="username" id="form-1" className="border rounded-md border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 pl-3.5 pr-c-20" type="text" />       
                     
                 </div>
@@ -115,11 +123,11 @@ const Login = () => {
               <label for="form-2" className="absolute top-0 -translate-y-1/2 right-3 bg-white text-sm text-c-16 px-1">
                 گذرواژه*
               </label>
-              <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src="/src/assets/imges/locked-computer.png" alt="" />
+              <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src={lockedcomputer} alt="" />
               <input style={bcInput === true && userData.password ? {paddingRight: "45px" , backgroundColor: "#f6e8c2"} : {paddingRight: "45px"}} onFocus={focusHandler} onChange={changeHandler} value={userData.password} name='password' id="form-2" className="border rounded-md border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 px-c-20" type={showPass ? "text" : "password"} />
-              <button onClick={showPassHandler} className="absolute top-1/2 -translate-y-1/2 left-3 w-6 h-6">
-                <img className="w-full h-full" src={showPass ? "/src/assets/imges/view.png" : "/src/assets/imges/hide.png"} alt="" />
-              </button>
+              <span onClick={showPassHandler} className="absolute top-1/2 -translate-y-1/2 left-3 w-6 h-6">
+                <img className="w-full h-full" src={showPass ? view : hide} alt="" />
+              </span>
             </div>
             {errors.password && showErr.password && <span style={{ color: '#e88f19' }}>{errors.password}</span>}
 
@@ -132,11 +140,16 @@ const Login = () => {
                 <input onClick={rememberChange} type="checkbox" />
                 <p className="text-sm">بخاطر بسپار</p>
               </div>
+              <Link to={`/auth/forgotpassword`}>
+
               <div className="">
-                <a className="text-c-22 text-sm" href="/auth/forgotpassword">
+                <a className="text-c-22 text-sm"> 
+                {/* href="/auth/forgotpassword */}
                   گذرواژه را فراموش کردم
                 </a>
               </div>
+              </Link>
+
             </div>
             <div className="flex items-center">
               <div className="flex-1 h-px bg-c-21"></div>
@@ -146,10 +159,11 @@ const Login = () => {
             <Link to={'/auth/register'} className="text-sm text-center bg-c-19 text-white px-4 py-2 transition-colors hover:bg-c-20">ثبت نام</Link>
           </form>
         </div>
-        <div className="w-2/3 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/src/assets/imges/Login/background.889c334e8255dfcd19f2.jpg)' }}></div>
+        <div className="w-2/3 bg-cover bg-center bg-no-repeat ff" ></div>
       </div>
     </>
   )
 };
 
 export default Login;
+// style={{ backgroundImage:"url(../../assets/imges/aa.jpg)" }}

@@ -164,5 +164,61 @@ export const Validation = (data , type) => {
         })
     }
 
+    // upDoc
+    if (type === "upDoc") {
+        console.log(errors);
+        Object.keys(data).map((item) => {
+            if (item === "title") {
+                if (data[item] === "") {
+                    errors[item] = "این فیلد نباید خالی باشد"
+                    console.log(item);
+                } else {
+                    delete errors[item]
+                }
+            }
+            if (item === "type_w") {
+                if (data[item] === "") {
+                    
+                    errors.type_w = "لطفا یک مورد را انتخاب کنید"
+                } else {
+                    delete errors.type_w
+                }
+            } else {
+                if (data[item] === null) {
+                    errors[item] = "لطفا فایلی را وارد کنید"
+                } else {
+                    delete errors[item]
+                }
+            }
+        })
+    }
+
+    // tiket
+    if (type === "tiket") {
+        if (!data.title.trim()) {
+            errors.title = "این فیلد نباید خالی باشد";
+        } else if (data.title) {
+            delete errors.title;
+        }
+        
+        if (!data.category.trim()) {
+            errors.category = "این فیلد نباید خالی باشد";
+        } else if (data.category) {
+            delete errors.category;
+        }
+
+        if (!data.priority.trim()) {
+            errors.priority = "این فیلد نباید خالی باشد";
+        } else if (data.priority) {
+            delete errors.priority;
+        }
+
+        if (!data.body.trim()) {
+            errors.body = "این فیلد نباید خالی باشد";
+        } else if (data.body) {
+            delete errors.body;
+        }
+    }
+
     return errors;
 }

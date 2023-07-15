@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Axios from "../../../axiosinstancs";
 import Loader from "../../components/Loader/Loader";
 import { dateConversion } from "../../helper/dateConversion.cjs";
 import { Link } from "react-router-dom";
+import { UserDataContext } from "../../contexts/UserData.Provider";
 
 export default function ViewTickets() {
-
+  const {userDatas} = useContext(UserDataContext)
   const [isLoading, setIsLoading] = useState(true)
   const [tickets, setTickets] = useState([])
   
@@ -13,8 +14,9 @@ export default function ViewTickets() {
     const getTicket = () => {
       Axios.get("/api/v1/ticket").then(async (res) => {
         console.log(res.data);
-        
-        setTickets(res.data)
+        const oldMessage = res.data.reverse()
+
+        setTickets(oldMessage)
         setIsLoading(false)
       })
     }
@@ -22,9 +24,10 @@ export default function ViewTickets() {
   }, [])
 
   
-
+  //public
+  if (isLoading) return <Loader />
   return (
-    <div>
+    <div className="px-2 md:px-0">
       <div className=" py-6">
         <p className="text-xl font-extrabold">مشاهده تیکت ها</p>
       </div>
@@ -32,14 +35,13 @@ export default function ViewTickets() {
         <table className="w-full ">
           <thead>
             <tr className=" sticky top-0   ">
-              <th className="bg-white p-3 rounded-r-xl ">شناسه </th>
-              <th className="bg-white p-3 ">عنوان تیکت </th>
-              <th className="bg-white p-3 ">وضعیت</th>
-              <th className="bg-white p-3 ">بازشده در تاریخ </th>
-              <th className="bg-white p-3 rounded-l-xl">اعمال </th>
+              <th className="bg-white p-3 text-center text-sm md:text-base rounded-r-xl ">شناسه </th>
+              <th className="bg-white p-3 text-center text-sm md:text-base ">عنوان تیکت </th>
+              <th className="bg-white p-3 text-center text-sm md:text-base ">وضعیت</th>
+              <th className="bg-white p-3 text-center text-sm md:text-base ">بازشده در تاریخ </th>
+              <th className="bg-white p-3 text-center text-sm md:text-base rounded-l-xl">اعمال </th>
             </tr>
           </thead>
-            {isLoading && <Loader />}
           <tbody>
             {tickets && tickets.map((item) => {
               return (
@@ -47,11 +49,11 @@ export default function ViewTickets() {
                   key={item.id}
                   id={item.id}
                 >
-                  <td className="p-4 text-xs text-gray-400 font-bold">{item.id}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">
+                  <td className="p-4 text-xs text-gray-400 font-bold text-center">{item.id}</td>
+                  <td className="p-4 text-xs text-gray-400 font-bold text-center">
                     {item.title}
                   </td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">
+                  <td className="p-4 text-xs text-gray-400 font-bold text-center  ">
                     <button className={
                       item.status === "open" ? "text-green-600 border border-green-600 rounded-xl p-2 px-3" :
                       item.status === "waiting" ? "text-yellow-400 border border-yellow-400 rounded-xl p-2 px-3" :
@@ -65,11 +67,11 @@ export default function ViewTickets() {
                       item.status === "resolved" ? "پاسخ داده شد" : ""
                     }</button>
                   </td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">
+                  <td className="p-4 text-xs text-gray-400 font-bold text-center">
                     {dateConversion(item.updated_at)}
                   </td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
-                    <div className="flex">
+                    <div className="flex justify-center">
 
                       <Link to={`/panel/suport/${item.id}`} className="text-blue-700 border border-blue-700 rounded-xl p-2 px-3">
                         مشاهده
@@ -85,7 +87,7 @@ export default function ViewTickets() {
         </table>
       </div>
       <hr />
-      <div className="flex justify-between py-4 text-gray-600 items-center">
+      {/* <div className="flex justify-between py-4 text-gray-600 items-center">
         <div className="">نمایش 21-31 از 80 مورد</div>
         <div className="">
           <button className="text-gray-800 text-2xl font-bold mx-2">
@@ -107,7 +109,7 @@ export default function ViewTickets() {
             <span className="text-3xl">+</span> اضافه کردن کارشناس
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
