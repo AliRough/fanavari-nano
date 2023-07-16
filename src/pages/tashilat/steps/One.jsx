@@ -441,7 +441,7 @@ export default function One() {
                 </tr>
                 <tr className="bg-white ">
                   <td className="p-4 text-xs text-gray-600 font-bold flex flex-wrap md:flex- nowrap justify-center items-center" >
-                    <div className="flex justify-center items-center m-3  w-full">
+                    <div className="flex justify-center  items-center m-3  w-full">
                       <p className="font-bold text-sm">
                         تاریخ تأییدیه دانش بنیان توسط معاونت علمی ریاست جمهور:{" "}
                       </p>

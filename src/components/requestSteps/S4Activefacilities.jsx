@@ -84,7 +84,7 @@ export default function S4Activefacilities({showAllErr , setSendAccept}) {
             <div className=" mt-2">
                 <table className="w-full rounded-xl overflow-hidden">
                     <thead>
-                        <tr className=" sticky top-0 text-xs border-b ">
+                        <tr className=" sticky top-0 lg:text-xs text-[10px] border-b ">
                             <th className="bg-white p-3  ">رديف </th>
                             <th className="bg-white p-3  ">سال دریافت </th>
                             <th className="bg-white p-3  ">

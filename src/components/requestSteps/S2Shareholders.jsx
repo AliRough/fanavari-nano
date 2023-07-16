@@ -118,14 +118,14 @@ export default function S2Shareholders({showAllErr , setSendAccept}) {
                 {stepTwo.shareholders.length > 0 &&
                     stepTwo.shareholders.map((item, index) => {
                             return (
-                                <tr key={index} className="bg-white  border-b">
-                                <td className="p-4 text-xs text-gray-800 font-bold">
+                                <tr key={index} className="bg-white  border-b text-sm">
+                                <td className="md:p-4 py-4 px-1 text-xs text-gray-800 font-bold">
                                     {index}
                                 </td>
-                                <td className="p-4 flex flex-col text-xs text-gray-600 font-bold">
+                                <td className="md:p-4 py-4 px-1 flex flex-col text-xs text-gray-600 font-bold">
                                     <input
                                         type="text"
-                                        className={err[index] && err[index].name && showErr[index] && showErr[index].name ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
+                                        className={err[index] && err[index].name && showErr[index] && showErr[index].name ? "border border-red-300 rounded-xl xl:w-20 w-full text-xs " : "border border-gray-300 rounded-xl xl:w-20 w-full text-xs "}
                                         onChange={changeHandler}
                                         onFocus={(e) => focusHandler(e , index)}
                                         value={stepTwo.shareholders[index].name}
@@ -133,22 +133,22 @@ export default function S2Shareholders({showAllErr , setSendAccept}) {
                                         id={index}   
                                     />
                                 </td>
-                                <td className="p-4 text-xs text-gray-600 font-bold">
+                                <td className="md:p-4 py-4 px-1 text-xs text-gray-600 font-bold">
                                     <select
                                         onChange={changeHandler}
                                         name="type"
                                         id={index}
-                                        className="border-gray-300 rounded-xl w-24 text-xs"
+                                        className="border-gray-300 rounded-xl xl:w-24 w-full text-xs "
                                     >
                                     <option value="genuine">حقیقی</option>
                                     <option value="legal">حقوقی</option>
                                     </select>
                                 </td>
-                                <td className="p-4 text-xs text-gray-600 font-bold">
+                                <td className="md:p-4 py-4 px-1 text-xs text-gray-600 font-bold">
                                     <div className="flex flex-col">
                                     <input
                                         type="number"
-                                        className={err[index] && err[index].n_certificate && showErr[index] && showErr[index].n_certificate ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
+                                        className={err[index] && err[index].n_certificate && showErr[index] && showErr[index].n_certificate ? "border border-red-300 rounded-xl xl:w-20 w-full text-xs " : "border border-gray-300 rounded-xl xl:w-20 w-full text-xs "}
                                         onChange={changeHandler}
                                         onFocus={(e) => focusHandler(e , index)}
                                         value={stepTwo.shareholders[index].n_certificate}
@@ -157,11 +157,11 @@ export default function S2Shareholders({showAllErr , setSendAccept}) {
                                     />
                                     </div>
                                 </td>
-                                <td className="p-4 text-xs text-gray-600 font-bold">
+                                <td className="md:p-4 py-4 px-1 text-xs text-gray-600 font-bold">
                                     <div className="flex flex-col">
                                     <input
                                         type="number"
-                                        className={err[index] && err[index].n_national && showErr[index] && showErr[index].n_national ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
+                                        className={err[index] && err[index].n_national && showErr[index] && showErr[index].n_national ? "border border-red-300 rounded-xl xl:w-20 w-full text-xs " : "border border-gray-300 rounded-xl xl:w-20 w-full text-xs "}
                                         onChange={changeHandler}
                                         onFocus={(e) => focusHandler(e , index)}
                                         value={stepTwo.shareholders[index].n_national}
@@ -170,11 +170,11 @@ export default function S2Shareholders({showAllErr , setSendAccept}) {
                                     />
                                     </div>
                                 </td>
-                                <td className="p-4 text-xs text-gray-600 font-bold">
+                                <td className="md:p-4 py-4 px-1 text-xs text-gray-600 font-bold">
                                     <div className="flex flex-col">
                                     <input
                                         type="number"
-                                        className={err[index] && err[index].count && showErr[index] && showErr[index].count ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
+                                        className={err[index] && err[index].count && showErr[index] && showErr[index].count ? "border border-red-300 rounded-xl xl:w-20 w-full text-xs " : "border border-gray-300 rounded-xl xl:w-20 w-full text-xs "}
                                         onChange={changeHandler}
                                         onFocus={(e) => focusHandler(e , index)}
                                         value={stepTwo.shareholders[index].count}
@@ -183,11 +183,11 @@ export default function S2Shareholders({showAllErr , setSendAccept}) {
                                     />
                                     </div>
                                 </td>
-                                <td className="p-4 text-xs text-gray-600 font-bold">
+                                <td className="md:p-4 py-4 px-1 text-xs text-gray-600 font-bold">
                                     <div className="flex flex-col">
                                     <input
                                         type="number"
-                                        className={err[index] && err[index].percent && showErr[index] && showErr[index].percent ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
+                                        className={err[index] && err[index].percent && showErr[index] && showErr[index].percent ? "border border-red-300 rounded-xl xl:w-20 w-full text-xs " : "border border-gray-300 rounded-xl xl:w-20 w-full text-xs "}
                                         onChange={changeHandler}
                                         onFocus={(e) => focusHandler(e , index)}
                                         value={stepTwo.shareholders[index].percent}
@@ -196,11 +196,11 @@ export default function S2Shareholders({showAllErr , setSendAccept}) {
                                     />
                                     </div>
                                 </td>
-                                <td className="p-4 text-xs text-gray-600 font-bold">
+                                <td className="md:p-4 py-4 px-1 text-xs text-gray-600 font-bold">
                                     <div className="flex flex-col">
                                     <input
                                         type="number"
-                                        className={err[index] && err[index].cost && showErr[index] && showErr[index].cost ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
+                                        className={err[index] && err[index].cost && showErr[index] && showErr[index].cost ? "border border-red-300 rounded-xl xl:w-20 w-full text-xs " : "border border-gray-300 rounded-xl xl:w-20 w-full text-xs "}
                                         onChange={changeHandler}
                                         onFocus={(e) => focusHandler(e , index)}
                                         value={stepTwo.shareholders[index].cost}
@@ -209,11 +209,11 @@ export default function S2Shareholders({showAllErr , setSendAccept}) {
                                     />
                                     </div>
                                 </td>
-                                <td className="p-4 text-xs text-gray-600 font-bold">
+                                <td className="md:p-4 py-4 px-1 text-xs text-gray-600 font-bold">
                                     <div className="flex flex-col">
                                     <input
                                         type="text"
-                                        className={err[index] && err[index].education && showErr[index] && showErr[index].education ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
+                                        className={err[index] && err[index].education && showErr[index] && showErr[index].education ? "border border-red-300 rounded-xl md:w-20 w-full" : "border border-gray-300 rounded-xl md:w-20 w-full"}
                                         onChange={changeHandler}
                                         onFocus={(e) => focusHandler(e , index)}
                                         value={stepTwo.shareholders[index].education}
@@ -241,7 +241,7 @@ export default function S2Shareholders({showAllErr , setSendAccept}) {
                 <tr className="">
                 <td className="bg-white" colSpan="9">
                     <button
-                    className=" w-28 p-2 px-4 text-sm font-bold bg-green-200 rounded-xl m-2"
+                    className=" w-28  p-2 px-4 text-sm font-bold bg-green-200 rounded-xl m-2"
                     onClick={() => {
                         setStepTwo(prev => (
                             {

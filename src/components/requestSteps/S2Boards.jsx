@@ -118,19 +118,19 @@ export default function S2Boards({showAllErr , setSendAccept}) {
                 <th className="bg-white p-3  ">رشته تحصیلی </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody> 
                 {stepTwo.boards.length > 0 &&
                 stepTwo.boards.map((item, index) => (
                     <>
                     <tr className="bg-white  border-b">
-                        <td className="p-4 text-xs text-gray-800 font-bold">
+                        <td className="py-4 px-1 p-4 text-xs text-gray-800 font-bold">
                         {index}
                         </td>
 
-                        <td className="p-4 text-xs text-gray-600 font-bold">
+                        <td className="py-4 px-1 p-4 text-xs text-gray-600 font-bold">
                         <input
                             type="text"
-                            className={err[index] && err[index].name && showErr[index] && showErr[index].name ?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
+                            className={err[index] && err[index].name && showErr[index] && showErr[index].name ?"border border-red-300 rounded-xl text-xs w-full" : "border border-gray-300 rounded-xl text-xs w-full"}
                             onChange={changeHandler}
                             value={stepTwo.boards[index].name}
                             name="name"
@@ -138,21 +138,21 @@ export default function S2Boards({showAllErr , setSendAccept}) {
                             onFocus={(e) => focusHandler(e , index)}
                         />
                         </td>
-                        <td className="p-4 text-xs text-gray-600 font-bold">
+                        <td className="py-4 px-1 p-4 text-xs text-gray-600 font-bold">
                             <select
                                 onChange={changeHandler}
                                 name="type"
                                 id={index}
-                                className="border-gray-300 rounded-xl w-28 text-xs"
+                                className="border-gray-300 rounded-xl  w-full text-xs"
                             >
                             <option value="genuine">حقیقی</option>
                             <option value="legal">حقوقی</option>
                             </select>
                         </td>
-                        <td className="p-4 text-xs text-gray-600 font-bold">
+                        <td className="py-4 px-1 p-4 text-xs text-gray-600 font-bold">
                         <input
                             type="text"
-                            className={err[index] && err[index].position && showErr[index] && showErr[index].position ?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
+                            className={err[index] && err[index].position && showErr[index] && showErr[index].position ?"border border-red-300 rounded-xl text-xs w-full" : "border border-gray-300 rounded-xl text-xs w-full"}
                             onChange={changeHandler}
                             value={stepTwo.boards[index].position}
                             name="position"
@@ -160,10 +160,10 @@ export default function S2Boards({showAllErr , setSendAccept}) {
                             onFocus={(e) => focusHandler(e , index)}
                         />
                         </td>
-                        <td className="p-4 text-xs text-gray-600 font-bold">
+                        <td className="py-4 px-1 p-4 text-xs text-gray-600 font-bold">
                         <input
                             type="number"
-                            className={err[index] && err[index].n_national && showErr[index] && showErr[index].n_national ?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-20"}
+                            className={err[index] && err[index].n_national && showErr[index] && showErr[index].n_national ?"border border-red-300 rounded-xl text-xs w-full" : "border border-gray-300 rounded-xl text-xs w-full"}
                             onChange={changeHandler}
                             value={stepTwo.boards[index].n_national}
                             name="n_national"
@@ -175,19 +175,19 @@ export default function S2Boards({showAllErr , setSendAccept}) {
 
 
 
-                        <td className="p-4 text-xs text-gray-600 font-bold">
+                        <td className="py-4 px-1 p-4 text-xs text-gray-600 font-bold ">
                         <DatePicker
                             onChange={(e) => datechangeHandler(e, index , "birth_date")}
                             locale="fa"
                             placeholder="تاریخ را انتخاب کنید"
                             format="jYYYY/jMM/jDD"
-                            className={err[index] && err[index].birth_date && showErr[index] && showErr[index].birth_date ?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-20"}
+                            className={err[index] && err[index].birth_date && showErr[index] && showErr[index].birth_date ?"border border-red-300 rounded-xl text-xs w-full" : "border border-gray-300 rounded-xl text-xs w-full"}
                         />
                         </td>
-                        <td className="p-4 text-xs text-gray-600 font-bold">
+                        <td className="py-4 px-1 p-4 text-xs text-gray-600 font-bold">
                         <input
                             type="text"
-                            className={err[index] && err[index].education && showErr[index] && showErr[index].education ?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
+                            className={err[index] && err[index].education && showErr[index] && showErr[index].education ?"border border-red-300 rounded-xl text-xs w-full" : "border border-gray-300 rounded-xl text-xs w-full"}
                             onChange={changeHandler}
                             value={stepTwo.boards[index].education}
                             name="education"
@@ -195,10 +195,10 @@ export default function S2Boards({showAllErr , setSendAccept}) {
                             onFocus={(e) => focusHandler(e , index)}
                         />
                         </td>
-                        <td className="p-4 text-xs text-gray-600 font-bold">
+                        <td className="py-4 px-1 p-4 text-xs text-gray-600 font-bold">
                         <input
                             type="text"
-                            className={err[index] && err[index].study && showErr[index] && showErr[index].study ?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
+                            className={err[index] && err[index].study && showErr[index] && showErr[index].study ?"border border-red-300 rounded-xl text-xs w-full" : "border border-gray-300 rounded-xl text-xs w-full"}
                             onChange={changeHandler}
                             value={stepTwo.boards[index].study}
                             name="study"

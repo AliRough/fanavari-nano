@@ -95,15 +95,15 @@ export default function S2Manpowers({ showAllErr, setSendAccept }) {
                                 <tr className="bg-white  border-b">
                                     <td
                                         key={index}
-                                        className="p-4 text-xs text-gray-800 font-bold"
+                                        className="py-4 px-1 lg:w-4 text-xs text-gray-800 font-bold text-center"
                                     >
                                         {index}
                                     </td>
 
-                                    <td className="flex flex-col p-4 text-xs text-gray-600 font-bold">
+                                    <td className="flex flex-col py-4 px-1 lg:w-4 text-xs text-gray-600 font-bold">
                                         <input
                                             type="text"
-                                            className={err[index] && err[index].name && showErr[index] && showErr[index].name ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
+                                            className={err[index] && err[index].name && showErr[index] && showErr[index].name ? "border border-red-300 rounded-xl w-full text-xs lg:w-20" : "border border-gray-300 rounded-xl w-full text-xs lg:w-20"}
                                             onChange={changeHandler}
                                             value={stepTwo.manpowers[index].name}
                                             name="name"
@@ -112,11 +112,11 @@ export default function S2Manpowers({ showAllErr, setSendAccept }) {
                                         />
                                     </td>
 
-                                    <td className="p-4 text-xs text-gray-600 font-bold">
+                                    <td className="py-4 px-1 lg:w-4 text-xs text-gray-600 font-bold">
                                         <div className="flex flex-col items-center">
                                             <input
                                                 type="text"
-                                                className={err[index] && err[index].position && showErr[index] && showErr[index].position ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
+                                                className={err[index] && err[index].position && showErr[index] && showErr[index].position ? "border border-red-300 rounded-xl w-full text-xs lg:w-20" : "border border-gray-300 rounded-xl w-full text-xs lg:w-20"}
                                                 onChange={changeHandler}
                                                 value={stepTwo.manpowers[index].position}
                                                 name="position"
@@ -125,11 +125,11 @@ export default function S2Manpowers({ showAllErr, setSendAccept }) {
                                             />
                                         </div>
                                     </td>
-                                    <td className="p-4 text-xs text-gray-600 font-bold">
+                                    <td className="py-4 px-1 lg:w-4 text-xs text-gray-600 font-bold">
                                         <div className="flex flex-col items-center">
                                             <input
                                                 type="text"
-                                                className={err[index] && err[index].level_education && showErr[index] && showErr[index].level_education ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
+                                                className={err[index] && err[index].level_education && showErr[index] && showErr[index].level_education ? "border border-red-300 rounded-xl w-full text-xs lg:w-20" : "border border-gray-300 rounded-xl w-full text-xs lg:w-20"}
                                                 onChange={changeHandler}
                                                 value={stepTwo.manpowers[index].level_education}
                                                 name="level_education"
@@ -138,11 +138,11 @@ export default function S2Manpowers({ showAllErr, setSendAccept }) {
                                             />
                                         </div>
                                     </td>
-                                    <td className="p-4 text-xs text-gray-600 font-bold">
+                                    <td className="py-4 px-1 lg:w-4 text-xs text-gray-600 font-bold">
                                         <div className="flex flex-col items-center">
                                             <input
                                                 type="text"
-                                                className={err[index] && err[index].study && showErr[index] && showErr[index].study ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
+                                                className={err[index] && err[index].study && showErr[index] && showErr[index].study ? "border border-red-300 rounded-xl w-full text-xs lg:w-20" : "border border-gray-300 rounded-xl w-full text-xs lg:w-20"}
                                                 onChange={changeHandler}
                                                 value={stepTwo.manpowers[index].study}
                                                 name="study"
@@ -151,22 +151,22 @@ export default function S2Manpowers({ showAllErr, setSendAccept }) {
                                             />
                                         </div>
                                     </td>
-                                    <td className="p-4 text-xs text-gray-600 font-bold">
+                                    <td className="py-4 px-1 lg:w-4 text-xs text-gray-600 font-bold">
                                         <select
                                             onChange={changeHandler}
                                             name="type_contract"
                                             id={index}
-                                            className="border-gray-300 rounded-xl w-32 text-xs"
+                                            className="border-gray-300 rounded-xl w-full lg:w-32 text-xs"
                                         >
                                             <option value="full">تمام وقت </option>
                                             <option value="part">پاره وقت</option>
                                         </select>
                                     </td>
-                                    <td className="p-4 text-xs text-gray-600 font-bold">
+                                    <td className="py-4 px-1 lg:w-4 text-xs text-gray-600 font-bold">
                                         <div className="flex flex-col items-center">
                                             <input
                                                 type="number"
-                                                className={err[index] && err[index].work_experience && showErr[index] && showErr[index].work_experience ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
+                                                className={err[index] && err[index].work_experience && showErr[index] && showErr[index].work_experience ? "border border-red-300 rounded-xl w-full text-xs lg:w-20" : "border border-gray-300 rounded-xl w-full text-xs lg:w-20"}
                                                 onChange={changeHandler}
                                                 value={stepTwo.manpowers[index].work_experience}
                                                 name="work_experience"
@@ -176,11 +176,11 @@ export default function S2Manpowers({ showAllErr, setSendAccept }) {
                                         </div>
                                     </td>
 
-                                    <td className="p-4 text-xs text-gray-600 font-bold">
+                                    <td className="py-4 px-1 lg:w-4 text-xs text-gray-600 font-bold">
                                         <div className="flex flex-col items-center">
                                             <input
                                                 type="text"
-                                                className={err[index] && err[index].important && showErr[index] && showErr[index].important ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
+                                                className={err[index] && err[index].important && showErr[index] && showErr[index].important ? "border border-red-300 rounded-xl w-full text-xs lg:w-20" : "border border-gray-300 rounded-xl w-full text-xs lg:w-20"}
                                                 onChange={changeHandler}
                                                 value={stepTwo.manpowers[index].important}
                                                 name="important"

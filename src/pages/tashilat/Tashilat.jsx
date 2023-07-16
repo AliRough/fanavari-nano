@@ -45,7 +45,7 @@ export default function Tashilat() {
   } , [])
   if (isLoading) return <Loader />
   return (
-    <div className="px-5">
+    <div className="lg:px-5">
       <div className=" py-6">
         <p className="text-xl font-extrabold">بارگیری و بارگذاری مدارک </p>
       </div>
