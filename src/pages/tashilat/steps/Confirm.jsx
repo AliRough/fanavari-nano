@@ -143,7 +143,7 @@ export default function Confirm() {
       <form
         onSubmit={submitHandler}
         action=" "
-        className="tashilat-submit-form flex flex-col w-1/3 items-center mx-auto my-6 bg-white rounded-xl p-6"
+        className="tashilat-submit-form flex flex-col md:w-1/3 sm:w-1/2 w-full items-center mx-auto my-6 bg-white rounded-xl p-6"
       >
         <ToastContainer />
         <span className="font-semibold text-sm text-gray-600    ">
@@ -187,7 +187,7 @@ export default function Confirm() {
           className="rounded-2xl bg-transparent  border-b border-gray-600 my-2 shadow-lg   "
         />
             <div>
-      <SignatureCanvas ref={signatureRef} />
+      <SignatureCanvas ref={signatureRef}  />
       <button onClick={handleSave} className="text-center">ذخیره امضا</button>
     </div>
         <input
